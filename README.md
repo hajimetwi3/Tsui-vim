@@ -1,5 +1,7 @@
 # Tsui Vim  
 
+[English](README.en.md)
+
 ブラウザ上で動く、shell風＋vi/Vim風のローカルファイル編集ツールです。
 通常のLinuxシェルに近い、出力と入力が統合されたshell風画面で `cd` / `mv` / `mkdir` / `rm` などを使ってファイル管理し、`vim FILE` または `vi FILE` でファイルを開いて編集します。  
 - ログイン不要  
