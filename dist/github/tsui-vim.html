@@ -1,0 +1,3578 @@
+<!DOCTYPE html>
+<html lang="ja" data-build="github" translate="no">
+<head>
+<meta charset="UTF-8">
+<!--
+═══════════════════════════════════════════════════════════════════
+  Tsui Vim
+═══════════════════════════════════════════════════════════════════
+
+  Name:        Tsui Vim
+  Author:      Hajime Tsui
+  Version:     1.0.0
+
+  ─── License ─────────────────────────────────────────────────────
+
+  MIT License — © 2026 Hajime Tsui
+
+  This app does not include Vim source code. It is an independent,
+  simplified vi/Vim-style file editor for browsers.
+
+═══════════════════════════════════════════════════════════════════
+-->
+<style id="antiClickjack">html{display:none !important;}</style>
+<script>(function(){
+  if (self === top) {
+    var s = document.getElementById('antiClickjack');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  } else {
+    try { top.location = self.location; } catch (e) {}
+    try { document.documentElement.innerHTML = ''; } catch (e) {}
+  }
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Browser-based local shell + vi/Vim-style file editor with diff.">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#111111">
+<meta name="format-detection" content="telephone=no">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'none'; manifest-src 'self' data:; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none';">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2296%22%20fill%3D%22%23111111%22%2F%3E%3Cpath%20d%3D%22M128%20160h256v256H128z%22%20fill%3D%22%23171717%22%20stroke%3D%22%237dd3c0%22%20stroke-width%3D%2216%22%2F%3E%3Cpath%20d%3D%22M160%20210l40%2040-40%2040%22%20fill%3D%22none%22%20stroke%3D%22%237dd3c0%22%20stroke-width%3D%2216%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M224%20290h96%22%20stroke%3D%22%23e7e7e7%22%20stroke-width%3D%2216%22%20stroke-linecap%3D%22round%22%2F%3E%3Ctext%20x%3D%22160%22%20y%3D%22360%22%20font-family%3D%22monospace%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%20fill%3D%22%237Dd3C0%22%3Evi%3C%2Ftext%3E%3C%2Fsvg%3E" type="image/svg+xml">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Tsui%20Vim%22%2C%22short_name%22%3A%22Tsui%20Vim%22%2C%22description%22%3A%22%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92shell%E9%A2%A8%E3%81%AB%E7%AE%A1%E7%90%86%E3%81%97%E3%80%81vim%2Fvi%E9%A2%A8%E3%81%AB%E7%B7%A8%E9%9B%86%E3%81%97%E3%80%81TAB%E8%A3%9C%E5%AE%8C%E3%80%81diff%E3%80%81find%E3%80%81grep%E3%81%AB%E3%82%82%E5%AF%BE%E5%BF%9C%E3%81%97%E3%81%9F%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%AA%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF%E3%80%82%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E4%B8%8D%E8%A6%81%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%A4%96%E9%83%A8%E9%80%81%E4%BF%A1%E7%84%A1%E3%81%97%E3%80%82%22%2C%22start_url%22%3A%22.%2F%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23111111%22%2C%22theme_color%22%3A%22%23111111%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9Ijk2IiBmaWxsPSIjMTExMTExIi8%2BPHBhdGggZD0iTTEyOCAxNjBoMjU2djI1NkgxMjh6IiBmaWxsPSIjMTcxNzE3IiBzdHJva2U9IiM3ZGQzYzAiIHN0cm9rZS13aWR0aD0iMTYiLz48cGF0aCBkPSJNMTYwIDIxMGw0MCA0MC00MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2RkM2MwIiBzdHJva2Utd2lkdGg9IjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNMjI0IDI5MGg5NiIgc3Ryb2tlPSIjZTdlN2U3IiBzdHJva2Utd2lkdGg9IjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48dGV4dCB4PSIxNjAiIHk9IjM2MCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI2NCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzdEZDNDMCI%2Bdmk8L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #111;
+    --bg2: #171717;
+    --bg3: #222;
+    --fg: #e7e7e7;
+    --dim: #8a8a8a;
+    --faint: #555;
+    --accent: #7dd3c0;
+    --accent2: #a7f3d0;
+    --warn: #e8b842;
+    --danger: #e57373;
+    --border: #303030;
+    --ok: #8bd48b;
+    --shadow: rgba(0, 0, 0, 0.45);
+    --glow-color: transparent;
+    --fs-scale: 1;
+  }
+
+  /* Font size scale (S/M/L/XL) */
+  html[data-size="S"]  { --fs-scale: 0.88; }
+  html[data-size="M"]  { --fs-scale: 1;    }
+  html[data-size="L"]  { --fs-scale: 1.15; }
+  html[data-size="XL"] { --fs-scale: 1.32; }
+
+  /* Themes (calm = default, plus 5 neon variants) */
+  html[data-theme="green"]  { --accent:#39ff77; --accent2:#ffb000; --glow-color:#39ff77; }
+  html[data-theme="amber"]  { --accent:#ffb000; --accent2:#ff26b3; --glow-color:#ffb000; }
+  html[data-theme="red"]    { --accent:#ffc0b8; --accent2:#39ff77; --glow-color:#ff2020; }
+  html[data-theme="pink"]   { --accent:#ffc8f0; --accent2:#39ff77; --glow-color:#ff26b3; }
+  html[data-theme="cyber"]  { --accent:#B2FFCA; --accent2:#ff26b3; --glow-color:#39ff77; }
+
+  /* Glow effects only on neon themes */
+  html[data-theme] .brand,
+  html[data-theme] .prompt,
+  html[data-theme] #shell-prompt-symbol,
+  html[data-theme] .vim-mode,
+  html[data-theme] .modal-body h3 {
+    text-shadow: 0 0 8px var(--glow-color), 0 0 16px var(--glow-color);
+  }
+
+  html, body { height: 100%; }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    font-size: calc(13px * var(--fs-scale));
+  }
+
+  button, input, textarea {
+    font: inherit;
+  }
+
+  button {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    border-radius: 5px;
+    padding: 6px 11px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  button:hover:not(:disabled) { border-color: var(--accent); background: #202020; }
+  button:disabled { opacity: 0.42; cursor: not-allowed; }
+  button.primary { background: var(--accent); color: #101010; border-color: var(--accent); font-weight: 700; }
+  button.primary:hover:not(:disabled) { background: var(--accent2); }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 10px 14px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+  .brand {
+    color: var(--accent);
+    font-size: 1em;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    flex-shrink: 0;
+  }
+  #folder-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color: var(--dim);
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  main { min-height: 0; position: relative; overflow: hidden; }
+  [hidden] { display: none !important; }
+
+  #shell-view, #vim-view {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    background: var(--bg);
+  }
+
+  #shell-view { display: block; }
+  #terminal-screen {
+    height: 100%;
+    min-height: 0;
+    overflow: auto;
+    padding: 16px 18px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    cursor: text;
+  }
+  #terminal-output {
+    font: inherit;
+    line-height: inherit;
+  }
+  .output-line { min-height: 1.55em; }
+  .output-line.cmd { color: var(--accent2); }
+  .output-line.error { color: var(--danger); }
+  .output-line.warn { color: var(--warn); }
+  .output-line.ok { color: var(--ok); }
+  .output-line.dim { color: var(--dim); }
+  .output-line.banner { color: var(--accent); }
+  .output-line.diff-file { color: var(--dim); }
+  .output-line.diff-hunk { color: var(--accent); }
+  .output-line.diff-add { color: var(--ok); }
+  .output-line.diff-del { color: var(--danger); }
+  .output-line.diff-meta { color: var(--warn); }
+
+  #command-form {
+    display: grid;
+    grid-template-columns: auto minmax(2ch, 1fr);
+    gap: 8px;
+    align-items: baseline;
+    min-height: 1.55em;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font: inherit;
+    line-height: inherit;
+  }
+  #prompt { color: var(--accent); white-space: nowrap; }
+  #command-input {
+    width: 100%;
+    min-width: 2ch;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--fg);
+    caret-color: var(--accent);
+    font: inherit;
+    line-height: inherit;
+  }
+
+  /* Vim screen */
+  #vim-view {
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+  }
+  .vim-topline, .vim-statusline, .vim-commandbar {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 10px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .vim-topline { padding: 8px 12px; }
+  .mode-badge {
+    min-width: 76px;
+    text-align: center;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: var(--accent);
+    color: #101010;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .mode-badge.insert { background: var(--warn); }
+  .mode-badge.command { background: #bda7ff; }
+  .mode-badge.readonly { background: var(--danger); }
+  #vim-file-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--fg);
+  }
+  #vim-meta { color: var(--dim); white-space: nowrap; }
+  .vim-actions { display: flex; gap: 7px; flex-shrink: 0; }
+  .vim-actions button { padding: 4px 9px; font-size: 0.9231em; }
+
+  #vim-editor-wrap {
+    --line-number-width: 7ch;
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  #vim-line-numbers {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--line-number-width);
+    overflow: hidden;
+    padding: 16px 8px 16px 0;
+    border-right: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--faint);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    line-height: 1.65;
+    text-align: right;
+    white-space: pre;
+    pointer-events: none;
+    user-select: none;
+  }
+  #vim-line-numbers-inner { will-change: transform; }
+  #vim-editor {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    background: var(--bg);
+    color: var(--fg);
+    padding: 16px 20px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    line-height: 1.65;
+    tab-size: 2;
+    white-space: pre;
+    overflow: auto;
+    caret-color: var(--accent);
+  }
+  #vim-editor-wrap.show-line-numbers #vim-editor { padding-left: calc(var(--line-number-width) + 20px); }
+  #vim-editor[readonly] { color: #d9d9d9; }
+  #vim-view.normal-mode #vim-editor { caret-color: transparent; }
+  #vim-normal-cursor {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 0.6em;
+    height: 1.65em;
+    border: 1px solid var(--accent);
+    background: rgba(125, 211, 192, 0.22);
+    box-sizing: border-box;
+    pointer-events: none;
+    transform: translate(-9999px, -9999px);
+    animation: vim-normal-cursor-blink 1s steps(1, end) infinite;
+  }
+  #vim-normal-cursor.hidden { display: none; }
+  @keyframes vim-normal-cursor-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0.18; }
+  }
+
+  .vim-statusline {
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5px 12px;
+    color: var(--dim);
+    font-size: 0.9231em;
+  }
+  #vim-message { color: var(--warn); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #vim-linecol { flex-shrink: 0; }
+  .vim-commandbar {
+    border-bottom: none;
+    padding: 8px 12px;
+    min-height: 38px;
+  }
+  #vim-command-prefix { color: var(--accent); flex-shrink: 0; }
+  #vim-command-input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--fg);
+    font-family: inherit;
+  }
+  .vim-commandbar.hidden-input #vim-command-input,
+  .vim-commandbar.hidden-input #vim-command-prefix { visibility: hidden; }
+
+  footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    padding: 6px 14px;
+    color: var(--dim);
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    font-size: 0.9231em;
+  }
+  #status-info { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .kbd {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.7692em;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    border-radius: 3px;
+    padding: 0 5px;
+    color: var(--fg);
+  }
+
+  .unsupported {
+    max-width: 560px;
+    margin: 72px auto;
+    padding: 24px;
+    line-height: 1.8;
+    color: var(--dim);
+    text-align: center;
+  }
+  .unsupported h2 { color: var(--warn); margin-bottom: 12px; font-size: 1.3846em; }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.65);
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    width: min(720px, 100%);
+    max-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg2);
+    box-shadow: 0 30px 80px var(--shadow);
+    overflow: hidden;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .modal-title { color: var(--accent); font-weight: 800; letter-spacing: 0.6px; }
+  .modal-body { overflow: auto; padding: 18px; line-height: 1.8; color: var(--fg); }
+  .modal-body h3 { margin-top: 16px; margin-bottom: 6px; color: var(--accent); font-size: 1em; }
+  .modal-body p, .modal-body li { color: var(--dim); }
+  .modal-body ul { padding-left: 1.3em; }
+  .modal-body code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--fg);
+  }
+  .modal-body pre {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px;
+    margin: 8px 0;
+    overflow: auto;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.8462em;
+    line-height: 1.5;
+    color: var(--fg);
+    white-space: pre;
+  }
+  .modal-body pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+  .modal-body a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .modal-body a:hover {
+    color: var(--accent2);
+  }
+  .settings-modal { width: min(560px, 100%); }
+  .diff-modal { width: min(1040px, 100%); }
+  .diff-output {
+    min-height: 240px;
+    max-height: 72vh;
+    overflow: auto;
+    padding: 12px 14px;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.9231em;
+    line-height: 1.55;
+    white-space: pre;
+  }
+  .diff-line { min-height: 1.55em; }
+  .diff-line.diff-file { color: var(--dim); }
+  .diff-line.diff-hunk { color: var(--accent); }
+  .diff-line.diff-add { color: var(--ok); }
+  .diff-line.diff-del { color: var(--danger); }
+  .diff-line.diff-meta { color: var(--warn); }
+  .setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 14px;
+    color: var(--fg);
+  }
+  .setting-input-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+  #settings-grep-max-mb {
+    width: 7em;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--bg);
+    color: var(--fg);
+    outline: none;
+    padding: 6px 8px;
+  }
+  #settings-grep-max-mb:focus { border-color: var(--accent); }
+  .setting-note { margin-top: 8px; }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+
+  /* ==== Settings: SIZE / THEME option rows ================================== */
+  .opt-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 12px 0;
+  }
+  .opt-btn {
+    padding: 4px 12px;
+    background: var(--bg);
+    color: var(--dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 120ms, border-color 120ms, background 120ms;
+  }
+  .opt-btn:hover {
+    color: var(--fg);
+    border-color: var(--accent);
+  }
+  .opt-btn.on {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--bg2);
+  }
+
+  /* ==== Folder warning modal ================================================ */
+  .warn-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+  }
+  .warn-modal {
+    background: var(--bg2);
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 520px;
+    width: 100%;
+    color: var(--fg);
+    font-size: 1em;
+    line-height: 1.7;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+  .warn-modal h2 {
+    color: var(--danger);
+    font-size: 1.1538em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .warn-modal p { margin: 6px 0; }
+  .warn-modal p.warn-spacer { margin-top: 10px; }
+  .warn-modal ul { margin: 8px 0 12px 20px; color: var(--dim); }
+  .warn-modal li { margin: 2px 0; }
+  .warn-modal code {
+    background: var(--bg);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9231em;
+    color: var(--accent);
+  }
+  .warn-modal .warn-note {
+    color: var(--dim);
+    font-size: 0.9231em;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .warn-modal .warn-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 720px) {
+    header { gap: 6px; padding: 8px; }
+    .brand { font-size: 0.9231em; }
+    header button { padding: 5px 8px; font-size: 0.9231em; }
+    #folder-label { display: none; }
+    #terminal-screen { padding: 12px; }
+    .vim-topline { gap: 6px; padding: 7px; }
+    #vim-meta { display: none; }
+    .vim-actions button { padding: 4px 7px; }
+    footer { font-size: 0.8462em; gap: 8px; }
+  }
+</style>
+<title>Tsui Vim</title>
+</head>
+<body>
+<header>
+  <div class="brand">TSUI VIM</div>
+  <div id="folder-label">作業フォルダ未選択</div>
+  <button class="primary" id="btn-open-folder" title="⚠ 選択したフォルダ配下に読み書き権限を持ちます。専用の作業フォルダを推奨します。">フォルダを開く</button>
+  <button id="btn-reconnect">前回</button>
+  <button id="btn-help">help</button>
+  <button id="btn-settings">settings</button>
+  <button id="btn-about">about</button>
+</header>
+
+<main>
+  <section id="shell-view">
+    <div id="terminal-screen" aria-label="shell terminal">
+      <div id="terminal-output" role="log" aria-live="polite"></div>
+      <form id="command-form" autocomplete="off">
+        <span id="prompt">tsui-vim$</span>
+        <input id="command-input" type="text" spellcheck="false" autocomplete="off" autocapitalize="none" aria-label="command input">
+      </form>
+    </div>
+  </section>
+
+  <section id="vim-view" hidden>
+    <div class="vim-topline">
+      <span class="mode-badge" id="vim-mode">NORMAL</span>
+      <span id="vim-file-label"></span>
+      <span id="vim-meta"></span>
+      <span class="vim-actions">
+        <button id="btn-vim-save" title=":w / Ctrl+S">:w</button>
+        <button id="btn-vim-diff" title=":diff">:diff</button>
+        <button id="btn-vim-quit" title=":q">:q</button>
+      </span>
+    </div>
+    <div id="vim-editor-wrap">
+      <div id="vim-line-numbers" hidden aria-hidden="true"><div id="vim-line-numbers-inner"></div></div>
+      <textarea id="vim-editor" spellcheck="false" autocomplete="off" autocapitalize="none" wrap="off"></textarea>
+      <div id="vim-normal-cursor" class="hidden" aria-hidden="true"></div>
+    </div>
+    <div class="vim-statusline">
+      <span id="vim-message"></span>
+      <span id="vim-linecol">1:1</span>
+    </div>
+    <div class="vim-commandbar hidden-input" id="vim-commandbar">
+      <span id="vim-command-prefix">:</span>
+      <input id="vim-command-input" type="text" spellcheck="false" autocomplete="off" autocapitalize="none" aria-label="vim command input">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span id="status-info"></span>
+  <span>shell: <span class="kbd">cd</span> <span class="kbd">ls</span> <span class="kbd">mv</span> <span class="kbd">cp</span> <span class="kbd">diff</span> <span class="kbd">find</span> <span class="kbd">grep</span> <span class="kbd">vim/vi/view file</span> <span class="kbd">Tab</span></span>
+  <span>vim: <span class="kbd">i</span> insert · <span class="kbd">yy/dd/x</span> yank · <span class="kbd">p/P</span> paste · <span class="kbd">:wq</span> save&amp;quit</span>
+</footer>
+
+<div class="modal-backdrop" id="modal-about">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">About Tsui Vim</span>
+      <button id="btn-modal-close" title="閉じる">×</button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Tsui Vim</strong> は、ブラウザ上で動くローカルファイル編集ツールです。ファイルツリーを使わず、通常のLinuxシェルに近いプロンプト行でファイルを管理し、<code>vim path/file</code> または <code>vi path/file</code> で編集画面を開きます。ログイン不要、インストール不要、データの外部送信なし。</p>
+      <p>Vim本体のソースコードは含まず、vi/Vim風の操作感を参考にした独自実装です。Vim project とは無関係の非公式ツールです。</p>
+      <h3>PRIVACY</h3>
+      <p>ファイルや入力内容は、本アプリ本体から外部送信されません。<code>connect-src 'none'</code> により、<code>fetch</code> 等のネットワーク送信は、ブラウザレベルで禁止されます。DevTools の Network タブで確認いただけます。</p>
+      <p>ファイルや入力内容は <code>localStorage</code> や <code>IndexedDB</code> に保存しません。これらは File System Access API 経由で選択されたフォルダの中にのみ存在します。なお、UI 設定と、前回フォルダへの再アクセス用の情報（フォルダ名とハンドル）は保存しています。</p>
+      <p>本アプリ本体には計測機能は一切含まれていません（上記の <code>connect-src 'none'</code> により、ブラウザの CSP 機構で外部送信が禁止されるため）。</p>
+      <p>一方、作者プロフィールや Tsui series のランディングページ等の情報ページでは、訪問数の把握に Cloudflare Web Analytics を利用しています（Cookie なし / フィンガープリントなし / クロスサイトトラッキングなし）。</p>
+      <p>なお、別途プラットフォーム側（配信元サーバや中継事業者等）で計測・記録されている可能性はあります。</p>
+      <h3>主なコマンド</h3>
+      <ul>
+        <li><code>open</code> / <code>reconnect</code> — 作業フォルダの選択・再接続</li>
+        <li><code>pwd</code>, <code>ls [-l]</code>, <code>cd DIR</code> — 移動と一覧</li>
+        <li><code>mkdir [-p] DIR</code>, <code>mv [-f] SRC DEST</code>, <code>cp [-f] SRC DEST</code>, <code>rm [-r] [-f] PATH</code> — ファイル管理</li>
+        <li><code>diff [-u] [-q] [-U N] FILE1 FILE2</code> — テキストファイルの差分をunified diffで表示</li>
+        <li><code>find</code>, <code>grep</code> — ファイル検索・本文検索。grepのファイルサイズ上限はsettingsで変更可能</li>
+        <li><code>vim FILE</code> / <code>vi FILE</code> — ファイルを開いて編集。存在しないファイルは <code>:w</code> で作成</li>
+        <li><code>view FILE</code> — ファイルをリードオンリーで開く（<code>:w!</code> で強制保存可）</li>
+        <li><code>Tab</code> — コマンド名・ファイル名・ディレクトリ名を補完</li>
+      </ul>
+      <h3>Vim風操作</h3>
+      <p><code>i</code>/<code>a</code>/<code>A</code>/<code>I</code>/<code>o</code>/<code>O</code> でINSERT、<code>Esc</code>でNORMAL、<code>:w</code>保存、<code>:q</code>終了、<code>:wq</code>保存して終了、<code>:q!</code>破棄して終了。NORMALでは <code>h j k l</code>, <code>0</code>, <code>$</code>, <code>gg</code>, <code>G</code>, <code>x</code>, <code>dd</code>, <code>yy</code>, <code>p</code>, <code>P</code>, <code>u</code> も簡易対応しています。<code>x</code>/<code>dd</code>/<code>yy</code> は内部レジスタへ保存し、可能ならシステムクリップボードにもコピーします。<code>20l</code> のような数字付き移動にも対応しています。<code>:set number</code>/<code>:nu</code>/<code>:set nonumber</code>/<code>:nonu</code>、<code>:w FILE</code>/<code>:saveas FILE</code>/<code>:sav FILE</code>、<code>:diff</code>/<code>:diff FILE</code>、<code>/word</code>/<code>?word</code>/<code>n</code>/<code>N</code> にも対応しています。<code>view</code> で開いたファイルへの保存は <code>:w!</code> / <code>:wq!</code> / <code>:x!</code> で強制可能です。</p>
+      <h3>注意</h3>
+      <p>File System Access APIの仕様上、選択したフォルダ配下への読み書き・削除権限を持ちます。重要フォルダや同期フォルダではなく、専用の作業フォルダで利用することを推奨します。</p>
+      <h3>DISCLAIMER</h3>
+      <p>本ソフトウェアは現状有姿で提供され、動作の正確性・可用性について一切の保証はありません。ご利用は自己責任でお願いします。ファイルのバックアップは利用者の責任で行ってください。</p>
+      <h3>LICENSE (THIS APP)</h3>
+      <p>Copyright (c) 2026 <a href="https://hajimetwi3.github.io/hajimetwi3/" target="_blank" rel="noopener noreferrer">Hajime Tsui</a></p>
+<pre><code>MIT License
+
+Copyright (c) 2026 Hajime Tsui
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</code></pre>
+      <h3>THIRD-PARTY</h3>
+      <p>なし。外部モジュールには依存しません。</p>
+      <h3>RELATED</h3>
+      <p>本アプリは <a href="https://hajimetwi3.github.io/hajimetwi3/Tsui-series/" target="_blank" rel="noopener noreferrer">Tsui series</a>（静かな道具たち）の一つです。</p>
+      <p>GitHub: <a href="https://github.com/hajimetwi3/Tsui-vim" target="_blank" rel="noopener noreferrer">github.com/hajimetwi3/Tsui-vim</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-settings">
+  <div class="modal settings-modal">
+    <div class="modal-header">
+      <span class="modal-title">Settings</span>
+      <button id="btn-settings-close" title="閉じる">×</button>
+    </div>
+    <div class="modal-body">
+      <h3>SIZE</h3>
+      <p>UIの文字サイズを切り替えます。</p>
+      <div class="opt-row" id="settings-size-row">
+        <button type="button" class="opt-btn" data-size-opt="S">S</button>
+        <button type="button" class="opt-btn" data-size-opt="M">M</button>
+        <button type="button" class="opt-btn" data-size-opt="L">L</button>
+        <button type="button" class="opt-btn" data-size-opt="XL">XL</button>
+      </div>
+      <h3>THEME</h3>
+      <p>UIの配色を切り替えます。calm 以外のテーマでは強調文字に発光効果が付きます。</p>
+      <div class="opt-row" id="settings-theme-row">
+        <button type="button" class="opt-btn" data-theme-opt="calm">calm</button>
+        <button type="button" class="opt-btn" data-theme-opt="green">green</button>
+        <button type="button" class="opt-btn" data-theme-opt="amber">amber</button>
+        <button type="button" class="opt-btn" data-theme-opt="red">red</button>
+        <button type="button" class="opt-btn" data-theme-opt="pink">pink</button>
+        <button type="button" class="opt-btn" data-theme-opt="cyber">cyber</button>
+      </div>
+      <h3>grep</h3>
+      <p>巨大ファイルを誤って読み込まないよう、grepが読む1ファイルあたりの上限を設定します。上限を超えるファイルとバイナリファイルはスキップされます。</p>
+      <label class="setting-row" for="settings-grep-max-mb">
+        <span>grep max file size</span>
+        <span class="setting-input-wrap"><input id="settings-grep-max-mb" type="number" min="0.0625" max="200" step="0.25" inputmode="decimal"> MB</span>
+      </label>
+      <p class="setting-note">現在値: <span id="settings-grep-max-label">-</span></p>
+      <div class="modal-actions">
+        <button id="btn-settings-save" class="primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-diff">
+  <div class="modal diff-modal">
+    <div class="modal-header">
+      <span class="modal-title" id="diff-title">Diff</span>
+      <button id="btn-diff-close" title="閉じる">×</button>
+    </div>
+    <div class="diff-output" id="diff-output" role="log" aria-label="diff output"></div>
+  </div>
+</div>
+
+<script>
+// ==== Browser support check =================================================
+if (!('showDirectoryPicker' in window)) {
+  document.body.innerHTML = `
+    <div class="unsupported">
+      <h2>このブラウザは非対応です</h2>
+      <p>File System Access API が必要です。<br>
+      <b>Chrome / Edge / Opera</b> などの Chromium 系ブラウザでお試しください。<br>
+      Firefox / Safari は現状未対応です。</p>
+    </div>`;
+  throw new Error('Unsupported browser');
+}
+
+// ==== IndexedDB =============================================================
+const BUILD_TARGET = document.documentElement.dataset.build || 'github';
+const DB_NAME = 'tsui-vim';
+const STORE = 'handles';
+const KEY_LAST = 'lastFolder';
+const SETTINGS_STORAGE_KEY = 'tsui-vim-settings-v1';
+const UI_PREFS_STORAGE_KEY = 'tsui-vim-ui-prefs-v1';
+const WARN_ACK_KEY = 'tsui-vim-fs-warning-ack-v1';
+const VALID_SIZES = ['S', 'M', 'L', 'XL'];
+const VALID_THEMES = ['calm', 'green', 'amber', 'red', 'pink', 'cyber'];
+const DEFAULT_SIZE = 'M';
+const DEFAULT_THEME = 'calm';
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = (e) => e.target.result.createObjectStore(STORE);
+    req.onsuccess = (e) => resolve(e.target.result);
+    req.onerror = (e) => reject(e.target.error);
+  });
+}
+async function idbPut(key, value) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    tx.objectStore(STORE).put(value, key);
+    tx.oncomplete = () => resolve();
+    tx.onerror = (e) => reject(e.target.error);
+  });
+}
+async function idbGet(key) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE, 'readonly');
+    const req = tx.objectStore(STORE).get(key);
+    req.onsuccess = () => resolve(req.result || null);
+    req.onerror = (e) => reject(e.target.error);
+  });
+}
+
+// ==== Encoding helpers ======================================================
+const BOM_UTF8 = [0xEF, 0xBB, 0xBF];
+const BOM_UTF16LE = [0xFF, 0xFE];
+const BOM_UTF16BE = [0xFE, 0xFF];
+
+function startsWith(bytes, prefix) {
+  if (bytes.length < prefix.length) return false;
+  for (let i = 0; i < prefix.length; i++) if (bytes[i] !== prefix[i]) return false;
+  return true;
+}
+
+function decodeBytes(arrayBuffer) {
+  const bytes = new Uint8Array(arrayBuffer);
+  if (startsWith(bytes, BOM_UTF8)) {
+    return { text: new TextDecoder('utf-8').decode(bytes.subarray(3)), encoding: 'UTF-8', hasBom: true };
+  }
+  if (startsWith(bytes, BOM_UTF16LE)) {
+    return { text: new TextDecoder('utf-16le').decode(bytes.subarray(2)), encoding: 'UTF-16LE', hasBom: true };
+  }
+  if (startsWith(bytes, BOM_UTF16BE)) {
+    return { text: new TextDecoder('utf-16be').decode(bytes.subarray(2)), encoding: 'UTF-16BE', hasBom: true };
+  }
+  try {
+    return { text: new TextDecoder('utf-8', { fatal: true }).decode(bytes), encoding: 'UTF-8', hasBom: false };
+  } catch {
+    try {
+      return { text: new TextDecoder('shift_jis', { fatal: true }).decode(bytes), encoding: 'Shift_JIS', hasBom: false };
+    } catch {
+      try {
+        return { text: new TextDecoder('euc-jp', { fatal: true }).decode(bytes), encoding: 'EUC-JP', hasBom: false };
+      } catch {
+        return { text: new TextDecoder('utf-8').decode(bytes), encoding: 'UTF-8?', hasBom: false };
+      }
+    }
+  }
+}
+
+function detectEol(text) {
+  const sample = text.length > 65536 ? text.slice(0, 65536) : text;
+  let lf = 0, crlf = 0, cr = 0;
+  for (let i = 0; i < sample.length; i++) {
+    const c = sample.charCodeAt(i);
+    if (c === 0x0D) {
+      if (sample.charCodeAt(i + 1) === 0x0A) { crlf++; i++; }
+      else cr++;
+    } else if (c === 0x0A) {
+      lf++;
+    }
+  }
+  if (crlf >= lf && crlf >= cr) return crlf > 0 ? 'CRLF' : 'LF';
+  if (cr > lf) return 'CR';
+  return 'LF';
+}
+
+function normalizeEditorNewlines(text) {
+  return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+}
+
+function encodeForSave(text, meta) {
+  let normalized = text;
+  if (meta.eol === 'CRLF') normalized = text.replace(/\n/g, '\r\n');
+  else if (meta.eol === 'CR') normalized = text.replace(/\n/g, '\r');
+
+  const enc = meta.encoding;
+  if (enc === 'UTF-16LE' || enc === 'UTF-16BE') {
+    const le = enc === 'UTF-16LE';
+    const out = new Uint8Array((meta.hasBom ? 2 : 0) + normalized.length * 2);
+    let p = 0;
+    if (meta.hasBom) {
+      if (le) { out[0] = 0xFF; out[1] = 0xFE; }
+      else { out[0] = 0xFE; out[1] = 0xFF; }
+      p = 2;
+    }
+    for (let i = 0; i < normalized.length; i++) {
+      const c = normalized.charCodeAt(i);
+      if (le) { out[p++] = c & 0xFF; out[p++] = (c >> 8) & 0xFF; }
+      else { out[p++] = (c >> 8) & 0xFF; out[p++] = c & 0xFF; }
+    }
+    return { bytes: out, fallback: false, actualEncoding: enc };
+  }
+
+  const body = new TextEncoder().encode(normalized);
+  const isUtf8 = enc === 'UTF-8' || enc === 'UTF-8?';
+  if (isUtf8 && meta.hasBom) {
+    const out = new Uint8Array(body.length + 3);
+    out.set(BOM_UTF8, 0);
+    out.set(body, 3);
+    return { bytes: out, fallback: false, actualEncoding: 'UTF-8' };
+  }
+  return { bytes: body, fallback: !isUtf8, actualEncoding: 'UTF-8' };
+}
+
+// ==== State =================================================================
+let rootHandle = null;
+let cwdParts = [];
+let commandHistory = [];
+let historyIndex = 0;
+let settings = null;
+
+const SHELL_COMMANDS = [
+  'open', 'reconnect', 'pwd', 'ls', 'cd', 'mkdir', 'mv', 'rm',
+  'touch', 'cat', 'cp', 'diff', 'find', 'grep', 'clear', 'vim', 'vi', 'view', 'help', '?', 'about', 'settings'
+];
+const PATH_COMPLETION_COMMANDS = new Set(['ls', 'cd', 'mkdir', 'mv', 'rm', 'touch', 'cat', 'cp', 'diff', 'find', 'grep', 'vim', 'vi', 'view']);
+const DIRECTORY_ONLY_COMPLETION_COMMANDS = new Set(['cd']);
+
+const SIZE_WARN = 10 * 1024 * 1024;
+const SIZE_READONLY = 30 * 1024 * 1024;
+const SIZE_REJECT = 50 * 1024 * 1024;
+const FIND_MAX_RESULTS = 5000;
+const GREP_DEFAULT_MAX_BYTES = 5 * 1024 * 1024;
+const GREP_MAX_MATCHES = 1000;
+const DIFF_MAX_BYTES = 10 * 1024 * 1024;
+const DIFF_DEFAULT_CONTEXT = 3;
+const DIFF_MAX_CONTEXT = 50;
+const DIFF_MAX_OUTPUT_LINES = 5000;
+const DIFF_MAX_LINE_LENGTH = 1000;
+const DIFF_MYERS_MAX_LINES = 20000;
+const DIFF_MYERS_MAX_EDITS = 2000;
+settings = loadSettings();
+let uiPrefs = loadUiPrefs();
+applyUiPrefs();
+
+const vim = {
+  open: false,
+  pathParts: [],
+  handle: null,
+  exists: false,
+  originalContent: '',
+  encoding: 'UTF-8',
+  eol: 'LF',
+  hasBom: false,
+  fileReadonly: false,
+  viewMode: false,
+  mode: 'NORMAL',
+  commandPrefix: ':',
+  normalPending: '',
+  normalCount: '',
+  undoStack: [],
+  yankText: '',
+  yankType: 'char',
+  showLineNumbers: false,
+  lastSearchQuery: '',
+  lastSearchDirection: 1,
+  lastMessage: ''
+};
+
+// ==== DOM ===================================================================
+const $folderLabel = document.getElementById('folder-label');
+const $status = document.getElementById('status-info');
+const $terminalScreen = document.getElementById('terminal-screen');
+const $terminal = document.getElementById('terminal-output');
+const $commandForm = document.getElementById('command-form');
+const $prompt = document.getElementById('prompt');
+const $commandInput = document.getElementById('command-input');
+const $shellView = document.getElementById('shell-view');
+const $vimView = document.getElementById('vim-view');
+const $vimMode = document.getElementById('vim-mode');
+const $vimFileLabel = document.getElementById('vim-file-label');
+const $vimMeta = document.getElementById('vim-meta');
+const $vimEditorWrap = document.getElementById('vim-editor-wrap');
+const $vimLineNumbers = document.getElementById('vim-line-numbers');
+const $vimLineNumbersInner = document.getElementById('vim-line-numbers-inner');
+const $vimEditor = document.getElementById('vim-editor');
+const $vimNormalCursor = document.getElementById('vim-normal-cursor');
+const $vimMessage = document.getElementById('vim-message');
+const $vimLineCol = document.getElementById('vim-linecol');
+const $vimCommandbar = document.getElementById('vim-commandbar');
+const $vimCommandPrefix = document.getElementById('vim-command-prefix');
+const $vimCommandInput = document.getElementById('vim-command-input');
+const $modalAbout = document.getElementById('modal-about');
+const $modalSettings = document.getElementById('modal-settings');
+const $settingsGrepMaxMb = document.getElementById('settings-grep-max-mb');
+const $settingsGrepMaxLabel = document.getElementById('settings-grep-max-label');
+const $modalDiff = document.getElementById('modal-diff');
+const $diffTitle = document.getElementById('diff-title');
+const $diffOutput = document.getElementById('diff-output');
+
+// ==== UI helpers ============================================================
+function setStatus(message) {
+  $status.textContent = message || '';
+}
+
+function scrollShellToBottom() {
+  $terminalScreen.scrollTop = $terminalScreen.scrollHeight;
+}
+
+function appendOutput(text = '', cls = '') {
+  const lines = String(text).split('\n');
+  for (const line of lines) {
+    const div = document.createElement('div');
+    div.className = 'output-line' + (cls ? ' ' + cls : '');
+    div.textContent = line;
+    $terminal.appendChild(div);
+  }
+  scrollShellToBottom();
+}
+
+function printCommand(command) {
+  appendOutput(`${makePrompt()} ${command}`, 'cmd');
+}
+
+function clearTerminal() {
+  $terminal.innerHTML = '';
+  scrollShellToBottom();
+}
+
+function pathString(parts) {
+  return parts.length ? parts.join('/') : '';
+}
+
+function displayPath(parts) {
+  return '/' + pathString(parts);
+}
+
+function makePrompt() {
+  const root = rootHandle ? rootHandle.name : 'no-folder';
+  return `${root}:${displayPath(cwdParts)}$`;
+}
+
+function updateChrome() {
+  const rootText = rootHandle ? rootHandle.name : '作業フォルダ未選択';
+  $folderLabel.textContent = rootHandle ? `${rootText}  ${displayPath(cwdParts)}` : rootText;
+  $prompt.textContent = makePrompt();
+  setStatus(rootHandle ? `root=${rootText} cwd=${displayPath(cwdParts)}` : 'open コマンドまたは「フォルダを開く」で作業フォルダを選択してください');
+  scrollShellToBottom();
+}
+
+function openAbout() { $modalAbout.classList.add('open'); }
+function closeAbout() { $modalAbout.classList.remove('open'); }
+
+function formatSize(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  const units = ['KB', 'MB', 'GB'];
+  let value = bytes;
+  let unit = 'B';
+  for (const u of units) {
+    value /= 1024;
+    unit = u;
+    if (value < 1024) break;
+  }
+  return `${value.toFixed(value >= 10 ? 1 : 2)} ${unit}`;
+}
+
+function loadSettings() {
+  try {
+    const raw = localStorage.getItem(SETTINGS_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    const grepMaxBytes = Number(parsed.grepMaxBytes);
+    return {
+      grepMaxBytes: Number.isFinite(grepMaxBytes) && grepMaxBytes > 0
+        ? Math.max(64 * 1024, Math.min(grepMaxBytes, 200 * 1024 * 1024))
+        : GREP_DEFAULT_MAX_BYTES
+    };
+  } catch {
+    return { grepMaxBytes: GREP_DEFAULT_MAX_BYTES };
+  }
+}
+
+function saveSettings() {
+  try { localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings)); }
+  catch {}
+}
+
+// ==== UI prefs (SIZE/THEME) ================================================
+function loadUiPrefs() {
+  try {
+    const raw = localStorage.getItem(UI_PREFS_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return {
+      size: VALID_SIZES.includes(parsed.size) ? parsed.size : DEFAULT_SIZE,
+      theme: VALID_THEMES.includes(parsed.theme) ? parsed.theme : DEFAULT_THEME
+    };
+  } catch {
+    return { size: DEFAULT_SIZE, theme: DEFAULT_THEME };
+  }
+}
+
+function saveUiPrefs() {
+  try { localStorage.setItem(UI_PREFS_STORAGE_KEY, JSON.stringify(uiPrefs)); }
+  catch {}
+}
+
+function applyUiPrefs() {
+  const root = document.documentElement;
+  root.dataset.size = uiPrefs.size;
+  if (uiPrefs.theme === 'calm') root.removeAttribute('data-theme');
+  else root.dataset.theme = uiPrefs.theme;
+}
+
+function setSize(size) {
+  if (!VALID_SIZES.includes(size)) return;
+  uiPrefs.size = size;
+  applyUiPrefs();
+  saveUiPrefs();
+  updateUiPrefsUi();
+}
+
+function setTheme(theme) {
+  if (!VALID_THEMES.includes(theme)) return;
+  uiPrefs.theme = theme;
+  applyUiPrefs();
+  saveUiPrefs();
+  updateUiPrefsUi();
+}
+
+function updateUiPrefsUi() {
+  document.querySelectorAll('[data-size-opt]').forEach(btn => {
+    btn.classList.toggle('on', btn.dataset.sizeOpt === uiPrefs.size);
+  });
+  document.querySelectorAll('[data-theme-opt]').forEach(btn => {
+    btn.classList.toggle('on', btn.dataset.themeOpt === uiPrefs.theme);
+  });
+}
+
+function formatMbValue(bytes) {
+  const mb = bytes / 1024 / 1024;
+  return Number.isInteger(mb) ? String(mb) : mb.toFixed(1).replace(/\.0$/, '');
+}
+
+function updateSettingsUi() {
+  if (!$settingsGrepMaxMb) return;
+  $settingsGrepMaxMb.value = formatMbValue(settings.grepMaxBytes);
+  if ($settingsGrepMaxLabel) $settingsGrepMaxLabel.textContent = formatSize(settings.grepMaxBytes);
+}
+
+function openSettings() {
+  updateSettingsUi();
+  updateUiPrefsUi();
+  $modalSettings.classList.add('open');
+  setTimeout(() => $settingsGrepMaxMb && $settingsGrepMaxMb.focus(), 0);
+}
+
+function closeSettings() {
+  $modalSettings.classList.remove('open');
+  const focusTarget = vim.open ? $vimEditor : $commandInput;
+  setTimeout(() => focusTarget && focusTarget.focus(), 0);
+}
+
+function saveSettingsFromUi() {
+  const mb = Number.parseFloat($settingsGrepMaxMb.value);
+  if (!Number.isFinite(mb) || mb <= 0) {
+    setStatus('grep上限には0より大きい数値を指定してください');
+    updateSettingsUi();
+    return;
+  }
+  const clampedMb = Math.max(0.0625, Math.min(mb, 200));
+  settings.grepMaxBytes = Math.round(clampedMb * 1024 * 1024);
+  saveSettings();
+  updateSettingsUi();
+  setStatus(`grep file limit=${formatSize(settings.grepMaxBytes)}`);
+  closeSettings();
+}
+
+function clearDiffModal() {
+  if ($diffOutput) $diffOutput.innerHTML = '';
+}
+
+function renderDiffLine(container, item) {
+  const div = document.createElement('div');
+  div.className = 'diff-line' + (item.cls ? ' ' + item.cls : '');
+  div.textContent = item.text;
+  container.appendChild(div);
+}
+
+function openDiffModal(title, lines) {
+  if (!$modalDiff || !$diffOutput) return;
+  $diffTitle.textContent = title || 'Diff';
+  clearDiffModal();
+  const shown = lines && lines.length ? lines : [{ text: 'diff: no differences', cls: 'diff-meta' }];
+  for (const line of shown) renderDiffLine($diffOutput, line);
+  $modalDiff.classList.add('open');
+  setTimeout(() => {
+    const close = document.getElementById('btn-diff-close');
+    if (close) close.focus();
+  }, 0);
+}
+
+function closeDiffModal() {
+  if (!$modalDiff) return;
+  $modalDiff.classList.remove('open');
+  const focusTarget = vim.open ? $vimEditor : $commandInput;
+  setTimeout(() => focusTarget && focusTarget.focus(), 0);
+}
+
+// ==== Permission / File System =============================================
+async function ensurePermission(handle = rootHandle, mode = 'readwrite') {
+  if (!handle) throw new Error('作業フォルダが未選択です。open でフォルダを選択してください。');
+  const opts = { mode };
+  if ((await handle.queryPermission(opts)) === 'granted') return true;
+  if ((await handle.requestPermission(opts)) === 'granted') return true;
+  throw new Error('フォルダへの読み書き権限がありません。');
+}
+
+function showFolderWarning() {
+  return new Promise((resolve) => {
+    const overlay = document.createElement('div');
+    overlay.className = 'warn-overlay';
+    overlay.innerHTML = `
+      <div class="warn-modal" role="dialog" aria-labelledby="warn-title" aria-modal="true">
+        <h2 id="warn-title">⚠ 権限に関する重要な注意</h2>
+        <p>このアプリは、選択したフォルダ配下の<b>すべてのファイルに対して読み書き・削除の権限</b>を持ちます。</p>
+        <p class="warn-spacer">以下のような<b>システム的・個人的に重要なフォルダの選択は避けてください</b>：</p>
+        <ul>
+          <li><code>C:\\</code> / <code>/</code> などルート直下</li>
+          <li>Desktop / Documents / Downloads</li>
+          <li>OneDrive / iCloud / Dropbox の同期フォルダ</li>
+          <li>Git リポジトリや開発プロジェクトのルート</li>
+        </ul>
+        <p>推奨は、このエディタ専用に作った作業フォルダ（例: <code>C:\\tsui-workspace\\</code>）です。</p>
+        <p class="warn-note">この警告は初回のみ表示されます。</p>
+        <div class="warn-actions">
+          <button id="warn-cancel">キャンセル</button>
+          <button id="warn-ok" class="primary">理解した上で開く</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    const cleanup = (ok) => {
+      document.removeEventListener('keydown', onKey);
+      overlay.remove();
+      resolve(ok);
+    };
+    const onKey = (e) => {
+      if (e.key === 'Escape') cleanup(false);
+      else if (e.key === 'Enter') cleanup(true);
+    };
+    document.addEventListener('keydown', onKey);
+
+    overlay.querySelector('#warn-ok').onclick = () => cleanup(true);
+    overlay.querySelector('#warn-cancel').onclick = () => cleanup(false);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) cleanup(false); });
+
+    setTimeout(() => overlay.querySelector('#warn-ok').focus(), 0);
+  });
+}
+
+async function chooseRoot() {
+  let acked = false;
+  try { acked = !!localStorage.getItem(WARN_ACK_KEY); } catch {}
+  if (!acked) {
+    const ok = await showFolderWarning();
+    if (!ok) { appendOutput('open: canceled', 'warn'); return; }
+    try { localStorage.setItem(WARN_ACK_KEY, '1'); } catch {}
+  }
+  const handle = await window.showDirectoryPicker({ mode: 'readwrite' });
+  await ensurePermission(handle, 'readwrite');
+  rootHandle = handle;
+  cwdParts = [];
+  await idbPut(KEY_LAST, handle);
+  updateChrome();
+  appendOutput(`opened: ${handle.name}`, 'ok');
+}
+
+async function reconnectRoot() {
+  const handle = await idbGet(KEY_LAST);
+  if (!handle) throw new Error('前回のフォルダ記録がありません。open を実行してください。');
+  await ensurePermission(handle, 'readwrite');
+  rootHandle = handle;
+  cwdParts = [];
+  updateChrome();
+  appendOutput(`reconnected: ${handle.name}`, 'ok');
+}
+
+function requireRoot() {
+  if (!rootHandle) throw new Error('先に open で作業フォルダを選択してください。');
+}
+
+function normalizePath(input, baseParts = cwdParts) {
+  const raw = input == null || input === '' ? '.' : String(input);
+  const absolute = raw.startsWith('/');
+  const parts = absolute ? [] : baseParts.slice();
+  for (const chunk of raw.split('/')) {
+    if (!chunk || chunk === '.') continue;
+    if (chunk === '..') {
+      if (parts.length) parts.pop();
+      continue;
+    }
+    if (chunk.includes('\0')) throw new Error('NUL文字を含むパスは利用できません。');
+    parts.push(chunk);
+  }
+  return parts;
+}
+
+function basenameParts(parts) {
+  return parts[parts.length - 1] || '';
+}
+
+function samePath(a, b) {
+  return pathString(a) === pathString(b);
+}
+
+function isPathWithin(candidate, ancestor) {
+  if (candidate.length < ancestor.length) return false;
+  for (let i = 0; i < ancestor.length; i++) {
+    if (candidate[i] !== ancestor[i]) return false;
+  }
+  return true;
+}
+
+async function getDirHandle(parts, opts = {}) {
+  requireRoot();
+  let dir = rootHandle;
+  for (const name of parts) {
+    dir = await dir.getDirectoryHandle(name, { create: !!opts.create });
+  }
+  return dir;
+}
+
+async function getChildInfo(parentHandle, name) {
+  try {
+    const handle = await parentHandle.getDirectoryHandle(name);
+    return { kind: 'directory', handle };
+  } catch {}
+  try {
+    const handle = await parentHandle.getFileHandle(name);
+    return { kind: 'file', handle };
+  } catch {}
+  return null;
+}
+
+async function getEntryInfo(parts) {
+  requireRoot();
+  if (parts.length === 0) return { kind: 'directory', handle: rootHandle };
+  const parent = await getDirHandle(parts.slice(0, -1));
+  const info = await getChildInfo(parent, basenameParts(parts));
+  if (!info) throw new Error(`${displayPath(parts)} は存在しません。`);
+  return info;
+}
+
+async function pathExists(parts) {
+  try {
+    await getEntryInfo(parts);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function removeEntryByParts(parts, recursive) {
+  if (parts.length === 0) throw new Error('root は削除できません。');
+  const parent = await getDirHandle(parts.slice(0, -1));
+  await parent.removeEntry(basenameParts(parts), { recursive: !!recursive });
+}
+
+async function copyEntry(srcHandle, kind, destParent, destName, overwrite) {
+  const existing = await getChildInfo(destParent, destName);
+  if (existing) {
+    if (!overwrite) throw new Error(`${destName} は既に存在します。上書きする場合は mv -f を使用してください。`);
+    await destParent.removeEntry(destName, { recursive: existing.kind === 'directory' });
+  }
+
+  if (kind === 'file') {
+    const file = await srcHandle.getFile();
+    const dest = await destParent.getFileHandle(destName, { create: true });
+    const writable = await dest.createWritable();
+    await writable.write(file);
+    await writable.close();
+    return;
+  }
+
+  const destDir = await destParent.getDirectoryHandle(destName, { create: true });
+  for await (const [name, child] of srcHandle.entries()) {
+    await copyEntry(child, child.kind, destDir, name, overwrite);
+  }
+}
+
+// ==== Shell parser and commands ============================================
+function tokenize(input) {
+  const tokens = [];
+  let cur = '';
+  let quote = null;
+  let escape = false;
+
+  for (const ch of input) {
+    if (escape) { cur += ch; escape = false; continue; }
+    if (ch === '\\') { escape = true; continue; }
+    if (quote) {
+      if (ch === quote) quote = null;
+      else cur += ch;
+      continue;
+    }
+    if (ch === '"' || ch === "'") { quote = ch; continue; }
+    if (/\s/.test(ch)) {
+      if (cur !== '') { tokens.push(cur); cur = ''; }
+      continue;
+    }
+    cur += ch;
+  }
+  if (escape) cur += '\\';
+  if (quote) throw new Error('クォートが閉じていません。');
+  if (cur !== '') tokens.push(cur);
+  return tokens;
+}
+
+function printHelp() {
+  appendOutput(`Tsui Vim commands
+
+folder:
+  open                         作業フォルダを選択
+  reconnect                    前回の作業フォルダへ再接続
+
+shell:
+  pwd                          現在位置を表示
+  ls [-l] [-a] [PATH]          一覧表示
+  cd [DIR]                     ディレクトリ移動
+  mkdir [-p] DIR...            ディレクトリ作成
+  mv [-f] SRC DEST             移動・リネーム（上書き時は確認。-fで確認なし）
+  cp [-f] SRC DEST             ファイルをコピー（ディレクトリコピーは未対応）
+  rm [-r] [-f] PATH...         削除（ディレクトリは -r）
+  touch FILE...                空ファイル作成
+  cat FILE                     テキスト表示
+  diff [-u] [-q] [-U N] FILE1 FILE2
+  find [PATH] [-type f|d] [-name PATTERN] [-maxdepth N]
+  grep [-i] [-n] [-F|-E] PATTERN [PATH...]
+  settings                     grepのファイルサイズ上限などを変更
+  clear                        画面クリア
+  Tab                          コマンド名・パスを補完
+
+editor:
+  vim FILE / vi FILE           Vim風エディタで開く
+  view FILE                    リードオンリーで開く（:w! で強制保存可）
+
+vim keys:
+  i/a/A/I/o/O                  INSERTへ
+  Esc                          NORMALへ
+  :w  :w FILE  :saveas FILE    保存・別名保存
+  :w!  :wq!  :x!               viewで開いたファイルへ強制保存
+  :q  :wq  :q!  :e!            終了・再読み込み
+  :set number / :set nonumber  行番号表示の切替
+  :diff / :diff FILE           未保存変更または別ファイルとの差分表示
+  h j k l / 0 / $ / gg / G     移動（20l などの数字指定対応）
+  x / dd / yy / p / P / u      切り取り・ヤンク・貼り付け・簡易Undo
+  /word  ?word  n  N           検索・次/前の検索結果へ移動`, 'dim');
+}
+
+function commonPrefix(values) {
+  if (!values.length) return '';
+  let prefix = values[0];
+  for (const value of values.slice(1)) {
+    let i = 0;
+    while (i < prefix.length && i < value.length && prefix[i] === value[i]) i++;
+    prefix = prefix.slice(0, i);
+    if (!prefix) break;
+  }
+  return prefix;
+}
+
+function shellEscapeToken(value) {
+  if (!value) return '';
+  return String(value).replace(/([\\\s"'`$!&;()<>|*?\[\]{}])/g, '\\$1');
+}
+
+function getCompletionContext(line, cursor) {
+  const tokens = [];
+  let token = null;
+  let quote = null;
+  let escape = false;
+
+  const startToken = (index) => {
+    if (!token) token = { start: index, end: index, value: '', quoted: false, quote: null, quoteOpen: false };
+  };
+
+  for (let i = 0; i < cursor; i++) {
+    const ch = line[i];
+    if (escape) {
+      startToken(Math.max(0, i - 1));
+      token.value += ch;
+      token.end = i + 1;
+      escape = false;
+      continue;
+    }
+    if (ch === '\\') {
+      startToken(i);
+      token.end = i + 1;
+      escape = true;
+      continue;
+    }
+    if (quote) {
+      if (ch === quote) {
+        quote = null;
+        token.end = i + 1;
+      } else {
+        startToken(i);
+        token.value += ch;
+        token.end = i + 1;
+      }
+      continue;
+    }
+    if (ch === '"' || ch === "'") {
+      startToken(i);
+      token.quoted = true;
+      token.quote = token.quote || ch;
+      quote = ch;
+      token.end = i + 1;
+      continue;
+    }
+    if (/\s/.test(ch)) {
+      if (token) {
+        token.quoteOpen = false;
+        tokens.push(token);
+        token = null;
+      }
+      continue;
+    }
+    startToken(i);
+    token.value += ch;
+    token.end = i + 1;
+  }
+
+  if (escape && token) token.value += '\\';
+  const endedOnWhitespace = cursor > 0 && /\s/.test(line[cursor - 1]);
+  if (token && !endedOnWhitespace) {
+    token.end = cursor;
+    token.quoteOpen = !!quote;
+    tokens.push(token);
+    return { line, cursor, tokens, current: token, index: tokens.length - 1 };
+  }
+
+  const current = { start: cursor, end: cursor, value: '', quoted: false, quote: null, quoteOpen: false };
+  return { line, cursor, tokens, current, index: tokens.length };
+}
+
+function replaceCompletionToken(context, replacement) {
+  const before = context.line.slice(0, context.current.start);
+  const after = context.line.slice(context.cursor);
+  const next = before + replacement + after;
+  const pos = before.length + replacement.length;
+  $commandInput.value = next;
+  $commandInput.setSelectionRange(pos, pos);
+}
+
+function printCompletionMatches(matches) {
+  if (!matches.length) return;
+  appendOutput(matches.join('  '), 'dim');
+}
+
+function completeCommandToken(context) {
+  const prefix = context.current.value;
+  const matches = SHELL_COMMANDS.filter((name) => name.startsWith(prefix)).sort();
+  if (!matches.length) {
+    appendOutput(`completion: no command matches ${prefix || '(empty)'}`, 'dim');
+    return;
+  }
+  if (matches.length === 1) {
+    replaceCompletionToken(context, `${matches[0]} `);
+    return;
+  }
+  const shared = commonPrefix(matches);
+  if (shared.length > prefix.length) {
+    replaceCompletionToken(context, shared);
+  } else {
+    printCompletionMatches(matches);
+  }
+}
+
+function splitCompletionPath(value) {
+  const text = value || '';
+  const slash = text.lastIndexOf('/');
+  if (slash === -1) return { dirText: '', fragment: text };
+  return { dirText: text.slice(0, slash + 1), fragment: text.slice(slash + 1) };
+}
+
+async function getPathCompletionMatches(value, onlyDirectories) {
+  requireRoot();
+  const split = splitCompletionPath(value);
+  const dirParts = normalizePath(split.dirText || '.');
+  const dir = await getDirHandle(dirParts);
+  const matches = [];
+
+  if (onlyDirectories && split.dirText === '') {
+    for (const name of ['.', '..']) {
+      if (name.startsWith(split.fragment)) matches.push({ name, kind: 'directory', virtual: true });
+    }
+  }
+
+  for await (const [name, handle] of dir.entries()) {
+    if (!split.fragment.startsWith('.') && name.startsWith('.')) continue;
+    if (!name.startsWith(split.fragment)) continue;
+    if (onlyDirectories && handle.kind !== 'directory') continue;
+    matches.push({ name, kind: handle.kind });
+  }
+
+  matches.sort((a, b) => {
+    if (a.kind !== b.kind) return a.kind === 'directory' ? -1 : 1;
+    return a.name.localeCompare(b.name, 'ja');
+  });
+  return { ...split, matches };
+}
+
+async function completePathToken(context) {
+  const command = context.tokens[0] ? context.tokens[0].value : '';
+  if (!PATH_COMPLETION_COMMANDS.has(command)) return;
+  if (command === 'grep' && context.index === 1) return;
+
+  const onlyDirectories = DIRECTORY_ONLY_COMPLETION_COMMANDS.has(command);
+  let result;
+  try {
+    result = await getPathCompletionMatches(context.current.value, onlyDirectories);
+  } catch (e) {
+    appendOutput(`completion: ${e && e.message ? e.message : String(e)}`, 'error');
+    return;
+  }
+
+  const { dirText, fragment, matches } = result;
+  if (!matches.length) {
+    appendOutput(`completion: no match for ${context.current.value || '.'}`, 'dim');
+    return;
+  }
+
+  if (matches.length === 1) {
+    const match = matches[0];
+    const completed = `${dirText}${match.name}${match.kind === 'directory' ? '/' : ''}`;
+    const suffix = match.kind === 'directory' ? '' : ' ';
+    replaceCompletionToken(context, shellEscapeToken(completed) + suffix);
+    return;
+  }
+
+  const shared = commonPrefix(matches.map((match) => match.name));
+  if (shared.length > fragment.length) {
+    replaceCompletionToken(context, shellEscapeToken(`${dirText}${shared}`));
+    return;
+  }
+
+  printCompletionMatches(matches.map((match) => `${match.name}${match.kind === 'directory' ? '/' : ''}`));
+}
+
+async function completeShellInput() {
+  const line = $commandInput.value;
+  const cursor = $commandInput.selectionStart ?? line.length;
+  const context = getCompletionContext(line, cursor);
+  if (context.index === 0) {
+    completeCommandToken(context);
+  } else {
+    await completePathToken(context);
+  }
+}
+
+async function cmdLs(args) {
+  requireRoot();
+  let long = false;
+  let all = false;
+  const targets = [];
+  for (const arg of args) {
+    if (arg === '-l') long = true;
+    else if (arg === '-a') all = true;
+    else if (arg === '-la' || arg === '-al') { long = true; all = true; }
+    else targets.push(arg);
+  }
+  if (targets.length === 0) targets.push('.');
+
+  for (let t = 0; t < targets.length; t++) {
+    const parts = normalizePath(targets[t]);
+    const info = await getEntryInfo(parts);
+    if (targets.length > 1) appendOutput(`${displayPath(parts)}:`);
+
+    if (info.kind === 'file') {
+      const file = await info.handle.getFile();
+      appendOutput(long ? `- ${formatSize(file.size).padStart(10)} ${basenameParts(parts)}` : basenameParts(parts));
+      continue;
+    }
+
+    const entries = [];
+    for await (const [name, handle] of info.handle.entries()) {
+      if (!all && name.startsWith('.')) continue;
+      let size = '';
+      if (long && handle.kind === 'file') {
+        try { size = formatSize((await handle.getFile()).size); } catch { size = '?'; }
+      }
+      entries.push({ name, kind: handle.kind, size });
+    }
+    entries.sort((a, b) => {
+      if (a.kind !== b.kind) return a.kind === 'directory' ? -1 : 1;
+      return a.name.localeCompare(b.name, 'ja');
+    });
+    if (!entries.length) appendOutput('(empty)', 'dim');
+    for (const entry of entries) {
+      const suffix = entry.kind === 'directory' ? '/' : '';
+      if (long) {
+        const k = entry.kind === 'directory' ? 'd' : '-';
+        const size = entry.kind === 'directory' ? '<DIR>' : entry.size;
+        appendOutput(`${k} ${String(size).padStart(10)} ${entry.name}${suffix}`);
+      } else {
+        appendOutput(`${entry.name}${suffix}`);
+      }
+    }
+    if (targets.length > 1 && t < targets.length - 1) appendOutput('');
+  }
+}
+
+async function cmdCd(args) {
+  requireRoot();
+  if (args.length > 1) throw new Error('cd の引数は1つだけです。');
+  const parts = normalizePath(args[0] || '/');
+  const info = await getEntryInfo(parts);
+  if (info.kind !== 'directory') throw new Error(`${displayPath(parts)} はディレクトリではありません。`);
+  cwdParts = parts;
+  updateChrome();
+}
+
+async function cmdMkdir(args) {
+  requireRoot();
+  let parents = false;
+  const targets = [];
+  for (const arg of args) {
+    if (arg === '-p') parents = true;
+    else targets.push(arg);
+  }
+  if (!targets.length) throw new Error('mkdir: 作成するディレクトリを指定してください。');
+
+  for (const target of targets) {
+    const parts = normalizePath(target);
+    if (parts.length === 0) throw new Error('mkdir: root は作成できません。');
+    if (parents) {
+      await getDirHandle(parts, { create: true });
+    } else {
+      if (await pathExists(parts)) throw new Error(`${displayPath(parts)} は既に存在します。`);
+      const parent = await getDirHandle(parts.slice(0, -1));
+      await parent.getDirectoryHandle(basenameParts(parts), { create: true });
+    }
+    appendOutput(`mkdir: ${displayPath(parts)}`, 'ok');
+  }
+}
+
+async function cmdRm(args) {
+  requireRoot();
+  let recursive = false;
+  let force = false;
+  const targets = [];
+  for (const arg of args) {
+    if (arg === '-r' || arg === '-R' || arg === '--recursive') recursive = true;
+    else if (arg === '-f' || arg === '--force') force = true;
+    else if (arg === '-rf' || arg === '-fr') { recursive = true; force = true; }
+    else targets.push(arg);
+  }
+  if (!targets.length) throw new Error('rm: 削除対象を指定してください。');
+
+  const resolved = [];
+  for (const target of targets) {
+    const parts = normalizePath(target);
+    if (parts.length === 0) throw new Error('rm: root は削除できません。');
+    let info;
+    try { info = await getEntryInfo(parts); }
+    catch (e) {
+      if (force) continue;
+      throw e;
+    }
+    if (info.kind === 'directory' && !recursive) throw new Error(`rm: ${displayPath(parts)} はディレクトリです。削除するには -r を付けてください。`);
+    resolved.push({ parts, kind: info.kind });
+  }
+
+  if (!resolved.length) return;
+  if (!force) {
+    const label = resolved.map((x) => displayPath(x.parts)).join('\n');
+    const ok = window.confirm(`以下を削除します。元に戻せません。\n\n${label}\n\n続行しますか？`);
+    if (!ok) { appendOutput('rm: canceled', 'warn'); return; }
+  }
+
+  for (const item of resolved) {
+    await removeEntryByParts(item.parts, item.kind === 'directory');
+    appendOutput(`removed: ${displayPath(item.parts)}`, 'ok');
+  }
+}
+
+async function cmdMv(args) {
+  requireRoot();
+  let force = false;
+  const rest = [];
+  for (const arg of args) {
+    if (arg === '-f' || arg === '--force') force = true;
+    else rest.push(arg);
+  }
+  if (rest.length !== 2) throw new Error('mv: SRC DEST の2つを指定してください。');
+
+  const srcParts = normalizePath(rest[0]);
+  if (srcParts.length === 0) throw new Error('mv: root は移動できません。');
+  const srcInfo = await getEntryInfo(srcParts);
+  let destParts = normalizePath(rest[1]);
+  const destInfo = await getEntryInfo(destParts).catch(() => null);
+  if (destInfo && destInfo.kind === 'directory') destParts = destParts.concat(basenameParts(srcParts));
+  if (destParts.length === 0) throw new Error('mv: root への上書きはできません。');
+  if (samePath(srcParts, destParts)) { appendOutput('mv: same path', 'dim'); return; }
+  if (srcInfo.kind === 'directory' && isPathWithin(destParts, srcParts)) {
+    throw new Error('mv: ディレクトリを自分自身の内側へ移動することはできません。');
+  }
+  const existing = await getEntryInfo(destParts).catch(() => null);
+  let overwrite = force;
+  if (existing && !force) {
+    const ok = window.confirm(`${displayPath(destParts)} は既に存在します。上書きしますか？`);
+    if (!ok) { appendOutput('mv: canceled', 'warn'); return; }
+    overwrite = true;
+  }
+
+  const destParent = await getDirHandle(destParts.slice(0, -1));
+  await copyEntry(srcInfo.handle, srcInfo.kind, destParent, basenameParts(destParts), overwrite);
+  await removeEntryByParts(srcParts, srcInfo.kind === 'directory');
+  appendOutput(`moved: ${displayPath(srcParts)} -> ${displayPath(destParts)}`, 'ok');
+}
+
+async function cmdTouch(args) {
+  requireRoot();
+  if (!args.length) throw new Error('touch: ファイル名を指定してください。');
+  for (const arg of args) {
+    const parts = normalizePath(arg);
+    if (parts.length === 0) throw new Error('touch: root はファイルではありません。');
+    const existing = await getEntryInfo(parts).catch(() => null);
+    if (existing && existing.kind === 'directory') throw new Error(`${displayPath(parts)} はディレクトリです。`);
+    const parent = await getDirHandle(parts.slice(0, -1));
+    const fh = await parent.getFileHandle(basenameParts(parts), { create: true });
+    if (existing) {
+      const file = await fh.getFile();
+      const writable = await fh.createWritable();
+      await writable.write(file);
+      await writable.close();
+    }
+    appendOutput(`touch: ${displayPath(parts)}`, 'ok');
+  }
+}
+
+async function cmdCat(args) {
+  requireRoot();
+  if (args.length !== 1) throw new Error('cat: ファイルを1つ指定してください。');
+  const parts = normalizePath(args[0]);
+  const info = await getEntryInfo(parts);
+  if (info.kind !== 'file') throw new Error(`${displayPath(parts)} はファイルではありません。`);
+  const file = await info.handle.getFile();
+  if (file.size > SIZE_WARN) throw new Error('cat: 10MBを超えるファイルは表示しません。vim で開いてください。');
+  const decoded = decodeBytes(await file.arrayBuffer());
+  appendOutput(decoded.text.replace(/\r\n/g, '\n').replace(/\r/g, '\n'));
+}
+
+
+async function cmdCp(args) {
+  requireRoot();
+  let force = false;
+  const rest = [];
+  for (const arg of args) {
+    if (arg === '-f' || arg === '--force') force = true;
+    else if (arg === '-r' || arg === '-R' || arg === '--recursive') throw new Error('cp: ディレクトリコピー（-r）は未対応です。');
+    else rest.push(arg);
+  }
+  if (rest.length !== 2) throw new Error('cp: SRC DEST の2つを指定してください。');
+
+  const srcParts = normalizePath(rest[0]);
+  if (srcParts.length === 0) throw new Error('cp: root はコピーできません。');
+  const srcInfo = await getEntryInfo(srcParts);
+  if (srcInfo.kind !== 'file') throw new Error('cp: ディレクトリコピーは未対応です。ファイルだけコピーできます。');
+
+  let destParts = normalizePath(rest[1]);
+  const destInfo = await getEntryInfo(destParts).catch(() => null);
+  if (destInfo && destInfo.kind === 'directory') destParts = destParts.concat(basenameParts(srcParts));
+  if (destParts.length === 0) throw new Error('cp: root へはコピーできません。');
+  if (samePath(srcParts, destParts)) { appendOutput('cp: same path', 'dim'); return; }
+
+  const existing = await getEntryInfo(destParts).catch(() => null);
+  let overwrite = force;
+  if (existing) {
+    if (existing.kind === 'directory') throw new Error(`${displayPath(destParts)} はディレクトリです。`);
+    if (!force) {
+      const ok = window.confirm(`${displayPath(destParts)} は既に存在します。上書きしますか？`);
+      if (!ok) { appendOutput('cp: canceled', 'warn'); return; }
+      overwrite = true;
+    }
+  }
+
+  const destParent = await getDirHandle(destParts.slice(0, -1));
+  await copyEntry(srcInfo.handle, 'file', destParent, basenameParts(destParts), overwrite);
+  appendOutput(`copied: ${displayPath(srcParts)} -> ${displayPath(destParts)}`, 'ok');
+}
+
+function globToRegExp(pattern, ignoreCase = false) {
+  let out = '^';
+  for (const ch of String(pattern)) {
+    if (ch === '*') out += '.*';
+    else if (ch === '?') out += '.';
+    else out += ch.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
+  }
+  out += '$';
+  return new RegExp(out, ignoreCase ? 'i' : '');
+}
+
+function parseFindArgs(args) {
+  const opts = { targets: [], type: '', name: null, ignoreCaseName: false, maxDepth: Infinity };
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === '-type') {
+      const value = args[++i];
+      if (value !== 'f' && value !== 'd') throw new Error('find: -type は f または d を指定してください。');
+      opts.type = value;
+    } else if (arg === '-name' || arg === '-iname') {
+      const value = args[++i];
+      if (value == null) throw new Error(`find: ${arg} のパターンを指定してください。`);
+      opts.name = value;
+      opts.ignoreCaseName = arg === '-iname';
+    } else if (arg === '-maxdepth') {
+      const value = Number.parseInt(args[++i], 10);
+      if (!Number.isFinite(value) || value < 0) throw new Error('find: -maxdepth は0以上の整数を指定してください。');
+      opts.maxDepth = value;
+    } else if (arg.startsWith('-')) {
+      throw new Error(`find: unsupported option: ${arg}`);
+    } else {
+      opts.targets.push(arg);
+    }
+  }
+  if (!opts.targets.length) opts.targets.push('.');
+  opts.nameRegex = opts.name == null ? null : globToRegExp(opts.name, opts.ignoreCaseName);
+  return opts;
+}
+
+function findDisplayName(parts) {
+  return parts.length ? basenameParts(parts) : '.';
+}
+
+function findMatches(parts, kind, opts) {
+  if (opts.type === 'f' && kind !== 'file') return false;
+  if (opts.type === 'd' && kind !== 'directory') return false;
+  if (opts.nameRegex && !opts.nameRegex.test(findDisplayName(parts))) return false;
+  return true;
+}
+
+async function cmdFind(args) {
+  requireRoot();
+  const opts = parseFindArgs(args);
+  let matches = 0;
+  let truncated = false;
+
+  async function emit(parts) {
+    if (matches >= FIND_MAX_RESULTS) { truncated = true; return false; }
+    appendOutput(displayPath(parts));
+    matches++;
+    return true;
+  }
+
+  async function walk(parts, info, depth) {
+    if (truncated) return;
+    if (findMatches(parts, info.kind, opts)) {
+      const keepGoing = await emit(parts);
+      if (!keepGoing) return;
+    }
+    if (info.kind !== 'directory' || depth >= opts.maxDepth) return;
+
+    const entries = [];
+    for await (const [name, handle] of info.handle.entries()) entries.push({ name, handle, kind: handle.kind });
+    entries.sort((a, b) => {
+      if (a.kind !== b.kind) return a.kind === 'directory' ? -1 : 1;
+      return a.name.localeCompare(b.name, 'ja');
+    });
+    for (const entry of entries) {
+      await walk(parts.concat(entry.name), { kind: entry.kind, handle: entry.handle }, depth + 1);
+      if (truncated) return;
+    }
+  }
+
+  for (const target of opts.targets) {
+    const parts = normalizePath(target);
+    const info = await getEntryInfo(parts);
+    await walk(parts, info, 0);
+    if (truncated) break;
+  }
+
+  if (!matches) appendOutput('find: no matches', 'dim');
+  if (truncated) appendOutput(`find: ${FIND_MAX_RESULTS}件で表示を停止しました。条件を絞ってください。`, 'warn');
+}
+
+function parseGrepArgs(args) {
+  const opts = { ignoreCase: false, lineNumber: false, regex: false, paths: [], pattern: null };
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (opts.pattern == null && arg.startsWith('-') && arg !== '-') {
+      if (arg === '--') {
+        if (i + 1 < args.length) opts.pattern = args[++i];
+        continue;
+      }
+      for (const flag of arg.slice(1)) {
+        if (flag === 'i') opts.ignoreCase = true;
+        else if (flag === 'n') opts.lineNumber = true;
+        else if (flag === 'r' || flag === 'R') { /* directories are recursive by default */ }
+        else if (flag === 'F') opts.regex = false;
+        else if (flag === 'E') opts.regex = true;
+        else throw new Error(`grep: unsupported option: -${flag}`);
+      }
+    } else if (opts.pattern == null) {
+      opts.pattern = arg;
+    } else {
+      opts.paths.push(arg);
+    }
+  }
+  if (opts.pattern == null) throw new Error('grep: 検索パターンを指定してください。');
+  if (!opts.paths.length) opts.paths.push('.');
+  if (opts.regex) {
+    try { opts.patternRegex = new RegExp(opts.pattern, opts.ignoreCase ? 'i' : ''); }
+    catch (e) { throw new Error(`grep: invalid regex: ${e.message || e}`); }
+  } else {
+    opts.literalNeedle = opts.ignoreCase ? opts.pattern.toLowerCase() : opts.pattern;
+  }
+  return opts;
+}
+
+function isProbablyBinary(bytes) {
+  if (startsWith(bytes, BOM_UTF8) || startsWith(bytes, BOM_UTF16LE) || startsWith(bytes, BOM_UTF16BE)) return false;
+  const n = Math.min(bytes.length, 4096);
+  if (n === 0) return false;
+  let suspicious = 0;
+  for (let i = 0; i < n; i++) {
+    const b = bytes[i];
+    if (b === 0) return true;
+    if (b < 7 || (b > 14 && b < 32)) suspicious++;
+  }
+  return suspicious / n > 0.15;
+}
+
+function grepLineMatches(line, opts) {
+  if (opts.regex) return opts.patternRegex.test(line);
+  const target = opts.ignoreCase ? line.toLowerCase() : line;
+  return target.includes(opts.literalNeedle);
+}
+
+function shortenGrepLine(line) {
+  const clean = line.replace(/\t/g, '    ');
+  return clean.length > 500 ? clean.slice(0, 500) + '…' : clean;
+}
+
+async function cmdGrep(args) {
+  requireRoot();
+  const opts = parseGrepArgs(args);
+  const stats = { files: 0, matches: 0, large: 0, binary: 0, errors: 0, stopped: false };
+
+  async function grepFile(parts, handle) {
+    if (stats.stopped) return;
+    let file;
+    try { file = await handle.getFile(); }
+    catch { stats.errors++; return; }
+    if (file.size > settings.grepMaxBytes) { stats.large++; return; }
+
+    let bytes;
+    try { bytes = new Uint8Array(await file.arrayBuffer()); }
+    catch { stats.errors++; return; }
+    if (isProbablyBinary(bytes)) { stats.binary++; return; }
+
+    stats.files++;
+    const decoded = decodeBytes(bytes.buffer);
+    const lines = normalizeEditorNewlines(decoded.text).split('\n');
+    for (let i = 0; i < lines.length; i++) {
+      if (grepLineMatches(lines[i], opts)) {
+        const prefix = opts.lineNumber ? `${displayPath(parts)}:${i + 1}:` : `${displayPath(parts)}:`;
+        appendOutput(prefix + shortenGrepLine(lines[i]));
+        stats.matches++;
+        if (stats.matches >= GREP_MAX_MATCHES) {
+          stats.stopped = true;
+          appendOutput(`grep: ${GREP_MAX_MATCHES}件で表示を停止しました。条件を絞ってください。`, 'warn');
+          return;
+        }
+      }
+    }
+  }
+
+  async function walkGrep(parts, info) {
+    if (stats.stopped) return;
+    if (info.kind === 'file') {
+      await grepFile(parts, info.handle);
+      return;
+    }
+    const entries = [];
+    for await (const [name, handle] of info.handle.entries()) entries.push({ name, handle, kind: handle.kind });
+    entries.sort((a, b) => {
+      if (a.kind !== b.kind) return a.kind === 'directory' ? -1 : 1;
+      return a.name.localeCompare(b.name, 'ja');
+    });
+    for (const entry of entries) {
+      await walkGrep(parts.concat(entry.name), { kind: entry.kind, handle: entry.handle });
+      if (stats.stopped) return;
+    }
+  }
+
+  for (const target of opts.paths) {
+    const parts = normalizePath(target);
+    const info = await getEntryInfo(parts);
+    await walkGrep(parts, info);
+    if (stats.stopped) break;
+  }
+
+  if (!stats.matches) appendOutput('grep: no matches', 'dim');
+  const skipped = [];
+  if (stats.large) skipped.push(`${stats.large} large`);
+  if (stats.binary) skipped.push(`${stats.binary} binary`);
+  if (stats.errors) skipped.push(`${stats.errors} error`);
+  const summary = `grep: searched ${stats.files} file(s), matched ${stats.matches}` + (skipped.length ? `, skipped ${skipped.join(', ')} (limit ${formatSize(settings.grepMaxBytes)})` : '');
+  appendOutput(summary, skipped.length ? 'dim' : 'ok');
+}
+
+function parseDiffContext(value, optionName = '-U') {
+  const n = Number.parseInt(value, 10);
+  if (!Number.isFinite(n) || n < 0) throw new Error(`diff: ${optionName} には0以上の整数を指定してください。`);
+  return Math.min(n, DIFF_MAX_CONTEXT);
+}
+
+function parseDiffArgs(args) {
+  const opts = { context: DIFF_DEFAULT_CONTEXT, brief: false, paths: [] };
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === '--') {
+      opts.paths.push(...args.slice(i + 1));
+      break;
+    } else if (arg === '-q' || arg === '--brief') {
+      opts.brief = true;
+    } else if (arg === '-u' || arg === '--unified') {
+      // unified diff is the default output format.
+    } else if (arg === '-U' || arg === '--context') {
+      if (i + 1 >= args.length) throw new Error(`diff: ${arg} の行数を指定してください。`);
+      opts.context = parseDiffContext(args[++i], arg);
+    } else if (arg.startsWith('-U') && arg.length > 2) {
+      opts.context = parseDiffContext(arg.slice(2), '-U');
+    } else if (arg.startsWith('--unified=')) {
+      opts.context = parseDiffContext(arg.slice('--unified='.length), '--unified');
+    } else if (arg.startsWith('--context=')) {
+      opts.context = parseDiffContext(arg.slice('--context='.length), '--context');
+    } else if (arg.startsWith('-') && arg.length > 1) {
+      let handled = true;
+      for (const flag of arg.slice(1)) {
+        if (flag === 'q') opts.brief = true;
+        else if (flag === 'u') { /* default */ }
+        else handled = false;
+      }
+      if (!handled) throw new Error(`diff: unsupported option: ${arg}`);
+    } else {
+      opts.paths.push(arg);
+    }
+  }
+  if (opts.paths.length !== 2) throw new Error('diff: FILE1 FILE2 の2つを指定してください。例: diff old.txt new.txt');
+  return opts;
+}
+
+function parseVimDiffArgs(args) {
+  const opts = { context: DIFF_DEFAULT_CONTEXT, path: null };
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === '-u' || arg === '--unified') {
+      continue;
+    } else if (arg === '-U' || arg === '--context') {
+      if (i + 1 >= args.length) throw new Error(`diff: ${arg} の行数を指定してください。`);
+      opts.context = parseDiffContext(args[++i], arg);
+    } else if (arg.startsWith('-U') && arg.length > 2) {
+      opts.context = parseDiffContext(arg.slice(2), '-U');
+    } else if (arg.startsWith('--unified=')) {
+      opts.context = parseDiffContext(arg.slice('--unified='.length), '--unified');
+    } else if (arg.startsWith('--context=')) {
+      opts.context = parseDiffContext(arg.slice('--context='.length), '--context');
+    } else if (arg.startsWith('-')) {
+      throw new Error(`diff: unsupported option: ${arg}`);
+    } else if (opts.path == null) {
+      opts.path = arg;
+    } else {
+      throw new Error('usage: :diff [-U N] [FILE]');
+    }
+  }
+  return opts;
+}
+
+async function readTextFileForDiff(pathArg) {
+  const parts = normalizePath(pathArg);
+  if (parts.length === 0) throw new Error('diff: root はファイルではありません。');
+  const info = await getEntryInfo(parts);
+  if (info.kind !== 'file') throw new Error(`diff: ${displayPath(parts)} はファイルではありません。`);
+  const file = await info.handle.getFile();
+  if (file.size > DIFF_MAX_BYTES) throw new Error(`diff: ${displayPath(parts)} は ${formatSize(file.size)} です。diff上限 ${formatSize(DIFF_MAX_BYTES)} を超えています。`);
+  const buffer = await file.arrayBuffer();
+  const bytes = new Uint8Array(buffer);
+  if (isProbablyBinary(bytes)) throw new Error(`diff: ${displayPath(parts)} はバイナリファイルの可能性があるため比較しません。`);
+  const decoded = decodeBytes(buffer);
+  return {
+    parts,
+    label: displayPath(parts),
+    text: decoded.text,
+    encoding: decoded.encoding,
+    eol: detectEol(decoded.text),
+    hasBom: decoded.hasBom,
+    size: file.size
+  };
+}
+
+function splitDiffText(text) {
+  const normalized = normalizeEditorNewlines(text || '');
+  if (normalized === '') return { lines: [], finalNewline: false };
+  const finalNewline = normalized.endsWith('\n');
+  const lines = normalized.split('\n');
+  if (finalNewline) lines.pop();
+  return { lines, finalNewline };
+}
+
+function sameStringArray(a, b) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+  return true;
+}
+
+function fallbackLineDiffOps(a, b) {
+  return a.map((_, i) => ({ type: 'del', aIndex: i }))
+    .concat(b.map((_, i) => ({ type: 'add', bIndex: i })));
+}
+
+function myersDiffOps(a, b, maxEdits = DIFF_MYERS_MAX_EDITS) {
+  const n = a.length;
+  const m = b.length;
+  if (n === 0) return b.map((_, i) => ({ type: 'add', bIndex: i }));
+  if (m === 0) return a.map((_, i) => ({ type: 'del', aIndex: i }));
+
+  const max = n + m;
+  const trace = [];
+  let v = new Map();
+  v.set(1, 0);
+
+  for (let d = 0; d <= max; d++) {
+    if (d > maxEdits) return fallbackLineDiffOps(a, b);
+    const cur = new Map();
+    for (let k = -d; k <= d; k += 2) {
+      const down = v.get(k + 1);
+      const right = v.get(k - 1);
+      let x;
+      if (k === -d || (k !== d && (right == null ? -Infinity : right) < (down == null ? -Infinity : down))) {
+        x = down == null ? 0 : down;
+      } else {
+        x = (right == null ? 0 : right) + 1;
+      }
+      let y = x - k;
+      while (x < n && y < m && a[x] === b[y]) { x++; y++; }
+      cur.set(k, x);
+      if (x >= n && y >= m) {
+        trace.push(cur);
+        return backtrackMyers(trace, a, b);
+      }
+    }
+    trace.push(cur);
+    v = cur;
+  }
+  return fallbackLineDiffOps(a, b);
+}
+
+function backtrackMyers(trace, a, b) {
+  let x = a.length;
+  let y = b.length;
+  const ops = [];
+
+  for (let d = trace.length - 1; d > 0; d--) {
+    const prev = trace[d - 1];
+    const k = x - y;
+    const left = prev.get(k - 1);
+    const down = prev.get(k + 1);
+    let prevK;
+    if (k === -d || (k !== d && (left == null ? -Infinity : left) < (down == null ? -Infinity : down))) {
+      prevK = k + 1;
+    } else {
+      prevK = k - 1;
+    }
+    const prevX = prev.get(prevK) || 0;
+    const prevY = prevX - prevK;
+
+    while (x > prevX && y > prevY) {
+      ops.push({ type: 'equal', aIndex: x - 1, bIndex: y - 1 });
+      x--;
+      y--;
+    }
+    if (x === prevX) {
+      ops.push({ type: 'add', bIndex: y - 1 });
+      y--;
+    } else {
+      ops.push({ type: 'del', aIndex: x - 1 });
+      x--;
+    }
+  }
+
+  while (x > 0 && y > 0) {
+    ops.push({ type: 'equal', aIndex: x - 1, bIndex: y - 1 });
+    x--;
+    y--;
+  }
+  while (x > 0) { ops.push({ type: 'del', aIndex: x - 1 }); x--; }
+  while (y > 0) { ops.push({ type: 'add', bIndex: y - 1 }); y--; }
+
+  ops.reverse();
+  return ops;
+}
+
+function offsetDiffOps(ops, aOffset, bOffset) {
+  return ops.map((op) => ({
+    type: op.type,
+    aIndex: op.aIndex == null ? undefined : op.aIndex + aOffset,
+    bIndex: op.bIndex == null ? undefined : op.bIndex + bOffset
+  }));
+}
+
+function diffLineOps(a, b) {
+  let prefix = 0;
+  while (prefix < a.length && prefix < b.length && a[prefix] === b[prefix]) prefix++;
+
+  let aEnd = a.length;
+  let bEnd = b.length;
+  while (aEnd > prefix && bEnd > prefix && a[aEnd - 1] === b[bEnd - 1]) {
+    aEnd--;
+    bEnd--;
+  }
+
+  const ops = [];
+  for (let i = 0; i < prefix; i++) ops.push({ type: 'equal', aIndex: i, bIndex: i });
+
+  const midA = a.slice(prefix, aEnd);
+  const midB = b.slice(prefix, bEnd);
+  const middle = (midA.length + midB.length > DIFF_MYERS_MAX_LINES)
+    ? fallbackLineDiffOps(midA, midB)
+    : myersDiffOps(midA, midB);
+  ops.push(...offsetDiffOps(middle, prefix, prefix));
+
+  const suffixLength = a.length - aEnd;
+  for (let i = 0; i < suffixLength; i++) {
+    ops.push({ type: 'equal', aIndex: aEnd + i, bIndex: bEnd + i });
+  }
+  return annotateDiffOps(ops);
+}
+
+function annotateDiffOps(ops) {
+  let oldLine = 1;
+  let newLine = 1;
+  for (const op of ops) {
+    op.oldLine = oldLine;
+    op.newLine = newLine;
+    if (op.type === 'equal') { oldLine++; newLine++; }
+    else if (op.type === 'del') oldLine++;
+    else if (op.type === 'add') newLine++;
+  }
+  return ops;
+}
+
+function shortenDiffLine(line) {
+  const text = String(line).replace(/\t/g, '    ');
+  return text.length > DIFF_MAX_LINE_LENGTH ? text.slice(0, DIFF_MAX_LINE_LENGTH) + '…' : text;
+}
+
+function diffRange(start, count) {
+  if (count === 1) return String(start);
+  return `${start},${count}`;
+}
+
+function capDiffLines(lines) {
+  if (lines.length <= DIFF_MAX_OUTPUT_LINES) return lines;
+  return lines.slice(0, DIFF_MAX_OUTPUT_LINES).concat({
+    text: `diff: output truncated at ${DIFF_MAX_OUTPUT_LINES} lines. Use -q or reduce context with -U 0.`,
+    cls: 'diff-meta'
+  });
+}
+
+function buildUnifiedDiffLines(aLines, bLines, leftLabel, rightLabel, context = DIFF_DEFAULT_CONTEXT) {
+  const ops = diffLineOps(aLines, bLines);
+  const changes = [];
+  for (let i = 0; i < ops.length; i++) if (ops[i].type !== 'equal') changes.push(i);
+  if (!changes.length) return [];
+
+  const lines = [
+    { text: `--- ${leftLabel}`, cls: 'diff-file' },
+    { text: `+++ ${rightLabel}`, cls: 'diff-file' }
+  ];
+  let cursor = 0;
+  while (cursor < changes.length) {
+    const firstChange = changes[cursor];
+    let lastChange = firstChange;
+    cursor++;
+    while (cursor < changes.length && changes[cursor] - lastChange <= context * 2 + 1) {
+      lastChange = changes[cursor];
+      cursor++;
+    }
+
+    const start = Math.max(0, firstChange - context);
+    const end = Math.min(ops.length, lastChange + context + 1);
+    const hunkOps = ops.slice(start, end);
+    const oldCount = hunkOps.filter((op) => op.type !== 'add').length;
+    const newCount = hunkOps.filter((op) => op.type !== 'del').length;
+    let oldStart = hunkOps[0].oldLine;
+    let newStart = hunkOps[0].newLine;
+    if (oldCount === 0) oldStart = Math.max(0, oldStart - 1);
+    if (newCount === 0) newStart = Math.max(0, newStart - 1);
+
+    lines.push({ text: `@@ -${diffRange(oldStart, oldCount)} +${diffRange(newStart, newCount)} @@`, cls: 'diff-hunk' });
+    for (const op of hunkOps) {
+      if (op.type === 'equal') lines.push({ text: ' ' + shortenDiffLine(aLines[op.aIndex]), cls: '' });
+      else if (op.type === 'del') lines.push({ text: '-' + shortenDiffLine(aLines[op.aIndex]), cls: 'diff-del' });
+      else lines.push({ text: '+' + shortenDiffLine(bLines[op.bIndex]), cls: 'diff-add' });
+    }
+  }
+  return capDiffLines(lines);
+}
+
+function formatDiffEncoding(meta) {
+  if (!meta) return '';
+  return `${meta.encoding || 'unknown'}${meta.hasBom ? ' BOM' : ''}`;
+}
+
+function diffMetaNotes(leftMeta, rightMeta) {
+  if (!leftMeta || !rightMeta) return [];
+  const notes = [];
+  if (leftMeta.eol && rightMeta.eol && leftMeta.eol !== rightMeta.eol) {
+    notes.push(`diff: note: EOL differs (${leftMeta.label}: ${leftMeta.eol}, ${rightMeta.label}: ${rightMeta.eol})`);
+  }
+  const leftEnc = formatDiffEncoding(leftMeta);
+  const rightEnc = formatDiffEncoding(rightMeta);
+  if (leftEnc && rightEnc && leftEnc !== rightEnc) {
+    notes.push(`diff: note: encoding differs (${leftMeta.label}: ${leftEnc}, ${rightMeta.label}: ${rightEnc})`);
+  }
+  return notes;
+}
+
+function buildTextDiffResult(leftText, rightText, leftLabel, rightLabel, opts = {}, leftMeta = null, rightMeta = null) {
+  const context = Number.isFinite(opts.context) ? Math.max(0, Math.min(opts.context, DIFF_MAX_CONTEXT)) : DIFF_DEFAULT_CONTEXT;
+  const left = splitDiffText(leftText);
+  const right = splitDiffText(rightText);
+  const lineContentDiffers = !sameStringArray(left.lines, right.lines);
+  const finalNewlineDiffers = left.finalNewline !== right.finalNewline;
+  const notes = diffMetaNotes(leftMeta, rightMeta);
+  const changed = lineContentDiffers || finalNewlineDiffers || notes.length > 0;
+  const lines = [];
+
+  if (lineContentDiffers) {
+    lines.push(...buildUnifiedDiffLines(left.lines, right.lines, leftLabel, rightLabel, context));
+  } else if (finalNewlineDiffers) {
+    lines.push({ text: `--- ${leftLabel}`, cls: 'diff-file' });
+    lines.push({ text: `+++ ${rightLabel}`, cls: 'diff-file' });
+  }
+
+  if (finalNewlineDiffers) {
+    lines.push({
+      text: `\\ No newline at end of file differs (${leftLabel}: ${left.finalNewline ? 'has newline' : 'no newline'}, ${rightLabel}: ${right.finalNewline ? 'has newline' : 'no newline'})`,
+      cls: 'diff-meta'
+    });
+  }
+  for (const note of notes) lines.push({ text: note, cls: 'diff-meta' });
+
+  if (!lines.length && !changed) lines.push({ text: 'diff: no differences', cls: 'ok' });
+  else if (!lineContentDiffers && !finalNewlineDiffers && notes.length) lines.unshift({ text: 'diff: no text differences', cls: 'diff-meta' });
+
+  return { changed, lines: capDiffLines(lines) };
+}
+
+function emitDiffLines(lines) {
+  const shown = lines && lines.length ? lines : [{ text: 'diff: no differences', cls: 'ok' }];
+  for (const line of shown) appendOutput(line.text, line.cls || '');
+}
+
+async function cmdDiff(args) {
+  requireRoot();
+  const opts = parseDiffArgs(args);
+  const left = await readTextFileForDiff(opts.paths[0]);
+  const right = await readTextFileForDiff(opts.paths[1]);
+  const result = buildTextDiffResult(
+    left.text,
+    right.text,
+    left.label,
+    right.label,
+    opts,
+    left,
+    right
+  );
+
+  if (opts.brief) {
+    appendOutput(result.changed ? `Files ${left.label} and ${right.label} differ` : 'diff: no differences', result.changed ? 'warn' : 'ok');
+    return;
+  }
+  emitDiffLines(result.lines);
+}
+
+async function showVimDiff(args = []) {
+  const opts = parseVimDiffArgs(args);
+  let leftText;
+  let leftLabel;
+  let leftMeta;
+  let rightText;
+  let rightLabel;
+  let rightMeta;
+
+  if (opts.path == null) {
+    leftText = vim.originalContent;
+    leftLabel = `${displayPath(vim.pathParts)} [saved]`;
+    leftMeta = { label: leftLabel, encoding: vim.encoding, eol: vim.eol, hasBom: vim.hasBom };
+    rightText = $vimEditor.value;
+    rightLabel = `${displayPath(vim.pathParts)} [buffer]`;
+    rightMeta = { label: rightLabel, encoding: vim.encoding, eol: vim.eol, hasBom: vim.hasBom };
+  } else {
+    leftText = $vimEditor.value;
+    leftLabel = `${displayPath(vim.pathParts)} [buffer]`;
+    leftMeta = { label: leftLabel, encoding: vim.encoding, eol: vim.eol, hasBom: vim.hasBom };
+    const other = await readTextFileForDiff(opts.path);
+    rightText = other.text;
+    rightLabel = other.label;
+    rightMeta = other;
+  }
+
+  const result = buildTextDiffResult(leftText, rightText, leftLabel, rightLabel, opts, leftMeta, rightMeta);
+  openDiffModal(opts.path == null ? 'Diff: saved vs buffer' : `Diff: buffer vs ${rightLabel}`, result.lines);
+  vim.lastMessage = result.changed ? 'diff opened' : 'no differences';
+  setVimMode('NORMAL');
+}
+
+async function runShellCommand(line) {
+  const raw = line.trim();
+  if (!raw) return;
+  commandHistory.push(raw);
+  if (commandHistory.length > 200) commandHistory.shift();
+  historyIndex = commandHistory.length;
+  printCommand(raw);
+
+  let tokens;
+  try { tokens = tokenize(raw); }
+  catch (e) { appendOutput(e.message, 'error'); return; }
+  if (!tokens.length) return;
+  const cmd = tokens[0];
+  const args = tokens.slice(1);
+
+  try {
+    switch (cmd) {
+      case 'help': printHelp(); break;
+      case '?': printHelp(); break;
+      case 'clear': clearTerminal(); break;
+      case 'open': await chooseRoot(); break;
+      case 'reconnect': await reconnectRoot(); break;
+      case 'pwd': requireRoot(); appendOutput(displayPath(cwdParts)); break;
+      case 'ls': await cmdLs(args); break;
+      case 'cd': await cmdCd(args); break;
+      case 'mkdir': await cmdMkdir(args); break;
+      case 'rm': await cmdRm(args); break;
+      case 'mv': await cmdMv(args); break;
+      case 'cp': await cmdCp(args); break;
+      case 'touch': await cmdTouch(args); break;
+      case 'cat': await cmdCat(args); break;
+      case 'diff': await cmdDiff(args); break;
+      case 'find': await cmdFind(args); break;
+      case 'grep': await cmdGrep(args); break;
+      case 'settings': openSettings(); break;
+      case 'vim':
+      case 'vi': await cmdVim(args); break;
+      case 'view': await cmdView(args); break;
+      case 'about': openAbout(); break;
+      default:
+        appendOutput(`${cmd}: command not found. help でコマンド一覧を表示できます。`, 'error');
+    }
+  } catch (e) {
+    appendOutput(e && e.message ? e.message : String(e), 'error');
+  } finally {
+    updateChrome();
+  }
+}
+
+// ==== Vim implementation ====================================================
+async function cmdVim(args) {
+  await openVimFile(args, 'vim', false);
+}
+
+async function cmdView(args) {
+  await openVimFile(args, 'view', true);
+}
+
+async function openVimFile(args, cmdName, viewMode) {
+  requireRoot();
+  if (args.length !== 1) {
+    const example = cmdName === 'vim'
+      ? '例: vim memo.txt / vi memo.txt'
+      : '例: view memo.txt';
+    throw new Error(`${cmdName}: 開くファイルを1つ指定してください。${example}`);
+  }
+  const parts = normalizePath(args[0]);
+  if (parts.length === 0) throw new Error(`${cmdName}: root は開けません。`);
+
+  let handle = null;
+  let exists = false;
+  let text = '';
+  let encoding = 'UTF-8';
+  let eol = 'LF';
+  let hasBom = false;
+  let fileReadonly = false;
+
+  const existing = await getEntryInfo(parts).catch(() => null);
+  if (existing) {
+    if (existing.kind !== 'file') throw new Error(`${displayPath(parts)} はファイルではありません。`);
+    handle = existing.handle;
+    exists = true;
+    const file = await handle.getFile();
+    if (file.size > SIZE_REJECT) throw new Error(`${cmdName}: ${formatSize(file.size)} のファイルは大きすぎるため開けません。`);
+    if (file.size > SIZE_WARN) {
+      const ok = window.confirm(`${displayPath(parts)} は ${formatSize(file.size)} です。開くのに時間がかかる可能性があります。続行しますか？`);
+      if (!ok) { appendOutput(`${cmdName}: canceled`, 'warn'); return; }
+    }
+    if (file.size > SIZE_READONLY) fileReadonly = true;
+    const decoded = decodeBytes(await file.arrayBuffer());
+    text = normalizeEditorNewlines(decoded.text);
+    encoding = decoded.encoding;
+    eol = detectEol(decoded.text);
+    hasBom = decoded.hasBom;
+  } else {
+    await getDirHandle(parts.slice(0, -1));
+    text = '';
+  }
+
+  enterVim({ parts, handle, exists, text, encoding, eol, hasBom, fileReadonly, viewMode });
+}
+
+function enterVim(fileState) {
+  vim.open = true;
+  vim.pathParts = fileState.parts;
+  vim.handle = fileState.handle;
+  vim.exists = fileState.exists;
+  vim.originalContent = fileState.text;
+  vim.encoding = fileState.encoding;
+  vim.eol = fileState.eol;
+  vim.hasBom = fileState.hasBom;
+  vim.fileReadonly = fileState.fileReadonly;
+  vim.viewMode = !!fileState.viewMode;
+  vim.normalPending = '';
+  vim.normalCount = '';
+  vim.undoStack = [];
+  vim.lastMessage = fileState.exists
+    ? (vim.viewMode ? 'readonly (use :w! to write)' : 'file loaded')
+    : (vim.viewMode ? 'new file (readonly: use :w! to write)' : 'new file');
+
+  $vimEditor.value = fileState.text;
+  $vimEditor.selectionStart = 0;
+  $vimEditor.selectionEnd = 0;
+  $shellView.hidden = true;
+  $vimView.hidden = false;
+  setVimMode('NORMAL');
+  updateVimStatus();
+  setTimeout(() => $vimEditor.focus(), 0);
+}
+
+function setVimMode(mode) {
+  if (mode === 'INSERT' && vim.fileReadonly) {
+    vim.lastMessage = 'readonly file';
+    mode = 'NORMAL';
+  } else if (mode === 'INSERT' && vim.viewMode) {
+    // viewModeはINSERTには入れるが、編集警告を出す（vim互換のW10）
+    vim.lastMessage = 'W10: Warning: Changing a readonly file';
+  }
+  vim.mode = mode;
+  if (mode === 'NORMAL') normalizeNormalCursor();
+  $vimCommandbar.classList.add('hidden-input');
+  $vimEditor.readOnly = mode !== 'INSERT' || vim.fileReadonly;
+  $vimMode.classList.remove('insert', 'command', 'readonly');
+  if (mode === 'INSERT') {
+    $vimMode.classList.add('insert');
+  } else if (mode === 'COMMAND' || mode === 'SEARCH') {
+    $vimMode.classList.add('command');
+  } else if (vim.fileReadonly || vim.viewMode) {
+    // NORMALモードでreadonly状態を視覚的に示す
+    $vimMode.classList.add('readonly');
+  }
+  setVimViewModeClass(mode);
+  updateVimStatus();
+}
+
+function setVimViewModeClass(mode) {
+  $vimView.classList.toggle('normal-mode', mode === 'NORMAL');
+  $vimView.classList.toggle('insert-mode', mode === 'INSERT');
+  $vimView.classList.toggle('command-mode', mode === 'COMMAND');
+  $vimView.classList.toggle('search-mode', mode === 'SEARCH');
+}
+
+function isVimModified() {
+  return $vimEditor.value !== vim.originalContent;
+}
+
+function updateVimStatus() {
+  $vimMode.textContent = vim.mode === 'SEARCH' ? 'SEARCH' : vim.mode;
+  $vimFileLabel.textContent = `${displayPath(vim.pathParts)}${isVimModified() ? ' [+]' : ''}${vim.exists ? '' : ' [New]'}`;
+  const ro = vim.fileReadonly ? ' readonly' : (vim.viewMode ? ' view' : '');
+  const bom = vim.hasBom ? ' BOM' : '';
+  $vimMeta.textContent = `${vim.encoding}${bom} ${vim.eol}${ro}`;
+  $vimMessage.textContent = vim.lastMessage || '';
+  $vimLineCol.textContent = getLineColumnText();
+  updateLineNumbers();
+  updateNormalCursor();
+}
+
+function getLineColumnText() {
+  const pos = $vimEditor.selectionStart || 0;
+  const text = $vimEditor.value;
+  let line = 1;
+  let lastBreak = -1;
+  for (let i = 0; i < pos; i++) {
+    if (text.charCodeAt(i) === 10) { line++; lastBreak = i; }
+  }
+  const col = pos - lastBreak;
+  return `${line}:${col}`;
+}
+
+function countEditorLines() {
+  const text = $vimEditor.value;
+  if (!text) return 1;
+  let count = 1;
+  for (let i = 0; i < text.length; i++) if (text.charCodeAt(i) === 10) count++;
+  return count;
+}
+
+function updateLineNumbers() {
+  if (!$vimLineNumbers || !$vimLineNumbersInner) return;
+  const show = vim.open && vim.showLineNumbers;
+  $vimEditorWrap.classList.toggle('show-line-numbers', show);
+  $vimLineNumbers.hidden = !show;
+  if (!show) return;
+
+  const count = countEditorLines();
+  const widthCh = Math.max(3, String(count).length + 1);
+  $vimEditorWrap.style.setProperty('--line-number-width', `${widthCh + 3}ch`);
+  let lines = '';
+  for (let i = 1; i <= count; i++) lines += (i === 1 ? '' : '\n') + i;
+  if ($vimLineNumbersInner.textContent !== lines) $vimLineNumbersInner.textContent = lines;
+  $vimLineNumbersInner.style.transform = `translateY(${-($vimEditor.scrollTop || 0)}px)`;
+}
+
+const normalCursorMeasure = document.createElement('canvas').getContext('2d');
+
+function cssPx(value, fallback = 0) {
+  const n = Number.parseFloat(value);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function textareaFont(style) {
+  return style.font && style.font !== ''
+    ? style.font
+    : `${style.fontStyle} ${style.fontVariant} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+}
+
+function expandTabsForMeasure(text, tabSize) {
+  let out = '';
+  let col = 0;
+  for (const ch of text) {
+    if (ch === '	') {
+      const spaces = Math.max(1, tabSize - (col % tabSize));
+      out += ' '.repeat(spaces);
+      col += spaces;
+    } else {
+      out += ch;
+      col += 1;
+    }
+  }
+  return out;
+}
+
+function measureEditorText(text, style) {
+  if (!normalCursorMeasure) return text.length * 8;
+  const tabSize = Math.max(1, Number.parseInt(style.tabSize || '2', 10) || 2);
+  normalCursorMeasure.font = textareaFont(style);
+  return normalCursorMeasure.measureText(expandTabsForMeasure(text, tabSize)).width;
+}
+
+function updateNormalCursor() {
+  if (!vim.open || vim.mode !== 'NORMAL' || $vimView.hidden) {
+    $vimNormalCursor.classList.add('hidden');
+    return;
+  }
+
+  const style = getComputedStyle($vimEditor);
+  const text = $vimEditor.value;
+  const pos = Math.max(0, Math.min($vimEditor.selectionStart || 0, text.length));
+  const before = text.slice(0, pos);
+  const lineIndex = before.split('\n').length - 1;
+  const lineStart = before.lastIndexOf('\n') + 1;
+  const currentLinePrefix = before.slice(lineStart);
+  const fontSize = cssPx(style.fontSize, 14);
+  const lineHeight = cssPx(style.lineHeight, fontSize * 1.65);
+  const paddingLeft = cssPx(style.paddingLeft);
+  const paddingTop = cssPx(style.paddingTop);
+  const spaceWidth = Math.max(2, measureEditorText(' ', style));
+  const currentChar = text[pos] && text[pos] !== '\n' ? text[pos] : ' ';
+  const charWidth = Math.max(spaceWidth, measureEditorText(currentChar, style));
+
+  const left = paddingLeft + measureEditorText(currentLinePrefix, style) - $vimEditor.scrollLeft;
+  const top = paddingTop + lineIndex * lineHeight - $vimEditor.scrollTop;
+  const viewWidth = $vimEditor.clientWidth;
+  const viewHeight = $vimEditor.clientHeight;
+
+  if (top + lineHeight < 0 || top > viewHeight || left + charWidth < 0 || left > viewWidth) {
+    $vimNormalCursor.classList.add('hidden');
+    return;
+  }
+
+  $vimNormalCursor.style.width = `${Math.max(4, charWidth)}px`;
+  $vimNormalCursor.style.height = `${lineHeight}px`;
+  $vimNormalCursor.style.transform = `translate(${left}px, ${top}px)`;
+  $vimNormalCursor.classList.remove('hidden');
+}
+
+function snapshotUndo() {
+  vim.undoStack.push({ value: $vimEditor.value, start: $vimEditor.selectionStart, end: $vimEditor.selectionEnd });
+  if (vim.undoStack.length > 100) vim.undoStack.shift();
+}
+
+function restoreUndo() {
+  const state = vim.undoStack.pop();
+  if (!state) { vim.lastMessage = 'already at oldest change'; updateVimStatus(); return; }
+  $vimEditor.value = state.value;
+  setCursor(Math.min(state.start, $vimEditor.value.length), Math.min(state.end, $vimEditor.value.length));
+  vim.lastMessage = 'undo';
+  updateVimStatus();
+}
+
+function setCursor(start, end = start) {
+  const len = $vimEditor.value.length;
+  const s = Math.max(0, Math.min(start, len));
+  const e = Math.max(0, Math.min(end, len));
+  $vimEditor.selectionStart = s;
+  $vimEditor.selectionEnd = e;
+  updateVimStatus();
+}
+
+function lineInfo(pos = $vimEditor.selectionStart) {
+  const text = $vimEditor.value;
+  const start = pos <= 0 ? 0 : text.lastIndexOf('\n', pos - 1) + 1;
+  let end = text.indexOf('\n', pos);
+  if (end === -1) end = text.length;
+  return { start, end, col: pos - start };
+}
+
+function moveCursor(delta) {
+  setCursor(($vimEditor.selectionStart || 0) + delta);
+}
+
+function normalLineEndPosition(info) {
+  return info.end > info.start ? info.end - 1 : info.start;
+}
+
+function normalizeNormalCursor() {
+  const pos = $vimEditor.selectionStart || 0;
+  const end = $vimEditor.selectionEnd || pos;
+  const info = lineInfo(pos);
+  const capped = Math.min(pos, normalLineEndPosition(info));
+  if (capped !== pos || end !== pos) {
+    $vimEditor.selectionStart = capped;
+    $vimEditor.selectionEnd = capped;
+  }
+}
+
+function moveHorizontal(count) {
+  const pos = $vimEditor.selectionStart || 0;
+  const info = lineInfo(pos);
+  if (count > 0) {
+    setCursor(Math.min(normalLineEndPosition(info), pos + count));
+  } else if (count < 0) {
+    setCursor(Math.max(info.start, pos + count));
+  }
+}
+
+function moveAppendAfterCursor() {
+  const pos = $vimEditor.selectionStart || 0;
+  const info = lineInfo(pos);
+  setCursor(Math.min(info.end, pos + 1));
+}
+
+function moveVertical(count) {
+  const text = $vimEditor.value;
+  const pos = $vimEditor.selectionStart || 0;
+  const cur = lineInfo(pos);
+  const desiredCol = cur.col;
+  let targetStart = cur.start;
+  let targetEnd = cur.end;
+  let remaining = Math.abs(count);
+
+  if (count > 0) {
+    while (remaining > 0 && targetEnd < text.length) {
+      targetStart = targetEnd + 1;
+      targetEnd = text.indexOf('\n', targetStart);
+      if (targetEnd === -1) targetEnd = text.length;
+      remaining--;
+    }
+  } else if (count < 0) {
+    while (remaining > 0 && targetStart > 0) {
+      targetEnd = targetStart - 1;
+      targetStart = text.lastIndexOf('\n', Math.max(0, targetEnd - 1)) + 1;
+      remaining--;
+    }
+  }
+
+  setCursor(Math.min(targetStart + desiredCol, normalLineEndPosition({ start: targetStart, end: targetEnd })));
+}
+
+function moveLineStart() {
+  setCursor(lineInfo().start);
+}
+
+function moveLineStartNonBlank() {
+  const info = lineInfo();
+  const text = $vimEditor.value;
+  let p = info.start;
+  while (p < info.end && /[ \t]/.test(text[p])) p++;
+  setCursor(p);
+}
+
+function moveLineEnd() {
+  setCursor(normalLineEndPosition(lineInfo()));
+}
+
+function moveInsertLineEnd() {
+  setCursor(lineInfo().end);
+}
+
+function moveToLine(lineNumber) {
+  const text = $vimEditor.value;
+  const targetLine = Math.max(1, Math.floor(lineNumber));
+  let start = 0;
+  let line = 1;
+  while (line < targetLine) {
+    const next = text.indexOf('\n', start);
+    if (next === -1) break;
+    start = next + 1;
+    line++;
+  }
+  setCursor(start);
+}
+
+function moveBufferEnd() {
+  const text = $vimEditor.value;
+  setCursor(normalLineEndPosition(lineInfo(text.length)));
+}
+
+function replaceRange(insert, start, end) {
+  const text = $vimEditor.value;
+  $vimEditor.value = text.slice(0, start) + insert + text.slice(end);
+  setCursor(start + insert.length);
+}
+
+function openLineBelow() {
+  if (vim.fileReadonly) { vim.lastMessage = 'readonly file'; updateVimStatus(); return; }
+  snapshotUndo();
+  const info = lineInfo();
+  replaceRange('\n', info.end, info.end);
+}
+
+function openLineAbove() {
+  if (vim.fileReadonly) { vim.lastMessage = 'readonly file'; updateVimStatus(); return; }
+  snapshotUndo();
+  const info = lineInfo();
+  replaceRange('\n', info.start, info.start);
+  setCursor(info.start);
+}
+
+function writeSystemClipboard(text) {
+  if (!text || !navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') return;
+  navigator.clipboard.writeText(text).catch(() => {});
+}
+
+function setYankRegister(text, type, message) {
+  vim.yankText = text;
+  vim.yankType = type;
+  writeSystemClipboard(text);
+  vim.lastMessage = message;
+}
+
+function getLineRange(count = 1) {
+  const text = $vimEditor.value;
+  const current = lineInfo();
+  let start = current.start;
+  let contentEnd = current.end;
+  const safeCount = Math.max(1, Math.floor(count));
+  for (let i = 1; i < safeCount && contentEnd < text.length; i++) {
+    const nextStart = contentEnd + 1;
+    let nextEnd = text.indexOf('\n', nextStart);
+    if (nextEnd === -1) nextEnd = text.length;
+    contentEnd = nextEnd;
+  }
+  const afterEnd = contentEnd < text.length ? contentEnd + 1 : contentEnd;
+  return { start, contentEnd, afterEnd };
+}
+
+function lineYankText(range) {
+  let text = $vimEditor.value.slice(range.start, range.afterEnd);
+  if (text && !text.endsWith('\n')) text += '\n';
+  return text;
+}
+
+function yankLines(count = 1) {
+  const text = $vimEditor.value;
+  if (!text.length) { vim.lastMessage = 'nothing to yank'; updateVimStatus(); return; }
+  const range = getLineRange(count);
+  const yankText = lineYankText(range);
+  const lines = Math.max(1, yankText.split('\n').length - 1);
+  setYankRegister(yankText, 'line', `yanked ${lines} line(s)`);
+  updateVimStatus();
+}
+
+function deleteChars(count = 1) {
+  if (vim.fileReadonly) { vim.lastMessage = 'readonly file'; updateVimStatus(); return; }
+  const text = $vimEditor.value;
+  const pos = $vimEditor.selectionStart || 0;
+  if (pos >= text.length) return;
+  const info = lineInfo(pos);
+  let end = Math.min(info.end, pos + Math.max(1, Math.floor(count)));
+  if (end === pos) return;
+  const cut = text.slice(pos, end);
+  snapshotUndo();
+  setYankRegister(cut, 'char', `deleted ${cut.length} char(s)`);
+  replaceRange('', pos, end);
+  normalizeNormalCursor();
+}
+
+function deleteLines(count = 1) {
+  if (vim.fileReadonly) { vim.lastMessage = 'readonly file'; updateVimStatus(); return; }
+  const text = $vimEditor.value;
+  if (!text.length) return;
+  const range = getLineRange(count);
+  const yankText = lineYankText(range);
+  let deleteStart = range.start;
+  let deleteEnd = range.afterEnd;
+  if (deleteEnd === text.length && deleteStart > 0) deleteStart -= 1;
+  snapshotUndo();
+  setYankRegister(yankText, 'line', `deleted ${Math.max(1, yankText.split('\n').length - 1)} line(s)`);
+  replaceRange('', deleteStart, deleteEnd);
+  normalizeNormalCursor();
+}
+
+function repeatedYankText(count) {
+  const safeCount = Math.max(1, Math.floor(count));
+  return vim.yankText.repeat(safeCount);
+}
+
+function pasteRegister(after, count = 1) {
+  if (vim.fileReadonly) { vim.lastMessage = 'readonly file'; updateVimStatus(); return; }
+  if (!vim.yankText) { vim.lastMessage = 'clipboard is empty'; updateVimStatus(); return; }
+  snapshotUndo();
+  const text = $vimEditor.value;
+  const payload = repeatedYankText(count);
+
+  if (vim.yankType === 'line') {
+    const withoutFinalNewline = payload.endsWith('\n') ? payload.slice(0, -1) : payload;
+    let insertAt = 0;
+    let insertText = withoutFinalNewline;
+    let cursorAt = 0;
+
+    if (!text.length) {
+      insertAt = 0;
+      insertText = withoutFinalNewline;
+      cursorAt = 0;
+    } else if (after) {
+      const info = lineInfo();
+      if (info.end < text.length) {
+        insertAt = info.end + 1;
+        insertText = withoutFinalNewline + '\n';
+        cursorAt = insertAt;
+      } else {
+        insertAt = text.length;
+        insertText = (text.endsWith('\n') ? '' : '\n') + withoutFinalNewline;
+        cursorAt = insertAt + (text.endsWith('\n') ? 0 : 1);
+      }
+    } else {
+      insertAt = lineInfo().start;
+      insertText = withoutFinalNewline + '\n';
+      cursorAt = insertAt;
+    }
+
+    const current = $vimEditor.value;
+    $vimEditor.value = current.slice(0, insertAt) + insertText + current.slice(insertAt);
+    setCursor(cursorAt);
+    vim.lastMessage = `pasted ${Math.max(1, payload.split('\n').length - 1)} line(s)`;
+    return;
+  }
+
+  const pos = $vimEditor.selectionStart || 0;
+  const info = lineInfo(pos);
+  const insertAt = after ? Math.min(info.end, pos + 1) : pos;
+  const current = $vimEditor.value;
+  $vimEditor.value = current.slice(0, insertAt) + payload + current.slice(insertAt);
+  setCursor(insertAt + Math.max(0, payload.length - 1));
+  vim.lastMessage = `pasted ${payload.length} char(s)`;
+}
+
+function startVimCommand(prefix) {
+  vim.mode = (prefix === '/' || prefix === '?') ? 'SEARCH' : 'COMMAND';
+  vim.commandPrefix = prefix;
+  $vimCommandPrefix.textContent = prefix;
+  $vimCommandInput.value = '';
+  $vimCommandbar.classList.remove('hidden-input');
+  $vimEditor.readOnly = true;
+  $vimMode.classList.remove('insert', 'readonly');
+  $vimMode.classList.add('command');
+  setVimViewModeClass(vim.mode);
+  updateVimStatus();
+  setTimeout(() => $vimCommandInput.focus(), 0);
+}
+
+function cancelVimCommand() {
+  $vimCommandbar.classList.add('hidden-input');
+  $vimCommandInput.value = '';
+  setVimMode('NORMAL');
+  setTimeout(() => $vimEditor.focus(), 0);
+}
+
+async function runVimCommand() {
+  const prefix = vim.commandPrefix;
+  const value = $vimCommandInput.value;
+  $vimCommandbar.classList.add('hidden-input');
+  $vimCommandInput.value = '';
+
+  if (prefix === '/' || prefix === '?') {
+    searchFor(value, prefix === '?' ? -1 : 1);
+    setVimMode('NORMAL');
+    $vimEditor.focus();
+    return;
+  }
+
+  const raw = value.trim();
+  try {
+    if (raw === '') {
+      setVimMode('NORMAL');
+    } else {
+      const tokens = tokenize(raw);
+      const name = tokens[0] || '';
+      const args = tokens.slice(1);
+
+      if (name === 'w' || name === 'write') {
+        if (args.length === 0) await saveVim();
+        else if (args.length === 1) await saveVimAs(args[0], true);
+        else throw new Error('usage: :w [FILE]');
+        setVimMode('NORMAL');
+      } else if (name === 'w!') {
+        if (args.length === 0) await saveVim(true);
+        else if (args.length === 1) await saveVimAs(args[0], true, true);
+        else throw new Error('usage: :w! [FILE]');
+        setVimMode('NORMAL');
+      } else if (name === 'saveas' || name === 'sav') {
+        if (args.length !== 1) throw new Error('usage: :saveas FILE');
+        await saveVimAs(args[0], true);
+        setVimMode('NORMAL');
+      } else if (name === 'saveas!' || name === 'sav!') {
+        if (args.length !== 1) throw new Error('usage: :saveas! FILE');
+        await saveVimAs(args[0], true, true);
+        setVimMode('NORMAL');
+      } else if (name === 'q') {
+        if (isVimModified()) {
+          vim.lastMessage = 'No write since last change. Use :q! to discard.';
+          setVimMode('NORMAL');
+        } else {
+          exitVim(false);
+          return;
+        }
+      } else if (name === 'q!') {
+        exitVim(true);
+        return;
+      } else if (name === 'wq' || name === 'x') {
+        await saveVim();
+        exitVim(false);
+        return;
+      } else if (name === 'wq!' || name === 'x!') {
+        await saveVim(true);
+        exitVim(false);
+        return;
+      } else if (name === 'e!') {
+        await reloadVim();
+        setVimMode('NORMAL');
+      } else if (name === 'help') {
+        vim.lastMessage = 'commands: :w [FILE] :w! :saveas FILE :q :wq :wq! :q! :e! :diff [FILE] :set number|nonumber|ff=unix|dos|mac';
+        setVimMode('NORMAL');
+      } else if (name === 'diff') {
+        await showVimDiff(args);
+      } else if (name === 'set') {
+        handleVimSet(raw.slice(3).trim());
+        setVimMode('NORMAL');
+      } else {
+        vim.lastMessage = `Not an editor command: ${raw}`;
+        setVimMode('NORMAL');
+      }
+    }
+  } catch (e) {
+    vim.lastMessage = e && e.message ? e.message : String(e);
+    setVimMode('NORMAL');
+  }
+  $vimEditor.focus();
+}
+
+function handleVimSet(expr) {
+  const normalized = expr.toLowerCase();
+  if (normalized === 'number' || normalized === 'nu') {
+    vim.showLineNumbers = true;
+    vim.lastMessage = 'number';
+  } else if (normalized === 'nonumber' || normalized === 'nonu') {
+    vim.showLineNumbers = false;
+    vim.lastMessage = 'nonumber';
+  } else if (normalized === 'ff=unix' || normalized === 'fileformat=unix') {
+    vim.eol = 'LF';
+    vim.lastMessage = 'fileformat=unix';
+  } else if (normalized === 'ff=dos' || normalized === 'fileformat=dos') {
+    vim.eol = 'CRLF';
+    vim.lastMessage = 'fileformat=dos';
+  } else if (normalized === 'ff=mac' || normalized === 'fileformat=mac') {
+    vim.eol = 'CR';
+    vim.lastMessage = 'fileformat=mac';
+  } else if (normalized === 'fenc=utf-8' || normalized === 'fileencoding=utf-8') {
+    vim.encoding = 'UTF-8';
+    vim.hasBom = false;
+    vim.lastMessage = 'fileencoding=utf-8';
+  } else if (normalized === 'bomb') {
+    vim.hasBom = true;
+    vim.lastMessage = 'BOM enabled';
+  } else if (normalized === 'nobomb') {
+    vim.hasBom = false;
+    vim.lastMessage = 'BOM disabled';
+  } else {
+    vim.lastMessage = `unsupported set option: ${expr}`;
+  }
+}
+
+function searchFor(query, direction = 1) {
+  const text = $vimEditor.value;
+  const needle = query || vim.lastSearchQuery;
+  if (!needle) { vim.lastMessage = 'empty search'; updateVimStatus(); return; }
+  const pos = $vimEditor.selectionStart || 0;
+  let idx = -1;
+  let wrapped = false;
+
+  if (direction >= 0) {
+    idx = text.indexOf(needle, Math.min(text.length, pos + 1));
+    if (idx === -1) { idx = text.indexOf(needle, 0); wrapped = true; }
+  } else {
+    idx = text.lastIndexOf(needle, Math.max(0, pos - 1));
+    if (idx === -1) { idx = text.lastIndexOf(needle); wrapped = true; }
+  }
+
+  if (idx === -1) {
+    vim.lastMessage = `Pattern not found: ${needle}`;
+  } else {
+    vim.lastSearchQuery = needle;
+    vim.lastSearchDirection = direction >= 0 ? 1 : -1;
+    setCursor(idx);
+    vim.lastMessage = `${direction >= 0 ? 'search' : 'reverse search'} hit${wrapped ? ' (wrapped)' : ''}: ${needle}`;
+  }
+  updateVimStatus();
+}
+
+function repeatSearch(reverse = false) {
+  const dir = reverse ? -vim.lastSearchDirection : vim.lastSearchDirection;
+  searchFor(vim.lastSearchQuery, dir);
+}
+
+async function writeVimContentToHandle(handle) {
+  const encoded = encodeForSave($vimEditor.value, vim);
+  const writable = await handle.createWritable();
+  await writable.write(encoded.bytes);
+  await writable.close();
+  if (encoded.fallback) {
+    vim.encoding = encoded.actualEncoding;
+    vim.hasBom = false;
+  }
+  return encoded;
+}
+
+function writtenMessage(encoded, label = 'written') {
+  return encoded.fallback
+    ? `${label} (${formatSize(encoded.bytes.length)}), encoding fallback to UTF-8`
+    : `${label} (${formatSize(encoded.bytes.length)})`;
+}
+
+async function saveVim(force = false) {
+  if (vim.fileReadonly) throw new Error('readonly file');
+  if (vim.viewMode && !force) throw new Error("E45: 'readonly' option is set (add ! to override)");
+  await ensurePermission(rootHandle, 'readwrite');
+  const parent = await getDirHandle(vim.pathParts.slice(0, -1));
+  const name = basenameParts(vim.pathParts);
+  const handle = vim.handle || await parent.getFileHandle(name, { create: true });
+  const encoded = await writeVimContentToHandle(handle);
+  vim.handle = handle;
+  vim.exists = true;
+  vim.originalContent = $vimEditor.value;
+  vim.lastMessage = writtenMessage(encoded);
+  updateVimStatus();
+}
+
+async function saveVimAs(targetPath, switchBuffer, force = false) {
+  if (vim.fileReadonly) throw new Error('readonly file');
+  // saveas は別ファイルへの保存なので viewMode はチェックしない（vim互換）
+  await ensurePermission(rootHandle, 'readwrite');
+  const parts = normalizePath(targetPath);
+  if (parts.length === 0) throw new Error('saveas: root には保存できません。');
+  const existing = await getEntryInfo(parts).catch(() => null);
+  if (existing && existing.kind !== 'file') throw new Error(`${displayPath(parts)} はファイルではありません。`);
+  if (existing && !samePath(parts, vim.pathParts) && !force) {
+    const ok = window.confirm(`${displayPath(parts)} は既に存在します。上書きしますか？`);
+    if (!ok) { vim.lastMessage = 'saveas canceled'; updateVimStatus(); return; }
+  }
+  const parent = await getDirHandle(parts.slice(0, -1));
+  const handle = await parent.getFileHandle(basenameParts(parts), { create: true });
+  const encoded = await writeVimContentToHandle(handle);
+
+  if (switchBuffer) {
+    vim.pathParts = parts;
+    vim.handle = handle;
+    vim.exists = true;
+    vim.fileReadonly = false;
+    vim.originalContent = $vimEditor.value;
+  }
+  vim.lastMessage = writtenMessage(encoded, `written as ${displayPath(parts)}`);
+  updateVimStatus();
+}
+
+async function reloadVim() {
+  if (!vim.exists || !vim.handle) {
+    $vimEditor.value = '';
+    vim.originalContent = '';
+    vim.lastMessage = 'new file buffer cleared';
+    updateVimStatus();
+    return;
+  }
+  const file = await vim.handle.getFile();
+  const decoded = decodeBytes(await file.arrayBuffer());
+  const text = normalizeEditorNewlines(decoded.text);
+  $vimEditor.value = text;
+  vim.originalContent = text;
+  vim.encoding = decoded.encoding;
+  vim.eol = detectEol(decoded.text);
+  vim.hasBom = decoded.hasBom;
+  vim.lastMessage = 'reloaded';
+  setCursor(0);
+}
+
+function exitVim(discarded) {
+  const file = displayPath(vim.pathParts);
+  $vimView.hidden = true;
+  $shellView.hidden = false;
+  vim.open = false;
+  setStatus(`closed ${file}`);
+  appendOutput(`vim: ${file} ${discarded ? 'discarded' : 'closed'}`, discarded ? 'warn' : 'ok');
+  updateChrome();
+  updateNormalCursor();
+  setTimeout(() => $commandInput.focus(), 0);
+}
+
+function appendNormalCountDigit(key) {
+  if (!/^[0-9]$/.test(key)) return false;
+  if (key === '0' && vim.normalCount === '') return false;
+  const next = `${vim.normalCount}${key}`;
+  const parsed = Number.parseInt(next, 10);
+  vim.normalCount = String(Math.min(Number.isFinite(parsed) ? parsed : 1, 99999));
+  return true;
+}
+
+function takeNormalCount(defaultValue = 1) {
+  const raw = vim.normalCount;
+  vim.normalCount = '';
+  if (!raw) return defaultValue;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : defaultValue;
+}
+
+function clearNormalPending() {
+  vim.normalPending = '';
+  vim.normalCount = '';
+}
+
+function handleNormalKey(e) {
+  const key = e.key;
+  if (e.ctrlKey || e.metaKey) {
+    if (key.toLowerCase() === 's') saveVim().catch((err) => { vim.lastMessage = err.message || String(err); updateVimStatus(); });
+    return;
+  }
+
+  if (appendNormalCountDigit(key)) {
+    updateVimStatus();
+    return;
+  }
+
+  if (vim.normalPending === 'g') {
+    vim.normalPending = '';
+    const count = takeNormalCount(1);
+    if (key === 'g') {
+      if (count <= 1) setCursor(0);
+      else moveToLine(count);
+    }
+    return;
+  }
+  if (vim.normalPending === 'd') {
+    vim.normalPending = '';
+    const count = takeNormalCount(1);
+    if (key === 'd') deleteLines(count);
+    return;
+  }
+  if (vim.normalPending === 'y') {
+    vim.normalPending = '';
+    const count = takeNormalCount(1);
+    if (key === 'y') yankLines(count);
+    return;
+  }
+
+  switch (key) {
+    case 'i': takeNormalCount(1); snapshotUndo(); setVimMode('INSERT'); break;
+    case 'a': takeNormalCount(1); snapshotUndo(); moveAppendAfterCursor(); setVimMode('INSERT'); break;
+    case 'A': takeNormalCount(1); snapshotUndo(); moveInsertLineEnd(); setVimMode('INSERT'); break;
+    case 'I': takeNormalCount(1); snapshotUndo(); moveLineStartNonBlank(); setVimMode('INSERT'); break;
+    case 'o': takeNormalCount(1); openLineBelow(); setVimMode('INSERT'); break;
+    case 'O': takeNormalCount(1); openLineAbove(); setVimMode('INSERT'); break;
+    case ':': takeNormalCount(1); startVimCommand(':'); break;
+    case '/': takeNormalCount(1); startVimCommand('/'); break;
+    case '?': takeNormalCount(1); startVimCommand('?'); break;
+    case 'h': case 'ArrowLeft': moveHorizontal(-takeNormalCount(1)); break;
+    case 'l': case 'ArrowRight': moveHorizontal(takeNormalCount(1)); break;
+    case 'j': case 'ArrowDown': moveVertical(takeNormalCount(1)); break;
+    case 'k': case 'ArrowUp': moveVertical(-takeNormalCount(1)); break;
+    case '0': moveLineStart(); break;
+    case '$': takeNormalCount(1); moveLineEnd(); break;
+    case 'G': {
+      const hasCount = vim.normalCount !== '';
+      const count = takeNormalCount(1);
+      if (hasCount) moveToLine(count);
+      else moveBufferEnd();
+      break;
+    }
+    case 'g': vim.normalPending = 'g'; break;
+    case 'x': deleteChars(takeNormalCount(1)); break;
+    case 'd': vim.normalPending = 'd'; break;
+    case 'y': vim.normalPending = 'y'; break;
+    case 'Y': yankLines(takeNormalCount(1)); break;
+    case 'p': pasteRegister(true, takeNormalCount(1)); break;
+    case 'P': pasteRegister(false, takeNormalCount(1)); break;
+    case 'n': takeNormalCount(1); repeatSearch(false); break;
+    case 'N': takeNormalCount(1); repeatSearch(true); break;
+    case 'u': takeNormalCount(1); restoreUndo(); break;
+    case 'Escape': clearNormalPending(); break;
+    default: clearNormalPending();
+  }
+  updateVimStatus();
+}
+
+// ==== Events ================================================================
+document.getElementById('btn-open-folder').addEventListener('click', () => runShellCommand('open'));
+document.getElementById('btn-reconnect').addEventListener('click', () => runShellCommand('reconnect'));
+document.getElementById('btn-help').addEventListener('click', () => { printHelp(); $commandInput.focus(); scrollShellToBottom(); });
+document.getElementById('btn-about').addEventListener('click', openAbout);
+document.getElementById('btn-settings').addEventListener('click', openSettings);
+document.getElementById('btn-modal-close').addEventListener('click', closeAbout);
+document.getElementById('btn-settings-close').addEventListener('click', closeSettings);
+document.getElementById('btn-settings-save').addEventListener('click', saveSettingsFromUi);
+document.getElementById('btn-diff-close').addEventListener('click', closeDiffModal);
+document.querySelectorAll('[data-size-opt]').forEach(btn => {
+  btn.addEventListener('click', () => setSize(btn.dataset.sizeOpt));
+});
+document.querySelectorAll('[data-theme-opt]').forEach(btn => {
+  btn.addEventListener('click', () => setTheme(btn.dataset.themeOpt));
+});
+$settingsGrepMaxMb.addEventListener('input', () => {
+  const mb = Number.parseFloat($settingsGrepMaxMb.value);
+  if ($settingsGrepMaxLabel) $settingsGrepMaxLabel.textContent = Number.isFinite(mb) && mb > 0 ? formatSize(Math.round(mb * 1024 * 1024)) : '-';
+});
+$settingsGrepMaxMb.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); saveSettingsFromUi(); }
+  else if (e.key === 'Escape') { e.preventDefault(); closeSettings(); }
+});
+$modalAbout.addEventListener('click', (e) => { if (e.target === $modalAbout) closeAbout(); });
+$modalSettings.addEventListener('click', (e) => { if (e.target === $modalSettings) closeSettings(); });
+$modalDiff.addEventListener('click', (e) => { if (e.target === $modalDiff) closeDiffModal(); });
+$terminalScreen.addEventListener('click', (e) => {
+  if (e.target === $commandInput) return;
+  $commandInput.focus();
+});
+
+
+$commandForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const line = $commandInput.value;
+  $commandInput.value = '';
+  runShellCommand(line);
+});
+
+$commandInput.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (commandHistory.length && historyIndex > 0) historyIndex--;
+    $commandInput.value = commandHistory[historyIndex] || '';
+    setTimeout(() => $commandInput.setSelectionRange($commandInput.value.length, $commandInput.value.length), 0);
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (historyIndex < commandHistory.length) historyIndex++;
+    $commandInput.value = commandHistory[historyIndex] || '';
+  } else if (e.key === 'Tab') {
+    e.preventDefault();
+    completeShellInput().catch((err) => appendOutput(`completion: ${err && err.message ? err.message : String(err)}`, 'error'));
+  } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'l') {
+    e.preventDefault();
+    clearTerminal();
+  }
+});
+
+$vimEditor.addEventListener('keydown', (e) => {
+  if (!vim.open) return;
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+    e.preventDefault();
+    saveVim().catch((err) => { vim.lastMessage = err.message || String(err); updateVimStatus(); });
+    return;
+  }
+  if (vim.mode === 'INSERT') {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      setVimMode('NORMAL');
+    }
+    return;
+  }
+  if (vim.mode === 'NORMAL') {
+    e.preventDefault();
+    handleNormalKey(e);
+  }
+});
+$vimEditor.addEventListener('input', () => { vim.lastMessage = ''; updateVimStatus(); });
+$vimEditor.addEventListener('keyup', updateVimStatus);
+$vimEditor.addEventListener('click', () => { if (vim.mode === 'NORMAL') normalizeNormalCursor(); updateVimStatus(); });
+$vimEditor.addEventListener('select', () => { if (vim.mode === 'NORMAL') normalizeNormalCursor(); updateVimStatus(); });
+$vimEditor.addEventListener('scroll', () => { updateLineNumbers(); updateNormalCursor(); });
+$vimEditor.addEventListener('focus', updateNormalCursor);
+$vimEditor.addEventListener('blur', updateNormalCursor);
+window.addEventListener('resize', updateNormalCursor);
+
+$vimCommandInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    runVimCommand();
+  } else if (e.key === 'Escape') {
+    e.preventDefault();
+    cancelVimCommand();
+  }
+});
+
+document.getElementById('btn-vim-save').addEventListener('click', () => saveVim().catch((err) => { vim.lastMessage = err.message || String(err); updateVimStatus(); }));
+document.getElementById('btn-vim-diff').addEventListener('click', () => showVimDiff().catch((err) => { vim.lastMessage = err.message || String(err); updateVimStatus(); }));
+document.getElementById('btn-vim-quit').addEventListener('click', () => {
+  if (isVimModified()) vim.lastMessage = 'No write since last change. Use :q! to discard.';
+  else exitVim(false);
+  updateVimStatus();
+});
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && $modalDiff && $modalDiff.classList.contains('open')) {
+    e.preventDefault();
+    closeDiffModal();
+  }
+});
+
+window.addEventListener('beforeunload', (e) => {
+  if (vim.open && isVimModified()) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+// ==== Init ==================================================================
+async function init() {
+  updateChrome();
+  updateSettingsUi();
+  appendOutput('Tsui Vim', 'banner');
+  appendOutput('open で作業フォルダを選択。help でコマンド一覧。vim/vi file で編集開始。Tab で補完。', 'dim');
+  appendOutput('プロンプトは出力の末尾に統合されています。通常のshellのようにそのまま入力できます。', 'dim');
+  try {
+    const last = await idbGet(KEY_LAST);
+    if (last) appendOutput(`前回フォルダ候補: ${last.name}  (reconnect で再接続)`, 'dim');
+  } catch {}
+  $commandInput.focus();
+
+  if (BUILD_TARGET === 'cloudflare' && 'serviceWorker' in navigator && location.protocol !== 'file:') {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
+}
+
+init();
+</script>
+</body>
+</html>
