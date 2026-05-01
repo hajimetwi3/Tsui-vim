@@ -9,7 +9,7 @@
 
   Name:        Tsui Vim
   Author:      Hajime Tsui
-  Version:     1.0.0
+  Version:     1.1.0
 
   ─── License ─────────────────────────────────────────────────────
 
@@ -38,7 +38,7 @@
 <meta name="google" content="notranslate">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'none'; manifest-src 'self' data:; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none';">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2296%22%20fill%3D%22%23111111%22%2F%3E%3Cpath%20d%3D%22M128%20160h256v256H128z%22%20fill%3D%22%23171717%22%20stroke%3D%22%237dd3c0%22%20stroke-width%3D%2216%22%2F%3E%3Cpath%20d%3D%22M160%20210l40%2040-40%2040%22%20fill%3D%22none%22%20stroke%3D%22%237dd3c0%22%20stroke-width%3D%2216%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M224%20290h96%22%20stroke%3D%22%23e7e7e7%22%20stroke-width%3D%2216%22%20stroke-linecap%3D%22round%22%2F%3E%3Ctext%20x%3D%22160%22%20y%3D%22360%22%20font-family%3D%22monospace%22%20font-size%3D%2264%22%20font-weight%3D%22700%22%20fill%3D%22%237Dd3C0%22%3Evi%3C%2Ftext%3E%3C%2Fsvg%3E" type="image/svg+xml">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Tsui%20Vim%22%2C%22short_name%22%3A%22Tsui%20Vim%22%2C%22description%22%3A%22%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92shell%E9%A2%A8%E3%81%AB%E7%AE%A1%E7%90%86%E3%81%97%E3%80%81vim%2Fvi%E9%A2%A8%E3%81%AB%E7%B7%A8%E9%9B%86%E3%81%97%E3%80%81TAB%E8%A3%9C%E5%AE%8C%E3%80%81diff%E3%80%81find%E3%80%81grep%E3%81%AB%E3%82%82%E5%AF%BE%E5%BF%9C%E3%81%97%E3%81%9F%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%AA%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF%E3%80%82%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E4%B8%8D%E8%A6%81%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%A4%96%E9%83%A8%E9%80%81%E4%BF%A1%E7%84%A1%E3%81%97%E3%80%82%22%2C%22start_url%22%3A%22.%2F%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23111111%22%2C%22theme_color%22%3A%22%23111111%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9Ijk2IiBmaWxsPSIjMTExMTExIi8%2BPHBhdGggZD0iTTEyOCAxNjBoMjU2djI1NkgxMjh6IiBmaWxsPSIjMTcxNzE3IiBzdHJva2U9IiM3ZGQzYzAiIHN0cm9rZS13aWR0aD0iMTYiLz48cGF0aCBkPSJNMTYwIDIxMGw0MCA0MC00MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2RkM2MwIiBzdHJva2Utd2lkdGg9IjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNMjI0IDI5MGg5NiIgc3Ryb2tlPSIjZTdlN2U3IiBzdHJva2Utd2lkdGg9IjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48dGV4dCB4PSIxNjAiIHk9IjM2MCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI2NCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzdEZDNDMCI%2Bdmk8L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Tsui%20Vim%22%2C%22short_name%22%3A%22Tsui%20Vim%22%2C%22description%22%3A%22Browser-based%20local%20file%20editor%20with%20shell-style%20commands%20and%20a%20vi%2FVim-style%20editor%20(TAB%20completion%2C%20diff%2C%20find%2C%20grep).%20No%20login%2C%20no%20outbound%20traffic.%20%2F%20%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%A7%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92shell%E9%A2%A8%E3%81%AB%E7%AE%A1%E7%90%86%E3%81%97%E3%80%81vim%2Fvi%E9%A2%A8%E3%81%AB%E7%B7%A8%E9%9B%86%E3%80%82TAB%E8%A3%9C%E5%AE%8C%E3%80%81diff%E3%80%81find%E3%80%81grep%E5%AF%BE%E5%BF%9C%E3%80%82%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E4%B8%8D%E8%A6%81%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%A4%96%E9%83%A8%E9%80%81%E4%BF%A1%E7%84%A1%E3%81%97%E3%80%82%22%2C%22start_url%22%3A%22.%2F%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23111111%22%2C%22theme_color%22%3A%22%23111111%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9Ijk2IiBmaWxsPSIjMTExMTExIi8%2BPHBhdGggZD0iTTEyOCAxNjBoMjU2djI1NkgxMjh6IiBmaWxsPSIjMTcxNzE3IiBzdHJva2U9IiM3ZGQzYzAiIHN0cm9rZS13aWR0aD0iMTYiLz48cGF0aCBkPSJNMTYwIDIxMGw0MCA0MC00MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2RkM2MwIiBzdHJva2Utd2lkdGg9IjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNMjI0IDI5MGg5NiIgc3Ryb2tlPSIjZTdlN2U3IiBzdHJva2Utd2lkdGg9IjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48dGV4dCB4PSIxNjAiIHk9IjM2MCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI2NCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzdEZDNDMCI%2Bdmk8L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -114,6 +114,7 @@
 
   header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
     min-width: 0;
@@ -209,6 +210,7 @@
   }
   .vim-topline, .vim-statusline, .vim-commandbar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     min-width: 0;
     gap: 10px;
@@ -285,9 +287,17 @@
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     line-height: 1.65;
     tab-size: 2;
-    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
     overflow: auto;
     caret-color: var(--accent);
+  }
+  /* :set nowrap → horizontal scroll like vim's default-off mode */
+  #vim-view[data-wrap="off"] #vim-editor {
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal;
   }
   #vim-editor-wrap.show-line-numbers #vim-editor { padding-left: calc(var(--line-number-width) + 20px); }
   #vim-editor[readonly] { color: #d9d9d9; }
@@ -342,6 +352,7 @@
 
   footer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 16px;
     min-width: 0;
@@ -595,13 +606,19 @@
 </head>
 <body>
 <header>
-  <div class="brand">TSUI VIM</div>
-  <div id="folder-label">作業フォルダ未選択</div>
-  <button class="primary" id="btn-open-folder" title="⚠ 選択したフォルダ配下に読み書き権限を持ちます。専用の作業フォルダを推奨します。">フォルダを開く</button>
-  <button id="btn-reconnect">前回</button>
-  <button id="btn-help">help</button>
-  <button id="btn-settings">settings</button>
-  <button id="btn-about">about</button>
+  <div class="brand" data-i18n="app.brand">TSUI VIM</div>
+  <div id="folder-label" data-i18n="status.noRoot">作業フォルダ未選択</div>
+  <button class="primary" id="btn-open-folder"
+          data-i18n="header.btn.openFolder"
+          data-i18n-attr="title=header.btn.openFolder.title"
+          title="⚠ 選択したフォルダ配下に読み書き権限を持ちます。専用の作業フォルダを推奨します。">フォルダを開く</button>
+  <button id="btn-reconnect"
+          data-i18n="header.btn.reconnect"
+          data-i18n-attr="title=header.btn.reconnect.title">前回</button>
+  <button id="btn-help" data-i18n="header.btn.help">help</button>
+  <button id="btn-lang" title="Switch language / 言語切替">JA</button>
+  <button id="btn-settings" data-i18n="header.btn.settings">settings</button>
+  <button id="btn-about" data-i18n="header.btn.about">about</button>
 </header>
 
 <main>
@@ -621,14 +638,20 @@
       <span id="vim-file-label"></span>
       <span id="vim-meta"></span>
       <span class="vim-actions">
-        <button id="btn-vim-save" title=":w / Ctrl+S">:w</button>
+        <button id="btn-vim-save"
+                data-i18n="vim.actions.save"
+                data-i18n-attr="title=vim.actions.save.title"
+                title=":w / Ctrl+S">:w</button>
         <button id="btn-vim-diff" title=":diff">:diff</button>
-        <button id="btn-vim-quit" title=":q">:q</button>
+        <button id="btn-vim-quit"
+                data-i18n="vim.actions.quit"
+                data-i18n-attr="title=vim.actions.quit.title"
+                title=":q">:q</button>
       </span>
     </div>
     <div id="vim-editor-wrap">
       <div id="vim-line-numbers" hidden aria-hidden="true"><div id="vim-line-numbers-inner"></div></div>
-      <textarea id="vim-editor" spellcheck="false" autocomplete="off" autocapitalize="none" wrap="off"></textarea>
+      <textarea id="vim-editor" spellcheck="false" autocomplete="off" autocapitalize="none" wrap="soft"></textarea>
       <div id="vim-normal-cursor" class="hidden" aria-hidden="true"></div>
     </div>
     <div class="vim-statusline">
@@ -644,44 +667,44 @@
 
 <footer>
   <span id="status-info"></span>
-  <span>shell: <span class="kbd">cd</span> <span class="kbd">ls</span> <span class="kbd">mv</span> <span class="kbd">cp</span> <span class="kbd">diff</span> <span class="kbd">find</span> <span class="kbd">grep</span> <span class="kbd">vim/vi/view file</span> <span class="kbd">Tab</span></span>
-  <span>vim: <span class="kbd">i</span> insert · <span class="kbd">yy/dd/x</span> yank · <span class="kbd">p/P</span> paste · <span class="kbd">:wq</span> save&amp;quit</span>
+  <span><span data-i18n="footer.shell">shell</span>: <span class="kbd">cd</span> <span class="kbd">ls</span> <span class="kbd">mv</span> <span class="kbd">cp</span> <span class="kbd">diff</span> <span class="kbd">find</span> <span class="kbd">grep</span> <span class="kbd">vim/vi/view file</span> <span class="kbd">Tab</span></span>
+  <span><span data-i18n="footer.vim">vim</span>: <span class="kbd">i</span> <span data-i18n="footer.vim.insert">insert</span> · <span class="kbd">yy/dd/x</span> <span data-i18n="footer.vim.yank">yank</span> · <span class="kbd">p/P</span> <span data-i18n="footer.vim.paste">paste</span> · <span class="kbd">:wq</span> <span data-i18n="footer.vim.savequit">save&amp;quit</span></span>
 </footer>
 
 <div class="modal-backdrop" id="modal-about">
   <div class="modal">
     <div class="modal-header">
       <span class="modal-title">About Tsui Vim</span>
-      <button id="btn-modal-close" title="閉じる">×</button>
+      <button id="btn-modal-close" data-i18n-attr="title=about.close" title="閉じる">×</button>
     </div>
     <div class="modal-body">
-      <p><strong>Tsui Vim</strong> は、ブラウザ上で動くローカルファイル編集ツールです。ファイルツリーを使わず、通常のLinuxシェルに近いプロンプト行でファイルを管理し、<code>vim path/file</code> または <code>vi path/file</code> で編集画面を開きます。ログイン不要、インストール不要、データの外部送信なし。</p>
-      <p>Vim本体のソースコードは含まず、vi/Vim風の操作感を参考にした独自実装です。Vim project とは無関係の非公式ツールです。</p>
-      <h3>PRIVACY</h3>
-      <p>ファイルや入力内容は、本アプリ本体から外部送信されません。<code>connect-src 'none'</code> により、<code>fetch</code> 等のネットワーク送信は、ブラウザレベルで禁止されます。DevTools の Network タブで確認いただけます。</p>
-      <p>ファイルや入力内容は <code>localStorage</code> や <code>IndexedDB</code> に保存しません。これらは File System Access API 経由で選択されたフォルダの中にのみ存在します。なお、UI 設定と、前回フォルダへの再アクセス用の情報（フォルダ名とハンドル）は保存しています。</p>
-      <p>本アプリ本体には計測機能は一切含まれていません（上記の <code>connect-src 'none'</code> により、ブラウザの CSP 機構で外部送信が禁止されるため）。</p>
-      <p>一方、作者プロフィールや Tsui series のランディングページ等の情報ページでは、訪問数の把握に Cloudflare Web Analytics を利用しています（Cookie なし / フィンガープリントなし / クロスサイトトラッキングなし）。</p>
-      <p>なお、別途プラットフォーム側（配信元サーバや中継事業者等）で計測・記録されている可能性はあります。</p>
-      <h3>主なコマンド</h3>
+      <p data-i18n-html="about.intro"><strong>Tsui Vim</strong> は、ブラウザ上で動くローカルファイル編集ツールです。ファイルツリーを使わず、通常のLinuxシェルに近いプロンプト行でファイルを管理し、<code>vim path/file</code> または <code>vi path/file</code> で編集画面を開きます。ログイン不要、インストール不要、データの外部送信なし。</p>
+      <p data-i18n="about.disclaimer.vim">Vim本体のソースコードは含まず、vi/Vim風の操作感を参考にした独自実装です。Vim project とは無関係の非公式ツールです。</p>
+      <h3 data-i18n="about.privacy.title">PRIVACY</h3>
+      <p data-i18n-html="about.privacy.p1">ファイルや入力内容は、本アプリ本体から外部送信されません。<code>connect-src 'none'</code> により、<code>fetch</code> 等のネットワーク送信は、ブラウザレベルで禁止されます。DevTools の Network タブで確認いただけます。</p>
+      <p data-i18n-html="about.privacy.p2">ファイルや入力内容は <code>localStorage</code> や <code>IndexedDB</code> に保存しません。これらは File System Access API 経由で選択されたフォルダの中にのみ存在します。なお、UI 設定と、前回フォルダへの再アクセス用の情報（フォルダ名とハンドル）は保存しています。</p>
+      <p data-i18n-html="about.privacy.p3">本アプリ本体には計測機能は一切含まれていません（上記の <code>connect-src 'none'</code> により、ブラウザの CSP 機構で外部送信が禁止されるため）。</p>
+      <p data-i18n="about.privacy.p4">一方、作者プロフィールや Tsui series のランディングページ等の情報ページでは、訪問数の把握に Cloudflare Web Analytics を利用しています（Cookie なし / フィンガープリントなし / クロスサイトトラッキングなし）。</p>
+      <p data-i18n="about.privacy.p5">なお、別途プラットフォーム側（配信元サーバや中継事業者等）で計測・記録されている可能性はあります。</p>
+      <h3 data-i18n="about.cmds.title">主なコマンド</h3>
       <ul>
-        <li><code>open</code> / <code>reconnect</code> — 作業フォルダの選択・再接続</li>
-        <li><code>pwd</code>, <code>ls [-l]</code>, <code>cd DIR</code> — 移動と一覧</li>
-        <li><code>mkdir [-p] DIR</code>, <code>mv [-f] SRC DEST</code>, <code>cp [-f] SRC DEST</code>, <code>rm [-r] [-f] PATH</code> — ファイル管理</li>
-        <li><code>diff [-u] [-q] [-U N] FILE1 FILE2</code> — テキストファイルの差分をunified diffで表示</li>
-        <li><code>find</code>, <code>grep</code> — ファイル検索・本文検索。grepのファイルサイズ上限はsettingsで変更可能</li>
-        <li><code>vim FILE</code> / <code>vi FILE</code> — ファイルを開いて編集。存在しないファイルは <code>:w</code> で作成</li>
-        <li><code>view FILE</code> — ファイルをリードオンリーで開く（<code>:w!</code> で強制保存可）</li>
-        <li><code>Tab</code> — コマンド名・ファイル名・ディレクトリ名を補完</li>
+        <li><code>open</code> / <code>reconnect</code> — <span data-i18n="about.cmds.openFolder">作業フォルダの選択・再接続</span></li>
+        <li><code>pwd</code>, <code>ls [-l]</code>, <code>cd DIR</code> — <span data-i18n="about.cmds.shell">移動と一覧</span></li>
+        <li><code>mkdir [-p] DIR</code>, <code>mv [-f] SRC DEST</code>, <code>cp [-f] SRC DEST</code>, <code>rm [-r] [-f] PATH</code> — <span data-i18n="about.cmds.shell">ファイル管理</span></li>
+        <li><code>diff [-u] [-q] [-U N] FILE1 FILE2</code> — <span data-i18n-html="about.cmds.diff">テキストファイルの差分をunified diffで表示</span></li>
+        <li><code>find</code>, <code>grep</code> — <span data-i18n="about.cmds.findGrep">ファイル検索・本文検索</span></li>
+        <li><code>vim FILE</code> / <code>vi FILE</code> — <span data-i18n-html="about.cmds.vim">ファイルを開いて編集。存在しないファイルは <code>:w</code> で作成</span></li>
+        <li><code>view FILE</code> — <span data-i18n-html="about.cmds.view">ファイルをリードオンリーで開く（<code>:w!</code> で強制保存可）</span></li>
+        <li><code>Tab</code> — <span data-i18n="about.cmds.tab">コマンド名・ファイル名・ディレクトリ名を補完</span></li>
       </ul>
-      <h3>Vim風操作</h3>
-      <p><code>i</code>/<code>a</code>/<code>A</code>/<code>I</code>/<code>o</code>/<code>O</code> でINSERT、<code>Esc</code>でNORMAL、<code>:w</code>保存、<code>:q</code>終了、<code>:wq</code>保存して終了、<code>:q!</code>破棄して終了。NORMALでは <code>h j k l</code>, <code>0</code>, <code>$</code>, <code>gg</code>, <code>G</code>, <code>x</code>, <code>dd</code>, <code>yy</code>, <code>p</code>, <code>P</code>, <code>u</code> も簡易対応しています。<code>x</code>/<code>dd</code>/<code>yy</code> は内部レジスタへ保存し、可能ならシステムクリップボードにもコピーします。<code>20l</code> のような数字付き移動にも対応しています。<code>:set number</code>/<code>:nu</code>/<code>:set nonumber</code>/<code>:nonu</code>、<code>:w FILE</code>/<code>:saveas FILE</code>/<code>:sav FILE</code>、<code>:diff</code>/<code>:diff FILE</code>、<code>/word</code>/<code>?word</code>/<code>n</code>/<code>N</code> にも対応しています。<code>view</code> で開いたファイルへの保存は <code>:w!</code> / <code>:wq!</code> / <code>:x!</code> で強制可能です。</p>
-      <h3>注意</h3>
-      <p>File System Access APIの仕様上、選択したフォルダ配下への読み書き・削除権限を持ちます。重要フォルダや同期フォルダではなく、専用の作業フォルダで利用することを推奨します。</p>
-      <h3>DISCLAIMER</h3>
-      <p>本ソフトウェアは現状有姿で提供され、動作の正確性・可用性について一切の保証はありません。ご利用は自己責任でお願いします。ファイルのバックアップは利用者の責任で行ってください。</p>
-      <h3>LICENSE (THIS APP)</h3>
-      <p>Copyright (c) 2026 <a href="https://hajimetwi3.github.io/hajimetwi3/" target="_blank" rel="noopener noreferrer">Hajime Tsui</a></p>
+      <h3 data-i18n="about.vim.title">Vim風操作</h3>
+      <p data-i18n-html="about.vim.body"><code>i</code>/<code>a</code>/<code>A</code>/<code>I</code>/<code>o</code>/<code>O</code> でINSERT、<code>Esc</code>でNORMAL、<code>:w</code>保存、<code>:q</code>終了、<code>:wq</code>保存して終了、<code>:q!</code>破棄して終了。NORMALでは <code>h j k l</code>, <code>0</code>, <code>$</code>, <code>gg</code>, <code>G</code>, <code>x</code>, <code>dd</code>, <code>yy</code>, <code>p</code>, <code>P</code>, <code>u</code> も簡易対応しています。<code>x</code>/<code>dd</code>/<code>yy</code> は内部レジスタへ保存し、可能ならシステムクリップボードにもコピーします。<code>20l</code> のような数字付き移動にも対応しています。<code>:set number</code>/<code>:nu</code>/<code>:set nonumber</code>/<code>:nonu</code>、<code>:w FILE</code>/<code>:saveas FILE</code>/<code>:sav FILE</code>、<code>:diff</code>/<code>:diff FILE</code>、<code>/word</code>/<code>?word</code>/<code>n</code>/<code>N</code> にも対応しています。<code>view</code> で開いたファイルへの保存は <code>:w!</code> / <code>:wq!</code> / <code>:x!</code> で強制可能です。</p>
+      <h3 data-i18n="about.notice.title">注意</h3>
+      <p data-i18n="about.notice.body">File System APIの仕様上、選択したフォルダ配下への読み書き・削除権限を持ちます。重要フォルダや同期フォルダではなく、専用の作業フォルダで利用することを推奨します。</p>
+      <h3 data-i18n="about.disclaimer.title">DISCLAIMER</h3>
+      <p data-i18n="about.disclaimer.body">本ソフトウェアは現状有姿で提供され、動作の正確性・可用性について一切の保証はありません。ご利用は自己責任でお願いします。ファイルのバックアップは利用者の責任で行ってください。</p>
+      <h3 data-i18n="about.license.title">LICENSE (THIS APP)</h3>
+      <p data-i18n-html="about.license.copyright">Copyright (c) 2026 <a href="https://hajimetwi3.github.io/hajimetwi3/" target="_blank" rel="noopener noreferrer">Hajime Tsui</a></p>
 <pre><code>MIT License
 
 Copyright (c) 2026 Hajime Tsui
@@ -703,11 +726,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</code></pre>
-      <h3>THIRD-PARTY</h3>
-      <p>なし。外部モジュールには依存しません。</p>
-      <h3>RELATED</h3>
-      <p>本アプリは <a href="https://hajimetwi3.github.io/hajimetwi3/Tsui-series/" target="_blank" rel="noopener noreferrer">Tsui series</a>（静かな道具たち）の一つです。</p>
-      <p>GitHub: <a href="https://github.com/hajimetwi3/Tsui-vim" target="_blank" rel="noopener noreferrer">github.com/hajimetwi3/Tsui-vim</a></p>
+      <h3 data-i18n="about.thirdparty.title">THIRD-PARTY</h3>
+      <p data-i18n="about.thirdparty.body">なし。外部モジュールには依存しません。</p>
+      <h3 data-i18n="about.related.title">RELATED</h3>
+      <p data-i18n-html="about.related.series">本アプリは <a href="https://hajimetwi3.github.io/hajimetwi3/Tsui-series/" target="_blank" rel="noopener noreferrer">Tsui series</a>（静かな道具たち）の一つです。</p>
+      <p data-i18n-html="about.related.github">GitHub: <a href="https://github.com/hajimetwi3/Tsui-vim" target="_blank" rel="noopener noreferrer">github.com/hajimetwi3/Tsui-vim</a></p>
     </div>
   </div>
 </div>
@@ -715,20 +738,20 @@ SOFTWARE.</code></pre>
 <div class="modal-backdrop" id="modal-settings">
   <div class="modal settings-modal">
     <div class="modal-header">
-      <span class="modal-title">Settings</span>
-      <button id="btn-settings-close" title="閉じる">×</button>
+      <span class="modal-title" data-i18n="settings.title">Settings</span>
+      <button id="btn-settings-close" data-i18n-attr="title=about.close" title="閉じる">×</button>
     </div>
     <div class="modal-body">
-      <h3>SIZE</h3>
-      <p>UIの文字サイズを切り替えます。</p>
+      <h3 data-i18n="settings.size.title">SIZE</h3>
+      <p data-i18n="settings.size.desc">UIの文字サイズを切り替えます。</p>
       <div class="opt-row" id="settings-size-row">
         <button type="button" class="opt-btn" data-size-opt="S">S</button>
         <button type="button" class="opt-btn" data-size-opt="M">M</button>
         <button type="button" class="opt-btn" data-size-opt="L">L</button>
         <button type="button" class="opt-btn" data-size-opt="XL">XL</button>
       </div>
-      <h3>THEME</h3>
-      <p>UIの配色を切り替えます。calm 以外のテーマでは強調文字に発光効果が付きます。</p>
+      <h3 data-i18n="settings.theme.title">THEME</h3>
+      <p data-i18n="settings.theme.desc">UIの配色を切り替えます。calm 以外のテーマでは強調文字に発光効果が付きます。</p>
       <div class="opt-row" id="settings-theme-row">
         <button type="button" class="opt-btn" data-theme-opt="calm">calm</button>
         <button type="button" class="opt-btn" data-theme-opt="green">green</button>
@@ -737,15 +760,15 @@ SOFTWARE.</code></pre>
         <button type="button" class="opt-btn" data-theme-opt="pink">pink</button>
         <button type="button" class="opt-btn" data-theme-opt="cyber">cyber</button>
       </div>
-      <h3>grep</h3>
-      <p>巨大ファイルを誤って読み込まないよう、grepが読む1ファイルあたりの上限を設定します。上限を超えるファイルとバイナリファイルはスキップされます。</p>
+      <h3 data-i18n="settings.grep.title">grep</h3>
+      <p data-i18n="settings.grep.desc">巨大ファイルを誤って読み込まないよう、grepが読む1ファイルあたりの上限を設定します。上限を超えるファイルとバイナリファイルはスキップされます。</p>
       <label class="setting-row" for="settings-grep-max-mb">
-        <span>grep max file size</span>
-        <span class="setting-input-wrap"><input id="settings-grep-max-mb" type="number" min="0.0625" max="200" step="0.25" inputmode="decimal"> MB</span>
+        <span data-i18n="settings.grep.label">grep max file size</span>
+        <span class="setting-input-wrap"><input id="settings-grep-max-mb" type="number" min="0.0625" max="200" step="0.25" inputmode="decimal"> <span data-i18n="settings.grep.unit">MB</span></span>
       </label>
-      <p class="setting-note">現在値: <span id="settings-grep-max-label">-</span></p>
+      <p class="setting-note"><span data-i18n="settings.grep.current">現在値</span>: <span id="settings-grep-max-label">-</span></p>
       <div class="modal-actions">
-        <button id="btn-settings-save" class="primary">保存</button>
+        <button id="btn-settings-save" class="primary" data-i18n="settings.btn.save">保存</button>
       </div>
     </div>
   </div>
@@ -754,22 +777,543 @@ SOFTWARE.</code></pre>
 <div class="modal-backdrop" id="modal-diff">
   <div class="modal diff-modal">
     <div class="modal-header">
-      <span class="modal-title" id="diff-title">Diff</span>
-      <button id="btn-diff-close" title="閉じる">×</button>
+      <span class="modal-title" id="diff-title" data-i18n="diff.title">Diff</span>
+      <button id="btn-diff-close" data-i18n-attr="title=about.close" title="閉じる">×</button>
     </div>
     <div class="diff-output" id="diff-output" role="log" aria-label="diff output"></div>
   </div>
 </div>
 
 <script>
+// ==== i18n ==================================================================
+const VALID_LANGS = ['ja', 'en'];
+const DEFAULT_LANG = 'ja';
+let currentLang = DEFAULT_LANG;
+
+const I18N_DICT = {
+  ja: {
+    // ==== Header / Footer ===================================================
+    'app.brand': 'TSUI VIM',
+    'header.btn.openFolder': 'フォルダを開く',
+    'header.btn.openFolder.title': '⚠ 選択したフォルダ配下に読み書き権限を持ちます。専用の作業フォルダを推奨します。',
+    'header.btn.reconnect': '前回',
+    'header.btn.reconnect.title': '前回フォルダに再接続',
+    'header.btn.help': 'help',
+    'header.btn.settings': 'settings',
+    'header.btn.about': 'about',
+    'footer.shell': 'shell',
+    'footer.shell.cmds': 'cd ls mv cp diff find grep vim/vi/view file Tab',
+    'footer.vim': 'vim',
+    'footer.vim.insert': 'insert',
+    'footer.vim.yank': 'yank',
+    'footer.vim.paste': 'paste',
+    'footer.vim.savequit': 'save&quit',
+
+    // ==== Vim editor topbar =================================================
+    'vim.topbar.fileLabel': 'ファイル',
+    'vim.actions.save': '保存',
+    'vim.actions.save.title': '保存 (:w)',
+    'vim.actions.quit': '終了',
+    'vim.actions.quit.title': '終了 (:q)',
+
+    // ==== Status messages ===================================================
+    'status.noRoot': '作業フォルダ未選択',
+    'status.openFolderHint': 'open コマンドまたは「フォルダを開く」で作業フォルダを選択してください',
+
+    // ==== Modals: About =====================================================
+    'about.title': 'About',
+    'about.close': '閉じる',
+    'about.intro': '<strong>Tsui Vim</strong> は、ブラウザ上で動くローカルファイル編集ツールです。ファイルツリーを使わず、通常のLinuxシェルに近いプロンプト行でファイルを管理し、<code>vim path/file</code> または <code>vi path/file</code> で編集画面を開きます。ログイン不要、インストール不要、データの外部送信なし。',
+    'about.disclaimer.vim': 'Vim本体のソースコードは含まず、vi/Vim風の操作感を参考にした独自実装です。Vim project とは無関係の非公式ツールです。',
+    'about.privacy.title': 'PRIVACY',
+    'about.privacy.p1': 'ファイルや入力内容は、本アプリ本体から外部送信されません。<code>connect-src \'none\'</code> により、<code>fetch</code> 等のネットワーク送信は、ブラウザレベルで禁止されます。DevTools の Network タブで確認いただけます。',
+    'about.privacy.p2': 'ファイルや入力内容は <code>localStorage</code> や <code>IndexedDB</code> に保存しません。これらは File System Access API 経由で選択されたフォルダの中にのみ存在します。なお、UI 設定と、前回フォルダへの再アクセス用の情報(フォルダ名とハンドル)は保存しています。',
+    'about.privacy.p3': '本アプリ本体には計測機能は一切含まれていません(上記の <code>connect-src \'none\'</code> により、ブラウザの CSP 機構で外部送信が禁止されるため)。',
+    'about.privacy.p4': '一方、作者プロフィールや Tsui series のランディングページ等の情報ページでは、訪問数の把握に Cloudflare Web Analytics を利用しています(Cookie なし / フィンガープリントなし / クロスサイトトラッキングなし)。',
+    'about.privacy.p5': 'なお、別途プラットフォーム側(配信元サーバや中継事業者等)で計測・記録されている可能性はあります。',
+    'about.cmds.title': '主なコマンド',
+    'about.cmds.openFolder': 'フォルダを開いて作業ルートを設定',
+    'about.cmds.shell': '通常のLinuxシェル風コマンド',
+    'about.cmds.findGrep': 'ファイル名・本文の検索',
+    'about.cmds.diff': '差分表示(オプション: <code>-u</code> unified, <code>-q</code> brief, <code>-U N</code> 行数)',
+    'about.cmds.vim': 'ファイルを開いて編集。存在しないファイルは <code>:w</code> で作成',
+    'about.cmds.view': 'ファイルをリードオンリーで開く(<code>:w!</code> で強制保存可)',
+    'about.cmds.tab': 'コマンド名・ファイル名・ディレクトリ名を補完',
+    'about.vim.title': 'Vim風操作',
+    'about.vim.body': '<code>i</code>/<code>a</code>/<code>A</code>/<code>I</code>/<code>o</code>/<code>O</code> でINSERT、<code>Esc</code>でNORMAL、<code>:w</code>保存、<code>:q</code>終了、<code>:wq</code>保存して終了、<code>:q!</code>破棄して終了。NORMALでは <code>h j k l</code>, <code>0</code>, <code>$</code>, <code>gg</code>, <code>G</code>, <code>x</code>, <code>dd</code>, <code>yy</code>, <code>p</code>, <code>P</code>, <code>u</code> も簡易対応しています。<code>x</code>/<code>dd</code>/<code>yy</code> は内部レジスタへ保存し、可能ならシステムクリップボードにもコピーします。<code>20l</code> のような数字付き移動にも対応しています。<code>:set number</code>/<code>:nu</code>/<code>:set nonumber</code>/<code>:nonu</code>、<code>:set wrap</code>/<code>:set nowrap</code>、<code>:w FILE</code>/<code>:saveas FILE</code>/<code>:sav FILE</code>、<code>:diff</code>/<code>:diff FILE</code>、<code>/word</code>/<code>?word</code>/<code>n</code>/<code>N</code> にも対応しています。<code>view</code> で開いたファイルへの保存は <code>:w!</code> / <code>:wq!</code> / <code>:x!</code> で強制可能です。',
+    'about.notice.title': '注意',
+    'about.notice.body': 'File System APIの仕様上、選択したフォルダ配下への読み書き・削除権限を持ちます。重要フォルダや同期フォルダではなく、専用の作業フォルダで利用することを推奨します。',
+    'about.disclaimer.title': 'DISCLAIMER',
+    'about.disclaimer.body': '本ソフトウェアは現状有姿で提供され、動作の正確性・可用性について一切の保証はありません。ご利用は自己責任でお願いします。ファイルのバックアップは利用者の責任で行ってください。',
+    'about.license.title': 'LICENSE (THIS APP)',
+    'about.license.copyright': 'Copyright (c) 2026 <a href="https://hajimetwi3.github.io/hajimetwi3/" target="_blank" rel="noopener noreferrer">Hajime Tsui</a>',
+    'about.thirdparty.title': 'THIRD-PARTY',
+    'about.thirdparty.body': 'なし。外部モジュールには依存しません。',
+    'about.related.title': 'RELATED',
+    'about.related.series': '本アプリは <a href="https://hajimetwi3.github.io/hajimetwi3/Tsui-series/" target="_blank" rel="noopener noreferrer">Tsui series</a>(静かな道具たち)の一つです。',
+    'about.related.github': 'GitHub: <a href="https://github.com/hajimetwi3/Tsui-vim" target="_blank" rel="noopener noreferrer">github.com/hajimetwi3/Tsui-vim</a>',
+
+    // ==== Modals: Settings ==================================================
+    'settings.title': 'Settings',
+    'settings.size.title': 'SIZE',
+    'settings.size.desc': 'UIの文字サイズを切り替えます。',
+    'settings.theme.title': 'THEME',
+    'settings.theme.desc': 'UIの配色を切り替えます。calm 以外のテーマでは強調文字に発光効果が付きます。',
+    'settings.grep.title': 'grep',
+    'settings.grep.desc': '巨大ファイルを誤って読み込まないよう、grepが読む1ファイルあたりの上限を設定します。上限を超えるファイルとバイナリファイルはスキップされます。',
+    'settings.grep.label': 'grep max file size',
+    'settings.grep.unit': 'MB',
+    'settings.grep.current': '現在値',
+    'settings.btn.save': '保存',
+
+    // ==== Modals: Diff ======================================================
+    'diff.title': 'Diff',
+    'diff.close': '閉じる',
+
+    // ==== Modals: Folder warning ============================================
+    'warn.title': '⚠ 権限に関する重要な注意',
+    'warn.p1': 'このアプリは、選択したフォルダ配下の<b>すべてのファイルに対して読み書き・削除の権限</b>を持ちます。',
+    'warn.p2': '以下のような<b>システム的・個人的に重要なフォルダの選択は避けてください</b>:',
+    'warn.li1': '<code>C:\\</code> / <code>/</code> などルート直下',
+    'warn.li2': 'Desktop / Documents / Downloads',
+    'warn.li3': 'OneDrive / iCloud / Dropbox の同期フォルダ',
+    'warn.li4': 'Git リポジトリや開発プロジェクトのルート',
+    'warn.p3': '推奨は、このエディタ専用に作った作業フォルダ(例: <code>C:\\tsui-workspace\\</code>)です。',
+    'warn.note': 'この警告は初回のみ表示されます。',
+    'warn.btn.cancel': 'キャンセル',
+    'warn.btn.ok': '理解した上で開く',
+
+    // ==== Browser unsupported ===============================================
+    'unsupported.title': 'このブラウザは非対応です',
+    'unsupported.body': 'File System Access API が必要です。<br><b>Chrome / Edge / Opera</b> などの Chromium 系ブラウザでお試しください。<br>Firefox / Safari は現状未対応です。',
+
+    // ==== Init / banner =====================================================
+    'init.banner.openHint': 'open で作業フォルダを選択。help でコマンド一覧。vim/vi file で編集開始。Tab で補完。',
+    'init.banner.promptInfo': 'プロンプトは出力の末尾に統合されています。通常のshellのようにそのまま入力できます。',
+    'init.banner.lastFolder': '前回フォルダ候補: {name}  (reconnect で再接続)',
+
+    // ==== Status / settings related =========================================
+    'settings.grepLimitInvalid': 'grep上限には0より大きい数値を指定してください',
+    'settings.grepLimitSet': 'grep file limit={size}',
+
+    // ==== Permissions =======================================================
+    'err.permNoRoot': '作業フォルダが未選択です。open でフォルダを選択してください。',
+    'err.permDenied': 'フォルダへの読み書き権限がありません。',
+
+    // ==== Reconnect =========================================================
+    'err.reconnect.noRecord': '前回のフォルダ記録がありません。open を実行してください。',
+
+    // ==== open / chooseRoot =================================================
+    'open.canceled': 'open: canceled',
+    'open.opened': 'opened: {name}',
+
+    // ==== Path normalization ================================================
+    'err.requireRoot': '先に open で作業フォルダを選択してください。',
+    'err.path.nul': 'NUL文字を含むパスは利用できません。',
+
+    // ==== Generic FS errors =================================================
+    'err.notExist': '{path} は存在しません。',
+    'err.rootDelete': 'root は削除できません。',
+    'err.alreadyExists.useF': '{name} は既に存在します。上書きする場合は mv -f を使用してください。',
+
+    // ==== tokenize ==========================================================
+    'err.tokenize.unclosedQuote': 'クォートが閉じていません。',
+
+    // ==== cd ================================================================
+    'err.cd.tooManyArgs': 'cd の引数は1つだけです。',
+    'err.cd.notDir': '{path} はディレクトリではありません。',
+
+    // ==== mkdir =============================================================
+    'err.mkdir.usage': 'mkdir: 作成するディレクトリを指定してください。',
+    'err.mkdir.rootForbidden': 'mkdir: root は作成できません。',
+    'err.mkdir.alreadyExists': '{path} は既に存在します。',
+
+    // ==== rm ================================================================
+    'err.rm.usage': 'rm: 削除対象を指定してください。',
+    'err.rm.rootForbidden': 'rm: root は削除できません。',
+    'err.rm.dirNeedsR': 'rm: {path} はディレクトリです。削除するには -r を付けてください。',
+
+    // ==== mv ================================================================
+    'err.mv.usage': 'mv: SRC DEST の2つを指定してください。',
+    'err.mv.rootSrcForbidden': 'mv: root は移動できません。',
+    'err.mv.rootDestForbidden': 'mv: root への上書きはできません。',
+    'err.mv.dirIntoSelf': 'mv: ディレクトリを自分自身の内側へ移動することはできません。',
+    'confirm.overwrite': '{path} は既に存在します。上書きしますか？',
+
+    // ==== touch =============================================================
+    'err.touch.usage': 'touch: ファイル名を指定してください。',
+    'err.touch.rootIsNotFile': 'touch: root はファイルではありません。',
+    'err.touch.isDir': '{path} はディレクトリです。',
+
+    // ==== cat ===============================================================
+    'err.cat.usage': 'cat: ファイルを1つ指定してください。',
+    'err.cat.notFile': '{path} はファイルではありません。',
+    'err.cat.tooLarge': 'cat: 10MBを超えるファイルは表示しません。vim で開いてください。',
+
+    // ==== cp ================================================================
+    'err.cp.dirNotSupported': 'cp: ディレクトリコピー(-r)は未対応です。',
+    'err.cp.usage': 'cp: SRC DEST の2つを指定してください。',
+    'err.cp.rootSrcForbidden': 'cp: root はコピーできません。',
+    'err.cp.dirSrcNotSupported': 'cp: ディレクトリコピーは未対応です。ファイルだけコピーできます。',
+    'err.cp.rootDestForbidden': 'cp: root へはコピーできません。',
+    'err.cp.destIsDir': '{path} はディレクトリです。',
+
+    // ==== find ==============================================================
+    'err.find.typeInvalid': 'find: -type は f または d を指定してください。',
+    'err.find.patternNeeded': 'find: {arg} のパターンを指定してください。',
+    'err.find.maxdepthInvalid': 'find: -maxdepth は0以上の整数を指定してください。',
+    'find.truncated': 'find: {n}件で表示を停止しました。条件を絞ってください。',
+
+    // ==== grep ==============================================================
+    'err.grep.patternNeeded': 'grep: 検索パターンを指定してください。',
+    'grep.truncated': 'grep: {n}件で表示を停止しました。条件を絞ってください。',
+
+    // ==== diff ==============================================================
+    'err.diff.nonNegativeInt': 'diff: {opt} には0以上の整数を指定してください。',
+    'err.diff.lineCountNeeded': 'diff: {arg} の行数を指定してください。',
+    'err.diff.usage': 'diff: FILE1 FILE2 の2つを指定してください。例: diff old.txt new.txt',
+    'err.diff.rootIsNotFile': 'diff: root はファイルではありません。',
+    'err.diff.notFile': 'diff: {path} はファイルではありません。',
+    'err.diff.tooLarge': 'diff: {path} は {size} です。diff上限 {limit} を超えています。',
+    'err.diff.binary': 'diff: {path} はバイナリファイルの可能性があるため比較しません。',
+
+    // ==== shell switch case =================================================
+    'err.cmd.notFound': '{cmd}: command not found. help でコマンド一覧を表示できます。',
+
+    // ==== vim/view ==========================================================
+    'err.vim.usage.vim': '{cmdName}: 開くファイルを1つ指定してください。例: vim memo.txt / vi memo.txt',
+    'err.vim.usage.view': '{cmdName}: 開くファイルを1つ指定してください。例: view memo.txt',
+    'err.vim.rootForbidden': '{cmdName}: root は開けません。',
+    'err.vim.notFile': '{path} はファイルではありません。',
+    'err.vim.tooLarge': '{cmdName}: {size} のファイルは大きすぎるため開けません。',
+    'confirm.vim.largeFile': '{path} は {size} です。開くのに時間がかかる可能性があります。続行しますか？',
+    'cmd.vim.canceled': '{cmdName}: canceled',
+
+    // ==== saveas ============================================================
+    'err.saveas.rootForbidden': 'saveas: root には保存できません。',
+    'err.saveas.notFile': '{path} はファイルではありません。',
+    'saveas.canceled': 'saveas canceled',
+
+    // ==== rm/mv/cp canceled =================================================
+    'cmd.canceled': '{cmd}: canceled',
+
+    // ==== vim status messages (some are vim-spec error codes, kept as-is) ====
+    'vim.msg.fileLoaded': 'file loaded',
+    'vim.msg.newFile': 'new file',
+    'vim.msg.readonly.loaded': 'readonly (use :w! to write)',
+    'vim.msg.readonly.new': 'new file (readonly: use :w! to write)',
+    'vim.msg.readonlyFile': 'readonly file',
+    'vim.msg.alreadyOldest': 'already at oldest change',
+    'vim.msg.noWriteSinceChange': 'No write since last change. Use :q! to discard.',
+    'vim.msg.notEditorCommand': 'Not an editor command: {raw}',
+    'vim.msg.patternNotFound': 'Pattern not found: {needle}',
+    'vim.msg.usage.w': 'usage: :w [FILE]',
+    'vim.msg.usage.wforce': 'usage: :w! [FILE]',
+    'vim.msg.usage.saveas': 'usage: :saveas FILE',
+    'vim.msg.usage.saveasforce': 'usage: :saveas! FILE',
+    'vim.msg.help': 'commands: :w [FILE] :w! :saveas FILE :q :wq :wq! :q! :e! :diff [FILE] :set number|nonumber|wrap|nowrap|ff=unix|dos|mac',
+
+    // ==== help text body ====================================================
+    'help.text': '\nshell:\n  open                          フォルダを開いて作業ルートを設定\n  reconnect                     前回のフォルダに再接続\n  pwd                           現在ディレクトリ\n  ls [PATH]                     一覧\n  cd PATH                       ディレクトリ移動\n  mkdir DIR ...                 ディレクトリ作成\n  mv [-f] SRC DEST              移動・リネーム\n  cp [-f] SRC DEST              ファイルをコピー\n  rm [-r] PATH ...              削除(-r でディレクトリ再帰)\n  touch FILE                    空ファイル作成または更新\n  cat FILE                      ファイル内容表示(10MB以内)\n  find [PATH] [-type f|d] [-name PATTERN] [-maxdepth N]\n  diff [-u] [-q] [-U N] FILE1 FILE2  unified diffでテキスト差分を表示\n  grep [-i] [-n] [-F|-E] PATTERN [PATH...]\n  settings                      grepのファイルサイズ上限などを変更\n  clear                         画面クリア\n\neditor:\n  vim FILE / vi FILE           Vim風エディタで開く\n  view FILE                    リードオンリーで開く(:w! で強制保存可)\n\nvim keys:\n  i/a/A/I/o/O                  INSERTへ\n  Esc                          NORMALへ\n  :w  :w FILE  :saveas FILE    保存・別名保存\n  :w!  :wq!  :x!               viewで開いたファイルへ強制保存\n  :q  :wq  :q!  :e!            終了・再読み込み\n  :set number / :set nonumber  行番号表示の切替\n  :set wrap / :set nowrap      長い行を折り返すか水平スクロールか\n  :diff / :diff FILE           未保存変更または別ファイルとの差分表示\n  h j k l / 0 / $ / gg / G     移動(20l などの数字指定対応)\n  x / dd / yy / p / P / u      切り取り・ヤンク・貼り付け・簡易Undo\n  /word  ?word  n  N           検索・次/前の検索結果へ移動',
+      'confirm.rm.body': '以下を削除します。元に戻せません。\n\n{label}\n\n続行しますか？',
+    'confirm.saveas': '{path} は既に存在します。上書きしますか？',
+  },
+  en: {
+    // ==== Header / Footer ===================================================
+    'app.brand': 'TSUI VIM',
+    'header.btn.openFolder': 'Open folder',
+    'header.btn.openFolder.title': '⚠ The chosen folder will be readable, writable, and deletable. A dedicated working folder is recommended.',
+    'header.btn.reconnect': 'Last',
+    'header.btn.reconnect.title': 'Reconnect to last folder',
+    'header.btn.help': 'help',
+    'header.btn.settings': 'settings',
+    'header.btn.about': 'about',
+    'footer.shell': 'shell',
+    'footer.shell.cmds': 'cd ls mv cp diff find grep vim/vi/view file Tab',
+    'footer.vim': 'vim',
+    'footer.vim.insert': 'insert',
+    'footer.vim.yank': 'yank',
+    'footer.vim.paste': 'paste',
+    'footer.vim.savequit': 'save&quit',
+
+    // ==== Vim editor topbar =================================================
+    'vim.topbar.fileLabel': 'File',
+    'vim.actions.save': 'Save',
+    'vim.actions.save.title': 'Save (:w)',
+    'vim.actions.quit': 'Quit',
+    'vim.actions.quit.title': 'Quit (:q)',
+
+    // ==== Status messages ===================================================
+    'status.noRoot': 'No working folder',
+    'status.openFolderHint': 'Run "open" or click "Open folder" to choose a working folder',
+
+    // ==== Modals: About =====================================================
+    'about.title': 'About',
+    'about.close': 'Close',
+    'about.intro': '<strong>Tsui Vim</strong> is a browser-based local file editor. Instead of a file tree, it uses a Linux shell-style prompt to manage files; <code>vim path/file</code> or <code>vi path/file</code> opens the editor. No login, no install, no outbound traffic.',
+    'about.disclaimer.vim': 'This app does not include Vim source code. It is an independent vi/Vim-style implementation, unrelated to the Vim project.',
+    'about.privacy.title': 'PRIVACY',
+    'about.privacy.p1': 'Files and input are not sent anywhere by this app. <code>connect-src \'none\'</code> blocks <code>fetch</code> and other network requests at the browser level. You can verify this in the DevTools Network tab.',
+    'about.privacy.p2': 'Files and input are not stored in <code>localStorage</code> or <code>IndexedDB</code>. They exist only inside the folder you select via the File System Access API. UI settings and a re-access record for the last folder (folder name and handle) are stored locally.',
+    'about.privacy.p3': 'This app contains no analytics or tracking (the <code>connect-src \'none\'</code> CSP blocks any outbound request anyway).',
+    'about.privacy.p4': 'On the other hand, the author profile and Tsui series landing pages use Cloudflare Web Analytics for visit counts (no cookies, no fingerprinting, no cross-site tracking).',
+    'about.privacy.p5': 'Note that the hosting platform (origin server, CDN, etc.) may collect logs separately.',
+    'about.cmds.title': 'Main commands',
+    'about.cmds.openFolder': 'Open a folder and set it as the working root',
+    'about.cmds.shell': 'Linux shell-style commands',
+    'about.cmds.findGrep': 'Search filenames and contents',
+    'about.cmds.diff': 'Show diff (options: <code>-u</code> unified, <code>-q</code> brief, <code>-U N</code> context lines)',
+    'about.cmds.vim': 'Open a file for editing. New files are created on <code>:w</code>',
+    'about.cmds.view': 'Open a file read-only (force-save with <code>:w!</code>)',
+    'about.cmds.tab': 'Tab-completes commands, filenames, and directories',
+    'about.vim.title': 'Vim-style operations',
+    'about.vim.body': '<code>i</code>/<code>a</code>/<code>A</code>/<code>I</code>/<code>o</code>/<code>O</code> for INSERT, <code>Esc</code> for NORMAL, <code>:w</code> save, <code>:q</code> quit, <code>:wq</code> save&quit, <code>:q!</code> discard&quit. NORMAL mode supports <code>h j k l</code>, <code>0</code>, <code>$</code>, <code>gg</code>, <code>G</code>, <code>x</code>, <code>dd</code>, <code>yy</code>, <code>p</code>, <code>P</code>, <code>u</code>. <code>x</code>/<code>dd</code>/<code>yy</code> save to an internal register and copy to the system clipboard when possible. Numeric prefixes like <code>20l</code> are supported. Also supported: <code>:set number</code>/<code>:nu</code>/<code>:set nonumber</code>/<code>:nonu</code>, <code>:set wrap</code>/<code>:set nowrap</code>, <code>:w FILE</code>/<code>:saveas FILE</code>/<code>:sav FILE</code>, <code>:diff</code>/<code>:diff FILE</code>, <code>/word</code>/<code>?word</code>/<code>n</code>/<code>N</code>. Files opened with <code>view</code> can be force-saved with <code>:w!</code> / <code>:wq!</code> / <code>:x!</code>.',
+    'about.notice.title': 'Notice',
+    'about.notice.body': 'Due to the File System Access API, this app holds read/write/delete permission on the chosen folder. Avoid using important folders or sync folders; use a dedicated working folder.',
+    'about.disclaimer.title': 'DISCLAIMER',
+    'about.disclaimer.body': 'This software is provided as-is, with no warranties about correctness or availability. Use at your own risk. Backing up files is your responsibility.',
+    'about.license.title': 'LICENSE (THIS APP)',
+    'about.license.copyright': 'Copyright (c) 2026 <a href="https://hajimetwi3.github.io/hajimetwi3/" target="_blank" rel="noopener noreferrer">Hajime Tsui</a>',
+    'about.thirdparty.title': 'THIRD-PARTY',
+    'about.thirdparty.body': 'None. No external modules.',
+    'about.related.title': 'RELATED',
+    'about.related.series': 'This app is part of <a href="https://hajimetwi3.github.io/hajimetwi3/Tsui-series/" target="_blank" rel="noopener noreferrer">Tsui series</a> (quiet little tools).',
+    'about.related.github': 'GitHub: <a href="https://github.com/hajimetwi3/Tsui-vim" target="_blank" rel="noopener noreferrer">github.com/hajimetwi3/Tsui-vim</a>',
+
+    // ==== Modals: Settings ==================================================
+    'settings.title': 'Settings',
+    'settings.size.title': 'SIZE',
+    'settings.size.desc': 'Switch UI font size.',
+    'settings.theme.title': 'THEME',
+    'settings.theme.desc': 'Switch the color theme. Themes other than calm add a glow effect on emphasized text.',
+    'settings.grep.title': 'grep',
+    'settings.grep.desc': 'To avoid loading huge files by accident, set the per-file size limit for grep. Files exceeding the limit, and binary files, are skipped.',
+    'settings.grep.label': 'grep max file size',
+    'settings.grep.unit': 'MB',
+    'settings.grep.current': 'Current',
+    'settings.btn.save': 'Save',
+
+    // ==== Modals: Diff ======================================================
+    'diff.title': 'Diff',
+    'diff.close': 'Close',
+
+    // ==== Modals: Folder warning ============================================
+    'warn.title': '⚠ Important: permission notice',
+    'warn.p1': 'This app will have <b>read, write, and delete permission on every file</b> under the chosen folder.',
+    'warn.p2': '<b>Avoid choosing system or personally important folders</b>, such as:',
+    'warn.li1': 'Filesystem roots like <code>C:\\</code> or <code>/</code>',
+    'warn.li2': 'Desktop / Documents / Downloads',
+    'warn.li3': 'OneDrive / iCloud / Dropbox sync folders',
+    'warn.li4': 'Git repositories or development project roots',
+    'warn.p3': 'A dedicated working folder is recommended (e.g. <code>C:\\tsui-workspace\\</code>).',
+    'warn.note': 'This warning is shown only once.',
+    'warn.btn.cancel': 'Cancel',
+    'warn.btn.ok': 'I understand, open',
+
+    // ==== Browser unsupported ===============================================
+    'unsupported.title': 'Unsupported browser',
+    'unsupported.body': 'This app requires the File System Access API.<br>Please use a Chromium-based browser like <b>Chrome / Edge / Opera</b>.<br>Firefox and Safari are not supported.',
+
+    // ==== Init / banner =====================================================
+    'init.banner.openHint': 'Run "open" to choose a folder. "help" lists commands. "vim/vi file" starts editing. Tab completes input.',
+    'init.banner.promptInfo': 'The prompt is appended to the output stream. Type as you would in any shell.',
+    'init.banner.lastFolder': 'Last folder candidate: {name}  (use "reconnect" to re-attach)',
+
+    // ==== Status / settings related =========================================
+    'settings.grepLimitInvalid': 'grep limit must be a positive number',
+    'settings.grepLimitSet': 'grep file limit={size}',
+
+    // ==== Permissions =======================================================
+    'err.permNoRoot': 'No working folder. Run "open" to choose one.',
+    'err.permDenied': 'Permission to read/write the folder was not granted.',
+
+    // ==== Reconnect =========================================================
+    'err.reconnect.noRecord': 'No previous folder on record. Run "open" first.',
+
+    // ==== open / chooseRoot =================================================
+    'open.canceled': 'open: canceled',
+    'open.opened': 'opened: {name}',
+
+    // ==== Path normalization ================================================
+    'err.requireRoot': 'Run "open" first to choose a working folder.',
+    'err.path.nul': 'Paths containing a NUL character cannot be used.',
+
+    // ==== Generic FS errors =================================================
+    'err.notExist': '{path} does not exist.',
+    'err.rootDelete': 'cannot remove the root.',
+    'err.alreadyExists.useF': '{name} already exists. Use "mv -f" to overwrite.',
+
+    // ==== tokenize ==========================================================
+    'err.tokenize.unclosedQuote': 'unclosed quote.',
+
+    // ==== cd ================================================================
+    'err.cd.tooManyArgs': 'cd takes at most one argument.',
+    'err.cd.notDir': '{path} is not a directory.',
+
+    // ==== mkdir =============================================================
+    'err.mkdir.usage': 'mkdir: specify the directory to create.',
+    'err.mkdir.rootForbidden': 'mkdir: cannot create the root.',
+    'err.mkdir.alreadyExists': '{path} already exists.',
+
+    // ==== rm ================================================================
+    'err.rm.usage': 'rm: specify what to delete.',
+    'err.rm.rootForbidden': 'rm: cannot remove the root.',
+    'err.rm.dirNeedsR': 'rm: {path} is a directory. Add -r to remove it.',
+
+    // ==== mv ================================================================
+    'err.mv.usage': 'mv: specify SRC and DEST.',
+    'err.mv.rootSrcForbidden': 'mv: cannot move the root.',
+    'err.mv.rootDestForbidden': 'mv: cannot overwrite the root.',
+    'err.mv.dirIntoSelf': 'mv: cannot move a directory into itself.',
+    'confirm.overwrite': '{path} already exists. Overwrite?',
+
+    // ==== touch =============================================================
+    'err.touch.usage': 'touch: specify a filename.',
+    'err.touch.rootIsNotFile': 'touch: the root is not a file.',
+    'err.touch.isDir': '{path} is a directory.',
+
+    // ==== cat ===============================================================
+    'err.cat.usage': 'cat: specify exactly one file.',
+    'err.cat.notFile': '{path} is not a file.',
+    'err.cat.tooLarge': 'cat: files larger than 10MB are not displayed. Open with vim instead.',
+
+    // ==== cp ================================================================
+    'err.cp.dirNotSupported': 'cp: directory copy (-r) is not supported.',
+    'err.cp.usage': 'cp: specify SRC and DEST.',
+    'err.cp.rootSrcForbidden': 'cp: cannot copy the root.',
+    'err.cp.dirSrcNotSupported': 'cp: directory copy is not supported. Only single files can be copied.',
+    'err.cp.rootDestForbidden': 'cp: cannot copy to the root.',
+    'err.cp.destIsDir': '{path} is a directory.',
+
+    // ==== find ==============================================================
+    'err.find.typeInvalid': 'find: -type must be f or d.',
+    'err.find.patternNeeded': 'find: pattern required for {arg}.',
+    'err.find.maxdepthInvalid': 'find: -maxdepth must be a non-negative integer.',
+    'find.truncated': 'find: stopped after {n} results. Narrow the search.',
+
+    // ==== grep ==============================================================
+    'err.grep.patternNeeded': 'grep: specify a search pattern.',
+    'grep.truncated': 'grep: stopped after {n} matches. Narrow the search.',
+
+    // ==== diff ==============================================================
+    'err.diff.nonNegativeInt': 'diff: {opt} must be a non-negative integer.',
+    'err.diff.lineCountNeeded': 'diff: line count required for {arg}.',
+    'err.diff.usage': 'diff: specify FILE1 FILE2. e.g. diff old.txt new.txt',
+    'err.diff.rootIsNotFile': 'diff: the root is not a file.',
+    'err.diff.notFile': 'diff: {path} is not a file.',
+    'err.diff.tooLarge': 'diff: {path} is {size}, exceeding the diff limit of {limit}.',
+    'err.diff.binary': 'diff: {path} appears to be binary; not compared.',
+
+    // ==== shell switch case =================================================
+    'err.cmd.notFound': '{cmd}: command not found. Run "help" for the command list.',
+
+    // ==== vim/view ==========================================================
+    'err.vim.usage.vim': '{cmdName}: specify exactly one file. e.g. vim memo.txt / vi memo.txt',
+    'err.vim.usage.view': '{cmdName}: specify exactly one file. e.g. view memo.txt',
+    'err.vim.rootForbidden': '{cmdName}: cannot open the root.',
+    'err.vim.notFile': '{path} is not a file.',
+    'err.vim.tooLarge': '{cmdName}: {size} files are too large to open.',
+    'confirm.vim.largeFile': '{path} is {size}. Opening may take time. Continue?',
+    'cmd.vim.canceled': '{cmdName}: canceled',
+
+    // ==== saveas ============================================================
+    'err.saveas.rootForbidden': 'saveas: cannot save to the root.',
+    'err.saveas.notFile': '{path} is not a file.',
+    'saveas.canceled': 'saveas canceled',
+
+    // ==== rm/mv/cp canceled =================================================
+    'cmd.canceled': '{cmd}: canceled',
+
+    // ==== vim status messages ===============================================
+    'vim.msg.fileLoaded': 'file loaded',
+    'vim.msg.newFile': 'new file',
+    'vim.msg.readonly.loaded': 'readonly (use :w! to write)',
+    'vim.msg.readonly.new': 'new file (readonly: use :w! to write)',
+    'vim.msg.readonlyFile': 'readonly file',
+    'vim.msg.alreadyOldest': 'already at oldest change',
+    'vim.msg.noWriteSinceChange': 'No write since last change. Use :q! to discard.',
+    'vim.msg.notEditorCommand': 'Not an editor command: {raw}',
+    'vim.msg.patternNotFound': 'Pattern not found: {needle}',
+    'vim.msg.usage.w': 'usage: :w [FILE]',
+    'vim.msg.usage.wforce': 'usage: :w! [FILE]',
+    'vim.msg.usage.saveas': 'usage: :saveas FILE',
+    'vim.msg.usage.saveasforce': 'usage: :saveas! FILE',
+    'vim.msg.help': 'commands: :w [FILE] :w! :saveas FILE :q :wq :wq! :q! :e! :diff [FILE] :set number|nonumber|wrap|nowrap|ff=unix|dos|mac',
+
+    // ==== help text body ====================================================
+    'help.text': '\nshell:\n  open                          Open a folder and set it as root\n  reconnect                     Reconnect to the last folder\n  pwd                           Print working directory\n  ls [PATH]                     List files\n  cd PATH                       Change directory\n  mkdir DIR ...                 Make directories\n  mv [-f] SRC DEST              Move/rename\n  cp [-f] SRC DEST              Copy a file\n  rm [-r] PATH ...              Remove (-r for recursive)\n  touch FILE                    Create or update an empty file\n  cat FILE                      Show file contents (up to 10MB)\n  find [PATH] [-type f|d] [-name PATTERN] [-maxdepth N]\n  diff [-u] [-q] [-U N] FILE1 FILE2  Show unified diff between text files\n  grep [-i] [-n] [-F|-E] PATTERN [PATH...]\n  settings                      Change grep file size limit and more\n  clear                         Clear the screen\n\neditor:\n  vim FILE / vi FILE           Open in Vim-style editor\n  view FILE                    Open read-only (force-save with :w!)\n\nvim keys:\n  i/a/A/I/o/O                  Enter INSERT\n  Esc                          Back to NORMAL\n  :w  :w FILE  :saveas FILE    Save / save-as\n  :w!  :wq!  :x!               Force-save for files opened with view\n  :q  :wq  :q!  :e!            Quit / reload\n  :set number / :set nonumber  Toggle line numbers\n  :set wrap / :set nowrap      Wrap long lines or use horizontal scroll\n  :diff / :diff FILE           Show diff vs. saved or another file\n  h j k l / 0 / $ / gg / G     Movement (numeric prefix like 20l)\n  x / dd / yy / p / P / u      Cut / yank / paste / simple undo\n  /word  ?word  n  N           Search / next-prev match',
+      'confirm.rm.body': 'The following will be removed. This cannot be undone.\n\n{label}\n\nContinue?',
+    'confirm.saveas': '{path} already exists. Overwrite?',
+  }
+};
+
+function detectInitialLang() {
+  try {
+    const nav = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
+    if (nav.startsWith('ja')) return 'ja';
+    return 'en';
+  } catch {
+    return 'ja';
+  }
+}
+
+function setLang(lang) {
+  if (!VALID_LANGS.includes(lang)) return false;
+  currentLang = lang;
+  return true;
+}
+
+function getLang() { return currentLang; }
+
+function t(key, vars) {
+  const cur = I18N_DICT[currentLang];
+  let str = cur && Object.prototype.hasOwnProperty.call(cur, key) ? cur[key] : null;
+  if (str == null) {
+    const ja = I18N_DICT.ja;
+    str = ja && Object.prototype.hasOwnProperty.call(ja, key) ? ja[key] : key;
+  }
+  if (vars && typeof str === 'string') {
+    str = str.replace(/\{(\w+)\}/g, (m, k) => Object.prototype.hasOwnProperty.call(vars, k) ? vars[k] : m);
+  }
+  return str;
+}
+
+function renderI18n(root) {
+  const r = root || document;
+  r.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key) el.textContent = t(key);
+  });
+  r.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const spec = el.getAttribute('data-i18n-attr');
+    if (!spec) return;
+    for (const pair of spec.split('|')) {
+      const eq = pair.indexOf('=');
+      if (eq < 0) continue;
+      const attr = pair.slice(0, eq).trim();
+      const key  = pair.slice(eq + 1).trim();
+      if (attr && key) el.setAttribute(attr, t(key));
+    }
+  });
+  r.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (key) el.innerHTML = t(key);
+  });
+  document.documentElement.setAttribute('lang', currentLang);
+}
+
 // ==== Browser support check =================================================
 if (!('showDirectoryPicker' in window)) {
+  // Browser-unsupported message: bilingual to handle either UA
   document.body.innerHTML = `
     <div class="unsupported">
-      <h2>このブラウザは非対応です</h2>
+      <h2>このブラウザは非対応です / Unsupported browser</h2>
       <p>File System Access API が必要です。<br>
       <b>Chrome / Edge / Opera</b> などの Chromium 系ブラウザでお試しください。<br>
       Firefox / Safari は現状未対応です。</p>
+      <p>This app requires the File System Access API.<br>
+      Please use a Chromium-based browser like <b>Chrome / Edge / Opera</b>.<br>
+      Firefox and Safari are not supported.</p>
     </div>`;
   throw new Error('Unsupported browser');
 }
@@ -956,6 +1500,7 @@ const vim = {
   yankText: '',
   yankType: 'char',
   showLineNumbers: false,
+  wrapMode: true,
   lastSearchQuery: '',
   lastSearchDirection: 1,
   lastMessage: ''
@@ -1035,10 +1580,10 @@ function makePrompt() {
 }
 
 function updateChrome() {
-  const rootText = rootHandle ? rootHandle.name : '作業フォルダ未選択';
+  const rootText = rootHandle ? rootHandle.name : t('status.noRoot');
   $folderLabel.textContent = rootHandle ? `${rootText}  ${displayPath(cwdParts)}` : rootText;
   $prompt.textContent = makePrompt();
-  setStatus(rootHandle ? `root=${rootText} cwd=${displayPath(cwdParts)}` : 'open コマンドまたは「フォルダを開く」で作業フォルダを選択してください');
+  setStatus(rootHandle ? `root=${rootText} cwd=${displayPath(cwdParts)}` : t('status.openFolderHint'));
   scrollShellToBottom();
 }
 
@@ -1078,17 +1623,18 @@ function saveSettings() {
   catch {}
 }
 
-// ==== UI prefs (SIZE/THEME) ================================================
+// ==== UI prefs (SIZE/THEME/LANG) ============================================
 function loadUiPrefs() {
   try {
     const raw = localStorage.getItem(UI_PREFS_STORAGE_KEY);
     const parsed = raw ? JSON.parse(raw) : {};
     return {
       size: VALID_SIZES.includes(parsed.size) ? parsed.size : DEFAULT_SIZE,
-      theme: VALID_THEMES.includes(parsed.theme) ? parsed.theme : DEFAULT_THEME
+      theme: VALID_THEMES.includes(parsed.theme) ? parsed.theme : DEFAULT_THEME,
+      lang: VALID_LANGS.includes(parsed.lang) ? parsed.lang : detectInitialLang()
     };
   } catch {
-    return { size: DEFAULT_SIZE, theme: DEFAULT_THEME };
+    return { size: DEFAULT_SIZE, theme: DEFAULT_THEME, lang: detectInitialLang() };
   }
 }
 
@@ -1102,6 +1648,7 @@ function applyUiPrefs() {
   root.dataset.size = uiPrefs.size;
   if (uiPrefs.theme === 'calm') root.removeAttribute('data-theme');
   else root.dataset.theme = uiPrefs.theme;
+  setLang(uiPrefs.lang);
 }
 
 function setSize(size) {
@@ -1120,12 +1667,36 @@ function setTheme(theme) {
   updateUiPrefsUi();
 }
 
+function setLangPref(lang) {
+  if (!VALID_LANGS.includes(lang)) return;
+  uiPrefs.lang = lang;
+  applyUiPrefs();
+  saveUiPrefs();
+  renderI18n();
+  updateUiPrefsUi();
+  updateLangButton();
+  // Re-render dynamic UI states that depend on translated strings
+  if (typeof updateChrome === 'function') updateChrome();
+  if (typeof vim !== 'undefined' && vim && vim.open) updateVimStatus();
+}
+
+function updateLangButton() {
+  const btn = document.getElementById('btn-lang');
+  if (!btn) return;
+  // Show the language to which clicking will switch
+  btn.textContent = uiPrefs.lang === 'ja' ? 'EN' : '日本語';
+  btn.setAttribute('title', uiPrefs.lang === 'ja' ? 'Switch to English' : '日本語に切替');
+}
+
 function updateUiPrefsUi() {
   document.querySelectorAll('[data-size-opt]').forEach(btn => {
     btn.classList.toggle('on', btn.dataset.sizeOpt === uiPrefs.size);
   });
   document.querySelectorAll('[data-theme-opt]').forEach(btn => {
     btn.classList.toggle('on', btn.dataset.themeOpt === uiPrefs.theme);
+  });
+  document.querySelectorAll('[data-lang-opt]').forEach(btn => {
+    btn.classList.toggle('on', btn.dataset.langOpt === uiPrefs.lang);
   });
 }
 
@@ -1156,7 +1727,7 @@ function closeSettings() {
 function saveSettingsFromUi() {
   const mb = Number.parseFloat($settingsGrepMaxMb.value);
   if (!Number.isFinite(mb) || mb <= 0) {
-    setStatus('grep上限には0より大きい数値を指定してください');
+    setStatus(t('settings.grepLimitInvalid'));
     updateSettingsUi();
     return;
   }
@@ -1164,7 +1735,7 @@ function saveSettingsFromUi() {
   settings.grepMaxBytes = Math.round(clampedMb * 1024 * 1024);
   saveSettings();
   updateSettingsUi();
-  setStatus(`grep file limit=${formatSize(settings.grepMaxBytes)}`);
+  setStatus(t('settings.grepLimitSet', {size: formatSize(settings.grepMaxBytes)}));
   closeSettings();
 }
 
@@ -1201,11 +1772,11 @@ function closeDiffModal() {
 
 // ==== Permission / File System =============================================
 async function ensurePermission(handle = rootHandle, mode = 'readwrite') {
-  if (!handle) throw new Error('作業フォルダが未選択です。open でフォルダを選択してください。');
+  if (!handle) throw new Error(t('err.permNoRoot'));
   const opts = { mode };
   if ((await handle.queryPermission(opts)) === 'granted') return true;
   if ((await handle.requestPermission(opts)) === 'granted') return true;
-  throw new Error('フォルダへの読み書き権限がありません。');
+  throw new Error(t('err.permDenied'));
 }
 
 function showFolderWarning() {
@@ -1214,20 +1785,20 @@ function showFolderWarning() {
     overlay.className = 'warn-overlay';
     overlay.innerHTML = `
       <div class="warn-modal" role="dialog" aria-labelledby="warn-title" aria-modal="true">
-        <h2 id="warn-title">⚠ 権限に関する重要な注意</h2>
-        <p>このアプリは、選択したフォルダ配下の<b>すべてのファイルに対して読み書き・削除の権限</b>を持ちます。</p>
-        <p class="warn-spacer">以下のような<b>システム的・個人的に重要なフォルダの選択は避けてください</b>：</p>
+        <h2 id="warn-title">${t('warn.title')}</h2>
+        <p>${t('warn.p1')}</p>
+        <p class="warn-spacer">${t('warn.p2')}</p>
         <ul>
-          <li><code>C:\\</code> / <code>/</code> などルート直下</li>
-          <li>Desktop / Documents / Downloads</li>
-          <li>OneDrive / iCloud / Dropbox の同期フォルダ</li>
-          <li>Git リポジトリや開発プロジェクトのルート</li>
+          <li>${t('warn.li1')}</li>
+          <li>${t('warn.li2')}</li>
+          <li>${t('warn.li3')}</li>
+          <li>${t('warn.li4')}</li>
         </ul>
-        <p>推奨は、このエディタ専用に作った作業フォルダ（例: <code>C:\\tsui-workspace\\</code>）です。</p>
-        <p class="warn-note">この警告は初回のみ表示されます。</p>
+        <p>${t('warn.p3')}</p>
+        <p class="warn-note">${t('warn.note')}</p>
         <div class="warn-actions">
-          <button id="warn-cancel">キャンセル</button>
-          <button id="warn-ok" class="primary">理解した上で開く</button>
+          <button id="warn-cancel">${t('warn.btn.cancel')}</button>
+          <button id="warn-ok" class="primary">${t('warn.btn.ok')}</button>
         </div>
       </div>`;
     document.body.appendChild(overlay);
@@ -1256,7 +1827,7 @@ async function chooseRoot() {
   try { acked = !!localStorage.getItem(WARN_ACK_KEY); } catch {}
   if (!acked) {
     const ok = await showFolderWarning();
-    if (!ok) { appendOutput('open: canceled', 'warn'); return; }
+    if (!ok) { appendOutput(t('open.canceled'), 'warn'); return; }
     try { localStorage.setItem(WARN_ACK_KEY, '1'); } catch {}
   }
   const handle = await window.showDirectoryPicker({ mode: 'readwrite' });
@@ -1265,12 +1836,12 @@ async function chooseRoot() {
   cwdParts = [];
   await idbPut(KEY_LAST, handle);
   updateChrome();
-  appendOutput(`opened: ${handle.name}`, 'ok');
+  appendOutput(t('open.opened', {name: handle.name}), 'ok');
 }
 
 async function reconnectRoot() {
   const handle = await idbGet(KEY_LAST);
-  if (!handle) throw new Error('前回のフォルダ記録がありません。open を実行してください。');
+  if (!handle) throw new Error(t('err.reconnect.noRecord'));
   await ensurePermission(handle, 'readwrite');
   rootHandle = handle;
   cwdParts = [];
@@ -1279,7 +1850,7 @@ async function reconnectRoot() {
 }
 
 function requireRoot() {
-  if (!rootHandle) throw new Error('先に open で作業フォルダを選択してください。');
+  if (!rootHandle) throw new Error(t('err.requireRoot'));
 }
 
 function normalizePath(input, baseParts = cwdParts) {
@@ -1292,7 +1863,7 @@ function normalizePath(input, baseParts = cwdParts) {
       if (parts.length) parts.pop();
       continue;
     }
-    if (chunk.includes('\0')) throw new Error('NUL文字を含むパスは利用できません。');
+    if (chunk.includes('\0')) throw new Error(t('err.path.nul'));
     parts.push(chunk);
   }
   return parts;
@@ -1340,7 +1911,7 @@ async function getEntryInfo(parts) {
   if (parts.length === 0) return { kind: 'directory', handle: rootHandle };
   const parent = await getDirHandle(parts.slice(0, -1));
   const info = await getChildInfo(parent, basenameParts(parts));
-  if (!info) throw new Error(`${displayPath(parts)} は存在しません。`);
+  if (!info) throw new Error(t('err.notExist', {path: displayPath(parts)}));
   return info;
 }
 
@@ -1354,7 +1925,7 @@ async function pathExists(parts) {
 }
 
 async function removeEntryByParts(parts, recursive) {
-  if (parts.length === 0) throw new Error('root は削除できません。');
+  if (parts.length === 0) throw new Error(t('err.rootDelete'));
   const parent = await getDirHandle(parts.slice(0, -1));
   await parent.removeEntry(basenameParts(parts), { recursive: !!recursive });
 }
@@ -1362,7 +1933,7 @@ async function removeEntryByParts(parts, recursive) {
 async function copyEntry(srcHandle, kind, destParent, destName, overwrite) {
   const existing = await getChildInfo(destParent, destName);
   if (existing) {
-    if (!overwrite) throw new Error(`${destName} は既に存在します。上書きする場合は mv -f を使用してください。`);
+    if (!overwrite) throw new Error(t('err.alreadyExists.useF', {name: destName}));
     await destParent.removeEntry(destName, { recursive: existing.kind === 'directory' });
   }
 
@@ -1404,50 +1975,13 @@ function tokenize(input) {
     cur += ch;
   }
   if (escape) cur += '\\';
-  if (quote) throw new Error('クォートが閉じていません。');
+  if (quote) throw new Error(t('err.tokenize.unclosedQuote'));
   if (cur !== '') tokens.push(cur);
   return tokens;
 }
 
 function printHelp() {
-  appendOutput(`Tsui Vim commands
-
-folder:
-  open                         作業フォルダを選択
-  reconnect                    前回の作業フォルダへ再接続
-
-shell:
-  pwd                          現在位置を表示
-  ls [-l] [-a] [PATH]          一覧表示
-  cd [DIR]                     ディレクトリ移動
-  mkdir [-p] DIR...            ディレクトリ作成
-  mv [-f] SRC DEST             移動・リネーム（上書き時は確認。-fで確認なし）
-  cp [-f] SRC DEST             ファイルをコピー（ディレクトリコピーは未対応）
-  rm [-r] [-f] PATH...         削除（ディレクトリは -r）
-  touch FILE...                空ファイル作成
-  cat FILE                     テキスト表示
-  diff [-u] [-q] [-U N] FILE1 FILE2
-  find [PATH] [-type f|d] [-name PATTERN] [-maxdepth N]
-  grep [-i] [-n] [-F|-E] PATTERN [PATH...]
-  settings                     grepのファイルサイズ上限などを変更
-  clear                        画面クリア
-  Tab                          コマンド名・パスを補完
-
-editor:
-  vim FILE / vi FILE           Vim風エディタで開く
-  view FILE                    リードオンリーで開く（:w! で強制保存可）
-
-vim keys:
-  i/a/A/I/o/O                  INSERTへ
-  Esc                          NORMALへ
-  :w  :w FILE  :saveas FILE    保存・別名保存
-  :w!  :wq!  :x!               viewで開いたファイルへ強制保存
-  :q  :wq  :q!  :e!            終了・再読み込み
-  :set number / :set nonumber  行番号表示の切替
-  :diff / :diff FILE           未保存変更または別ファイルとの差分表示
-  h j k l / 0 / $ / gg / G     移動（20l などの数字指定対応）
-  x / dd / yy / p / P / u      切り取り・ヤンク・貼り付け・簡易Undo
-  /word  ?word  n  N           検索・次/前の検索結果へ移動`, 'dim');
+  appendOutput('Tsui Vim commands' + t('help.text'), 'dim');
 }
 
 function commonPrefix(values) {
@@ -1706,10 +2240,10 @@ async function cmdLs(args) {
 
 async function cmdCd(args) {
   requireRoot();
-  if (args.length > 1) throw new Error('cd の引数は1つだけです。');
+  if (args.length > 1) throw new Error(t('err.cd.tooManyArgs'));
   const parts = normalizePath(args[0] || '/');
   const info = await getEntryInfo(parts);
-  if (info.kind !== 'directory') throw new Error(`${displayPath(parts)} はディレクトリではありません。`);
+  if (info.kind !== 'directory') throw new Error(t('err.cd.notDir', {path: displayPath(parts)}));
   cwdParts = parts;
   updateChrome();
 }
@@ -1722,15 +2256,15 @@ async function cmdMkdir(args) {
     if (arg === '-p') parents = true;
     else targets.push(arg);
   }
-  if (!targets.length) throw new Error('mkdir: 作成するディレクトリを指定してください。');
+  if (!targets.length) throw new Error(t('err.mkdir.usage'));
 
   for (const target of targets) {
     const parts = normalizePath(target);
-    if (parts.length === 0) throw new Error('mkdir: root は作成できません。');
+    if (parts.length === 0) throw new Error(t('err.mkdir.rootForbidden'));
     if (parents) {
       await getDirHandle(parts, { create: true });
     } else {
-      if (await pathExists(parts)) throw new Error(`${displayPath(parts)} は既に存在します。`);
+      if (await pathExists(parts)) throw new Error(t('err.mkdir.alreadyExists', {path: displayPath(parts)}));
       const parent = await getDirHandle(parts.slice(0, -1));
       await parent.getDirectoryHandle(basenameParts(parts), { create: true });
     }
@@ -1749,26 +2283,26 @@ async function cmdRm(args) {
     else if (arg === '-rf' || arg === '-fr') { recursive = true; force = true; }
     else targets.push(arg);
   }
-  if (!targets.length) throw new Error('rm: 削除対象を指定してください。');
+  if (!targets.length) throw new Error(t('err.rm.usage'));
 
   const resolved = [];
   for (const target of targets) {
     const parts = normalizePath(target);
-    if (parts.length === 0) throw new Error('rm: root は削除できません。');
+    if (parts.length === 0) throw new Error(t('err.rm.rootForbidden'));
     let info;
     try { info = await getEntryInfo(parts); }
     catch (e) {
       if (force) continue;
       throw e;
     }
-    if (info.kind === 'directory' && !recursive) throw new Error(`rm: ${displayPath(parts)} はディレクトリです。削除するには -r を付けてください。`);
+    if (info.kind === 'directory' && !recursive) throw new Error(t('err.rm.dirNeedsR', {path: displayPath(parts)}));
     resolved.push({ parts, kind: info.kind });
   }
 
   if (!resolved.length) return;
   if (!force) {
     const label = resolved.map((x) => displayPath(x.parts)).join('\n');
-    const ok = window.confirm(`以下を削除します。元に戻せません。\n\n${label}\n\n続行しますか？`);
+    const ok = window.confirm(t('confirm.rm.body', {label}));
     if (!ok) { appendOutput('rm: canceled', 'warn'); return; }
   }
 
@@ -1786,23 +2320,23 @@ async function cmdMv(args) {
     if (arg === '-f' || arg === '--force') force = true;
     else rest.push(arg);
   }
-  if (rest.length !== 2) throw new Error('mv: SRC DEST の2つを指定してください。');
+  if (rest.length !== 2) throw new Error(t('err.mv.usage'));
 
   const srcParts = normalizePath(rest[0]);
-  if (srcParts.length === 0) throw new Error('mv: root は移動できません。');
+  if (srcParts.length === 0) throw new Error(t('err.mv.rootSrcForbidden'));
   const srcInfo = await getEntryInfo(srcParts);
   let destParts = normalizePath(rest[1]);
   const destInfo = await getEntryInfo(destParts).catch(() => null);
   if (destInfo && destInfo.kind === 'directory') destParts = destParts.concat(basenameParts(srcParts));
-  if (destParts.length === 0) throw new Error('mv: root への上書きはできません。');
+  if (destParts.length === 0) throw new Error(t('err.mv.rootDestForbidden'));
   if (samePath(srcParts, destParts)) { appendOutput('mv: same path', 'dim'); return; }
   if (srcInfo.kind === 'directory' && isPathWithin(destParts, srcParts)) {
-    throw new Error('mv: ディレクトリを自分自身の内側へ移動することはできません。');
+    throw new Error(t('err.mv.dirIntoSelf'));
   }
   const existing = await getEntryInfo(destParts).catch(() => null);
   let overwrite = force;
   if (existing && !force) {
-    const ok = window.confirm(`${displayPath(destParts)} は既に存在します。上書きしますか？`);
+    const ok = window.confirm(t('confirm.overwrite', {path: displayPath(destParts)}));
     if (!ok) { appendOutput('mv: canceled', 'warn'); return; }
     overwrite = true;
   }
@@ -1815,12 +2349,12 @@ async function cmdMv(args) {
 
 async function cmdTouch(args) {
   requireRoot();
-  if (!args.length) throw new Error('touch: ファイル名を指定してください。');
+  if (!args.length) throw new Error(t('err.touch.usage'));
   for (const arg of args) {
     const parts = normalizePath(arg);
-    if (parts.length === 0) throw new Error('touch: root はファイルではありません。');
+    if (parts.length === 0) throw new Error(t('err.touch.rootIsNotFile'));
     const existing = await getEntryInfo(parts).catch(() => null);
-    if (existing && existing.kind === 'directory') throw new Error(`${displayPath(parts)} はディレクトリです。`);
+    if (existing && existing.kind === 'directory') throw new Error(t('err.touch.isDir', {path: displayPath(parts)}));
     const parent = await getDirHandle(parts.slice(0, -1));
     const fh = await parent.getFileHandle(basenameParts(parts), { create: true });
     if (existing) {
@@ -1835,12 +2369,12 @@ async function cmdTouch(args) {
 
 async function cmdCat(args) {
   requireRoot();
-  if (args.length !== 1) throw new Error('cat: ファイルを1つ指定してください。');
+  if (args.length !== 1) throw new Error(t('err.cat.usage'));
   const parts = normalizePath(args[0]);
   const info = await getEntryInfo(parts);
-  if (info.kind !== 'file') throw new Error(`${displayPath(parts)} はファイルではありません。`);
+  if (info.kind !== 'file') throw new Error(t('err.cat.notFile', {path: displayPath(parts)}));
   const file = await info.handle.getFile();
-  if (file.size > SIZE_WARN) throw new Error('cat: 10MBを超えるファイルは表示しません。vim で開いてください。');
+  if (file.size > SIZE_WARN) throw new Error(t('err.cat.tooLarge'));
   const decoded = decodeBytes(await file.arrayBuffer());
   appendOutput(decoded.text.replace(/\r\n/g, '\n').replace(/\r/g, '\n'));
 }
@@ -1852,28 +2386,28 @@ async function cmdCp(args) {
   const rest = [];
   for (const arg of args) {
     if (arg === '-f' || arg === '--force') force = true;
-    else if (arg === '-r' || arg === '-R' || arg === '--recursive') throw new Error('cp: ディレクトリコピー（-r）は未対応です。');
+    else if (arg === '-r' || arg === '-R' || arg === '--recursive') throw new Error(t('err.cp.dirNotSupported'));
     else rest.push(arg);
   }
-  if (rest.length !== 2) throw new Error('cp: SRC DEST の2つを指定してください。');
+  if (rest.length !== 2) throw new Error(t('err.cp.usage'));
 
   const srcParts = normalizePath(rest[0]);
-  if (srcParts.length === 0) throw new Error('cp: root はコピーできません。');
+  if (srcParts.length === 0) throw new Error(t('err.cp.rootSrcForbidden'));
   const srcInfo = await getEntryInfo(srcParts);
-  if (srcInfo.kind !== 'file') throw new Error('cp: ディレクトリコピーは未対応です。ファイルだけコピーできます。');
+  if (srcInfo.kind !== 'file') throw new Error(t('err.cp.dirSrcNotSupported'));
 
   let destParts = normalizePath(rest[1]);
   const destInfo = await getEntryInfo(destParts).catch(() => null);
   if (destInfo && destInfo.kind === 'directory') destParts = destParts.concat(basenameParts(srcParts));
-  if (destParts.length === 0) throw new Error('cp: root へはコピーできません。');
+  if (destParts.length === 0) throw new Error(t('err.cp.rootDestForbidden'));
   if (samePath(srcParts, destParts)) { appendOutput('cp: same path', 'dim'); return; }
 
   const existing = await getEntryInfo(destParts).catch(() => null);
   let overwrite = force;
   if (existing) {
-    if (existing.kind === 'directory') throw new Error(`${displayPath(destParts)} はディレクトリです。`);
+    if (existing.kind === 'directory') throw new Error(t('err.cp.destIsDir', {path: displayPath(destParts)}));
     if (!force) {
-      const ok = window.confirm(`${displayPath(destParts)} は既に存在します。上書きしますか？`);
+      const ok = window.confirm(t('confirm.overwrite', {path: displayPath(destParts)}));
       if (!ok) { appendOutput('cp: canceled', 'warn'); return; }
       overwrite = true;
     }
@@ -1901,16 +2435,16 @@ function parseFindArgs(args) {
     const arg = args[i];
     if (arg === '-type') {
       const value = args[++i];
-      if (value !== 'f' && value !== 'd') throw new Error('find: -type は f または d を指定してください。');
+      if (value !== 'f' && value !== 'd') throw new Error(t('err.find.typeInvalid'));
       opts.type = value;
     } else if (arg === '-name' || arg === '-iname') {
       const value = args[++i];
-      if (value == null) throw new Error(`find: ${arg} のパターンを指定してください。`);
+      if (value == null) throw new Error(t('err.find.patternNeeded', {arg}));
       opts.name = value;
       opts.ignoreCaseName = arg === '-iname';
     } else if (arg === '-maxdepth') {
       const value = Number.parseInt(args[++i], 10);
-      if (!Number.isFinite(value) || value < 0) throw new Error('find: -maxdepth は0以上の整数を指定してください。');
+      if (!Number.isFinite(value) || value < 0) throw new Error(t('err.find.maxdepthInvalid'));
       opts.maxDepth = value;
     } else if (arg.startsWith('-')) {
       throw new Error(`find: unsupported option: ${arg}`);
@@ -1975,7 +2509,7 @@ async function cmdFind(args) {
   }
 
   if (!matches) appendOutput('find: no matches', 'dim');
-  if (truncated) appendOutput(`find: ${FIND_MAX_RESULTS}件で表示を停止しました。条件を絞ってください。`, 'warn');
+  if (truncated) appendOutput(t('find.truncated', {n: FIND_MAX_RESULTS}), 'warn');
 }
 
 function parseGrepArgs(args) {
@@ -2001,7 +2535,7 @@ function parseGrepArgs(args) {
       opts.paths.push(arg);
     }
   }
-  if (opts.pattern == null) throw new Error('grep: 検索パターンを指定してください。');
+  if (opts.pattern == null) throw new Error(t('err.grep.patternNeeded'));
   if (!opts.paths.length) opts.paths.push('.');
   if (opts.regex) {
     try { opts.patternRegex = new RegExp(opts.pattern, opts.ignoreCase ? 'i' : ''); }
@@ -2063,7 +2597,7 @@ async function cmdGrep(args) {
         stats.matches++;
         if (stats.matches >= GREP_MAX_MATCHES) {
           stats.stopped = true;
-          appendOutput(`grep: ${GREP_MAX_MATCHES}件で表示を停止しました。条件を絞ってください。`, 'warn');
+          appendOutput(t('grep.truncated', {n: GREP_MAX_MATCHES}), 'warn');
           return;
         }
       }
@@ -2106,7 +2640,7 @@ async function cmdGrep(args) {
 
 function parseDiffContext(value, optionName = '-U') {
   const n = Number.parseInt(value, 10);
-  if (!Number.isFinite(n) || n < 0) throw new Error(`diff: ${optionName} には0以上の整数を指定してください。`);
+  if (!Number.isFinite(n) || n < 0) throw new Error(t('err.diff.nonNegativeInt', {opt: optionName}));
   return Math.min(n, DIFF_MAX_CONTEXT);
 }
 
@@ -2122,7 +2656,7 @@ function parseDiffArgs(args) {
     } else if (arg === '-u' || arg === '--unified') {
       // unified diff is the default output format.
     } else if (arg === '-U' || arg === '--context') {
-      if (i + 1 >= args.length) throw new Error(`diff: ${arg} の行数を指定してください。`);
+      if (i + 1 >= args.length) throw new Error(t('err.diff.lineCountNeeded', {arg}));
       opts.context = parseDiffContext(args[++i], arg);
     } else if (arg.startsWith('-U') && arg.length > 2) {
       opts.context = parseDiffContext(arg.slice(2), '-U');
@@ -2142,7 +2676,7 @@ function parseDiffArgs(args) {
       opts.paths.push(arg);
     }
   }
-  if (opts.paths.length !== 2) throw new Error('diff: FILE1 FILE2 の2つを指定してください。例: diff old.txt new.txt');
+  if (opts.paths.length !== 2) throw new Error(t('err.diff.usage'));
   return opts;
 }
 
@@ -2153,7 +2687,7 @@ function parseVimDiffArgs(args) {
     if (arg === '-u' || arg === '--unified') {
       continue;
     } else if (arg === '-U' || arg === '--context') {
-      if (i + 1 >= args.length) throw new Error(`diff: ${arg} の行数を指定してください。`);
+      if (i + 1 >= args.length) throw new Error(t('err.diff.lineCountNeeded', {arg}));
       opts.context = parseDiffContext(args[++i], arg);
     } else if (arg.startsWith('-U') && arg.length > 2) {
       opts.context = parseDiffContext(arg.slice(2), '-U');
@@ -2174,14 +2708,14 @@ function parseVimDiffArgs(args) {
 
 async function readTextFileForDiff(pathArg) {
   const parts = normalizePath(pathArg);
-  if (parts.length === 0) throw new Error('diff: root はファイルではありません。');
+  if (parts.length === 0) throw new Error(t('err.diff.rootIsNotFile'));
   const info = await getEntryInfo(parts);
-  if (info.kind !== 'file') throw new Error(`diff: ${displayPath(parts)} はファイルではありません。`);
+  if (info.kind !== 'file') throw new Error(t('err.diff.notFile', {path: displayPath(parts)}));
   const file = await info.handle.getFile();
-  if (file.size > DIFF_MAX_BYTES) throw new Error(`diff: ${displayPath(parts)} は ${formatSize(file.size)} です。diff上限 ${formatSize(DIFF_MAX_BYTES)} を超えています。`);
+  if (file.size > DIFF_MAX_BYTES) throw new Error(t('err.diff.tooLarge', {path: displayPath(parts), size: formatSize(file.size), limit: formatSize(DIFF_MAX_BYTES)}));
   const buffer = await file.arrayBuffer();
   const bytes = new Uint8Array(buffer);
-  if (isProbablyBinary(bytes)) throw new Error(`diff: ${displayPath(parts)} はバイナリファイルの可能性があるため比較しません。`);
+  if (isProbablyBinary(bytes)) throw new Error(t('err.diff.binary', {path: displayPath(parts)}));
   const decoded = decodeBytes(buffer);
   return {
     parts,
@@ -2552,7 +3086,7 @@ async function runShellCommand(line) {
       case 'view': await cmdView(args); break;
       case 'about': openAbout(); break;
       default:
-        appendOutput(`${cmd}: command not found. help でコマンド一覧を表示できます。`, 'error');
+        appendOutput(t('err.cmd.notFound', {cmd}), 'error');
     }
   } catch (e) {
     appendOutput(e && e.message ? e.message : String(e), 'error');
@@ -2573,13 +3107,11 @@ async function cmdView(args) {
 async function openVimFile(args, cmdName, viewMode) {
   requireRoot();
   if (args.length !== 1) {
-    const example = cmdName === 'vim'
-      ? '例: vim memo.txt / vi memo.txt'
-      : '例: view memo.txt';
-    throw new Error(`${cmdName}: 開くファイルを1つ指定してください。${example}`);
+    if (cmdName === 'vim') throw new Error(t('err.vim.usage.vim', {cmdName}));
+    else throw new Error(t('err.vim.usage.view', {cmdName}));
   }
   const parts = normalizePath(args[0]);
-  if (parts.length === 0) throw new Error(`${cmdName}: root は開けません。`);
+  if (parts.length === 0) throw new Error(t('err.vim.rootForbidden', {cmdName}));
 
   let handle = null;
   let exists = false;
@@ -2591,14 +3123,14 @@ async function openVimFile(args, cmdName, viewMode) {
 
   const existing = await getEntryInfo(parts).catch(() => null);
   if (existing) {
-    if (existing.kind !== 'file') throw new Error(`${displayPath(parts)} はファイルではありません。`);
+    if (existing.kind !== 'file') throw new Error(t('err.vim.notFile', {path: displayPath(parts)}));
     handle = existing.handle;
     exists = true;
     const file = await handle.getFile();
-    if (file.size > SIZE_REJECT) throw new Error(`${cmdName}: ${formatSize(file.size)} のファイルは大きすぎるため開けません。`);
+    if (file.size > SIZE_REJECT) throw new Error(t('err.vim.tooLarge', {cmdName, size: formatSize(file.size)}));
     if (file.size > SIZE_WARN) {
-      const ok = window.confirm(`${displayPath(parts)} は ${formatSize(file.size)} です。開くのに時間がかかる可能性があります。続行しますか？`);
-      if (!ok) { appendOutput(`${cmdName}: canceled`, 'warn'); return; }
+      const ok = window.confirm(t('confirm.vim.largeFile', {path: displayPath(parts), size: formatSize(file.size)}));
+      if (!ok) { appendOutput(t('cmd.vim.canceled', {cmdName}), 'warn'); return; }
     }
     if (file.size > SIZE_READONLY) fileReadonly = true;
     const decoded = decodeBytes(await file.arrayBuffer());
@@ -2625,18 +3157,20 @@ function enterVim(fileState) {
   vim.hasBom = fileState.hasBom;
   vim.fileReadonly = fileState.fileReadonly;
   vim.viewMode = !!fileState.viewMode;
+  vim.wrapMode = true;
   vim.normalPending = '';
   vim.normalCount = '';
   vim.undoStack = [];
   vim.lastMessage = fileState.exists
-    ? (vim.viewMode ? 'readonly (use :w! to write)' : 'file loaded')
-    : (vim.viewMode ? 'new file (readonly: use :w! to write)' : 'new file');
+    ? (vim.viewMode ? t('vim.msg.readonly.loaded') : t('vim.msg.fileLoaded'))
+    : (vim.viewMode ? t('vim.msg.readonly.new') : t('vim.msg.newFile'));
 
   $vimEditor.value = fileState.text;
   $vimEditor.selectionStart = 0;
   $vimEditor.selectionEnd = 0;
   $shellView.hidden = true;
   $vimView.hidden = false;
+  applyVimWrap();
   setVimMode('NORMAL');
   updateVimStatus();
   setTimeout(() => $vimEditor.focus(), 0);
@@ -2644,7 +3178,7 @@ function enterVim(fileState) {
 
 function setVimMode(mode) {
   if (mode === 'INSERT' && vim.fileReadonly) {
-    vim.lastMessage = 'readonly file';
+    vim.lastMessage = t('vim.msg.readonlyFile');
     mode = 'NORMAL';
   } else if (mode === 'INSERT' && vim.viewMode) {
     // viewModeはINSERTには入れるが、編集警告を出す（vim互換のW10）
@@ -2762,40 +3296,111 @@ function measureEditorText(text, style) {
   return normalCursorMeasure.measureText(expandTabsForMeasure(text, tabSize)).width;
 }
 
+// Mirror element for measuring cursor position with soft-wrap support.
+// We can't directly query textarea's wrapped caret coords, so we recreate
+// the same layout in a hidden <div> and measure a <span> placed at the
+// caret position. This is the well-known "textarea-caret-position" trick.
+let _cursorMirror = null;
+function getCursorMirror() {
+  if (_cursorMirror) return _cursorMirror;
+  const div = document.createElement('div');
+  div.setAttribute('aria-hidden', 'true');
+  div.style.position = 'absolute';
+  div.style.visibility = 'hidden';
+  div.style.top = '0';
+  div.style.left = '0';
+  div.style.pointerEvents = 'none';
+  div.style.whiteSpace = 'pre-wrap';
+  div.style.wordBreak = 'break-word';
+  div.style.overflowWrap = 'anywhere';
+  div.style.overflow = 'hidden';
+  document.body.appendChild(div);
+  _cursorMirror = div;
+  return div;
+}
+
+function measureCursorRect(textarea, pos) {
+  const div = getCursorMirror();
+  const cs = getComputedStyle(textarea);
+
+  // Copy layout-affecting styles from the textarea to the mirror
+  const props = [
+    'boxSizing', 'width',
+    'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'fontVariant',
+    'letterSpacing', 'wordSpacing', 'textTransform', 'textIndent',
+    'lineHeight', 'tabSize', 'direction',
+    'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+    'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth',
+    'borderStyle'
+  ];
+  for (const p of props) div.style[p] = cs[p];
+
+  // Match the textarea's wrap behavior
+  const wrapAttr = textarea.getAttribute('wrap');
+  if (wrapAttr === 'off') {
+    div.style.whiteSpace = 'pre';
+    div.style.wordBreak = 'normal';
+    div.style.overflowWrap = 'normal';
+  } else {
+    div.style.whiteSpace = 'pre-wrap';
+    div.style.wordBreak = 'break-word';
+    div.style.overflowWrap = 'anywhere';
+  }
+
+  const value = textarea.value;
+  const before = value.slice(0, pos);
+  const charAt = value[pos];
+  const isNewline = charAt === '\n' || charAt === undefined;
+  // Place a span at the cursor position. Use a non-empty char so the span
+  // has a measurable rect even when the cursor is at end-of-line/buffer.
+  // We render the actual char (or a single space for newline/EOF).
+  const cursorChar = isNewline ? ' ' : charAt;
+  const after = isNewline ? '' : value.slice(pos + 1);
+
+  // Clear and rebuild the mirror content.
+  div.textContent = '';
+  div.appendChild(document.createTextNode(before));
+  const span = document.createElement('span');
+  span.textContent = cursorChar;
+  div.appendChild(span);
+  // Append a trailing zero-width-ish node so the line height is preserved
+  // even at the end of buffer (otherwise the last line height collapses).
+  div.appendChild(document.createTextNode(after + '\u200b'));
+
+  const spanRect = span.getBoundingClientRect();
+  const divRect = div.getBoundingClientRect();
+
+  // Cursor coords relative to the textarea content area (account for scroll)
+  const left = (spanRect.left - divRect.left) - textarea.scrollLeft;
+  const top = (spanRect.top - divRect.top) - textarea.scrollTop;
+  const width = Math.max(4, spanRect.width || 8);
+  const height = spanRect.height || cssPx(cs.lineHeight, cssPx(cs.fontSize, 14) * 1.65);
+
+  return { left, top, width, height };
+}
+
 function updateNormalCursor() {
   if (!vim.open || vim.mode !== 'NORMAL' || $vimView.hidden) {
     $vimNormalCursor.classList.add('hidden');
     return;
   }
 
-  const style = getComputedStyle($vimEditor);
   const text = $vimEditor.value;
   const pos = Math.max(0, Math.min($vimEditor.selectionStart || 0, text.length));
-  const before = text.slice(0, pos);
-  const lineIndex = before.split('\n').length - 1;
-  const lineStart = before.lastIndexOf('\n') + 1;
-  const currentLinePrefix = before.slice(lineStart);
-  const fontSize = cssPx(style.fontSize, 14);
-  const lineHeight = cssPx(style.lineHeight, fontSize * 1.65);
-  const paddingLeft = cssPx(style.paddingLeft);
-  const paddingTop = cssPx(style.paddingTop);
-  const spaceWidth = Math.max(2, measureEditorText(' ', style));
-  const currentChar = text[pos] && text[pos] !== '\n' ? text[pos] : ' ';
-  const charWidth = Math.max(spaceWidth, measureEditorText(currentChar, style));
 
-  const left = paddingLeft + measureEditorText(currentLinePrefix, style) - $vimEditor.scrollLeft;
-  const top = paddingTop + lineIndex * lineHeight - $vimEditor.scrollTop;
+  const rect = measureCursorRect($vimEditor, pos);
   const viewWidth = $vimEditor.clientWidth;
   const viewHeight = $vimEditor.clientHeight;
 
-  if (top + lineHeight < 0 || top > viewHeight || left + charWidth < 0 || left > viewWidth) {
+  if (rect.top + rect.height < 0 || rect.top > viewHeight ||
+      rect.left + rect.width < 0 || rect.left > viewWidth) {
     $vimNormalCursor.classList.add('hidden');
     return;
   }
 
-  $vimNormalCursor.style.width = `${Math.max(4, charWidth)}px`;
-  $vimNormalCursor.style.height = `${lineHeight}px`;
-  $vimNormalCursor.style.transform = `translate(${left}px, ${top}px)`;
+  $vimNormalCursor.style.width = `${rect.width}px`;
+  $vimNormalCursor.style.height = `${rect.height}px`;
+  $vimNormalCursor.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
   $vimNormalCursor.classList.remove('hidden');
 }
 
@@ -2806,7 +3411,7 @@ function snapshotUndo() {
 
 function restoreUndo() {
   const state = vim.undoStack.pop();
-  if (!state) { vim.lastMessage = 'already at oldest change'; updateVimStatus(); return; }
+  if (!state) { vim.lastMessage = t('vim.msg.alreadyOldest'); updateVimStatus(); return; }
   $vimEditor.value = state.value;
   setCursor(Math.min(state.start, $vimEditor.value.length), Math.min(state.end, $vimEditor.value.length));
   vim.lastMessage = 'undo';
@@ -3127,24 +3732,24 @@ async function runVimCommand() {
       if (name === 'w' || name === 'write') {
         if (args.length === 0) await saveVim();
         else if (args.length === 1) await saveVimAs(args[0], true);
-        else throw new Error('usage: :w [FILE]');
+        else throw new Error(t('vim.msg.usage.w'));
         setVimMode('NORMAL');
       } else if (name === 'w!') {
         if (args.length === 0) await saveVim(true);
         else if (args.length === 1) await saveVimAs(args[0], true, true);
-        else throw new Error('usage: :w! [FILE]');
+        else throw new Error(t('vim.msg.usage.wforce'));
         setVimMode('NORMAL');
       } else if (name === 'saveas' || name === 'sav') {
-        if (args.length !== 1) throw new Error('usage: :saveas FILE');
+        if (args.length !== 1) throw new Error(t('vim.msg.usage.saveas'));
         await saveVimAs(args[0], true);
         setVimMode('NORMAL');
       } else if (name === 'saveas!' || name === 'sav!') {
-        if (args.length !== 1) throw new Error('usage: :saveas! FILE');
+        if (args.length !== 1) throw new Error(t('vim.msg.usage.saveasforce'));
         await saveVimAs(args[0], true, true);
         setVimMode('NORMAL');
       } else if (name === 'q') {
         if (isVimModified()) {
-          vim.lastMessage = 'No write since last change. Use :q! to discard.';
+          vim.lastMessage = t('vim.msg.noWriteSinceChange');
           setVimMode('NORMAL');
         } else {
           exitVim(false);
@@ -3165,7 +3770,7 @@ async function runVimCommand() {
         await reloadVim();
         setVimMode('NORMAL');
       } else if (name === 'help') {
-        vim.lastMessage = 'commands: :w [FILE] :w! :saveas FILE :q :wq :wq! :q! :e! :diff [FILE] :set number|nonumber|ff=unix|dos|mac';
+        vim.lastMessage = t('vim.msg.help');
         setVimMode('NORMAL');
       } else if (name === 'diff') {
         await showVimDiff(args);
@@ -3173,7 +3778,7 @@ async function runVimCommand() {
         handleVimSet(raw.slice(3).trim());
         setVimMode('NORMAL');
       } else {
-        vim.lastMessage = `Not an editor command: ${raw}`;
+        vim.lastMessage = t('vim.msg.notEditorCommand', {raw});
         setVimMode('NORMAL');
       }
     }
@@ -3211,9 +3816,27 @@ function handleVimSet(expr) {
   } else if (normalized === 'nobomb') {
     vim.hasBom = false;
     vim.lastMessage = 'BOM disabled';
+  } else if (normalized === 'wrap') {
+    vim.wrapMode = true;
+    applyVimWrap();
+    vim.lastMessage = 'wrap';
+  } else if (normalized === 'nowrap') {
+    vim.wrapMode = false;
+    applyVimWrap();
+    vim.lastMessage = 'nowrap';
   } else {
     vim.lastMessage = `unsupported set option: ${expr}`;
   }
+}
+
+function applyVimWrap() {
+  if (!$vimView) return;
+  if (vim.wrapMode) $vimView.removeAttribute('data-wrap');
+  else $vimView.setAttribute('data-wrap', 'off');
+  // textareaのwrap属性も同期して、保存時の改行扱いに影響しないようにする
+  // wrap="soft": 表示折り返しのみ、value には改行が入らない（vim互換）
+  // wrap="off": 折り返しなし、水平スクロール
+  if ($vimEditor) $vimEditor.setAttribute('wrap', vim.wrapMode ? 'soft' : 'off');
 }
 
 function searchFor(query, direction = 1) {
@@ -3233,7 +3856,7 @@ function searchFor(query, direction = 1) {
   }
 
   if (idx === -1) {
-    vim.lastMessage = `Pattern not found: ${needle}`;
+    vim.lastMessage = t('vim.msg.patternNotFound', {needle});
   } else {
     vim.lastSearchQuery = needle;
     vim.lastSearchDirection = direction >= 0 ? 1 : -1;
@@ -3286,12 +3909,12 @@ async function saveVimAs(targetPath, switchBuffer, force = false) {
   // saveas は別ファイルへの保存なので viewMode はチェックしない（vim互換）
   await ensurePermission(rootHandle, 'readwrite');
   const parts = normalizePath(targetPath);
-  if (parts.length === 0) throw new Error('saveas: root には保存できません。');
+  if (parts.length === 0) throw new Error(t('err.saveas.rootForbidden'));
   const existing = await getEntryInfo(parts).catch(() => null);
-  if (existing && existing.kind !== 'file') throw new Error(`${displayPath(parts)} はファイルではありません。`);
+  if (existing && existing.kind !== 'file') throw new Error(t('err.saveas.notFile', {path: displayPath(parts)}));
   if (existing && !samePath(parts, vim.pathParts) && !force) {
-    const ok = window.confirm(`${displayPath(parts)} は既に存在します。上書きしますか？`);
-    if (!ok) { vim.lastMessage = 'saveas canceled'; updateVimStatus(); return; }
+    const ok = window.confirm(t('confirm.saveas', {path: displayPath(parts)}));
+    if (!ok) { vim.lastMessage = t('saveas.canceled'); updateVimStatus(); return; }
   }
   const parent = await getDirHandle(parts.slice(0, -1));
   const handle = await parent.getFileHandle(basenameParts(parts), { create: true });
@@ -3451,6 +4074,12 @@ document.querySelectorAll('[data-size-opt]').forEach(btn => {
 document.querySelectorAll('[data-theme-opt]').forEach(btn => {
   btn.addEventListener('click', () => setTheme(btn.dataset.themeOpt));
 });
+document.querySelectorAll('[data-lang-opt]').forEach(btn => {
+  btn.addEventListener('click', () => setLangPref(btn.dataset.langOpt));
+});
+document.getElementById('btn-lang').addEventListener('click', () => {
+  setLangPref(uiPrefs.lang === 'ja' ? 'en' : 'ja');
+});
 $settingsGrepMaxMb.addEventListener('input', () => {
   const mb = Number.parseFloat($settingsGrepMaxMb.value);
   if ($settingsGrepMaxLabel) $settingsGrepMaxLabel.textContent = Number.isFinite(mb) && mb > 0 ? formatSize(Math.round(mb * 1024 * 1024)) : '-';
@@ -3535,7 +4164,7 @@ $vimCommandInput.addEventListener('keydown', (e) => {
 document.getElementById('btn-vim-save').addEventListener('click', () => saveVim().catch((err) => { vim.lastMessage = err.message || String(err); updateVimStatus(); }));
 document.getElementById('btn-vim-diff').addEventListener('click', () => showVimDiff().catch((err) => { vim.lastMessage = err.message || String(err); updateVimStatus(); }));
 document.getElementById('btn-vim-quit').addEventListener('click', () => {
-  if (isVimModified()) vim.lastMessage = 'No write since last change. Use :q! to discard.';
+  if (isVimModified()) vim.lastMessage = t('vim.msg.noWriteSinceChange');
   else exitVim(false);
   updateVimStatus();
 });
@@ -3556,14 +4185,17 @@ window.addEventListener('beforeunload', (e) => {
 
 // ==== Init ==================================================================
 async function init() {
+  renderI18n();
+  updateUiPrefsUi();
+  updateLangButton();
   updateChrome();
   updateSettingsUi();
   appendOutput('Tsui Vim', 'banner');
-  appendOutput('open で作業フォルダを選択。help でコマンド一覧。vim/vi file で編集開始。Tab で補完。', 'dim');
-  appendOutput('プロンプトは出力の末尾に統合されています。通常のshellのようにそのまま入力できます。', 'dim');
+  appendOutput(t('init.banner.openHint'), 'dim');
+  appendOutput(t('init.banner.promptInfo'), 'dim');
   try {
     const last = await idbGet(KEY_LAST);
-    if (last) appendOutput(`前回フォルダ候補: ${last.name}  (reconnect で再接続)`, 'dim');
+    if (last) appendOutput(t('init.banner.lastFolder', {name: last.name}), 'dim');
   } catch {}
   $commandInput.focus();
 
