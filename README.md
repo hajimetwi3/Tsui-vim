@@ -248,7 +248,16 @@ Vim画面では以下の簡易コマンドで変更できます。
 ---  
 
 ## アナウンス  
+- [https://x.com/hajimetwi3/status/2050118940429558181](https://x.com/hajimetwi3/status/2050118940429558181?s=20)  
 
 ## 作者  
 
 [Hajime Tsui](https://hajimetwi3.github.io/hajimetwi3/)  
+
+---
+
+## RELATED  
+
+本アプリは Tsui series(静かな道具たち)の一つです。  
+[https://hajimetwi3.github.io/hajimetwi3/Tsui-series/](https://hajimetwi3.github.io/hajimetwi3/Tsui-series/)  
+
